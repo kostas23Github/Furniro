@@ -1,6 +1,6 @@
 A small e-commerce which:
 
-- Fetces demo data from REST API
+- Fetches demo data from REST API
 - Adds/Removes/Modify user cart
 - Gets order data
 - Possibly add user data(register, login)
