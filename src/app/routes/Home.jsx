@@ -25,9 +25,6 @@ function Home() {
           <Button variant="primary" extraStyles="px-16 py-6 mt-16" titleText="Go to our shop page">
             BUY NOW
           </Button>
-          <Button variant="primary" extraStyles="px-16 py-6 mt-16" titleText="Go to our shop page">
-            BUY NOW
-          </Button>
         </div>
       </section>
       <section id="browse-collection" className="px-12 py-8">
