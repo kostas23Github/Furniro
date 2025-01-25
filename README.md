@@ -27,6 +27,11 @@ React(^18.3.1) + Vite(^6.0.5)
 - **Figma**
   - Found a challenging yet appealing full e-commerce design to code.
 
+## Cmds
+
+To start the app localy ` http://localhost:5173/Furniro-e-commerce-project/` in terminal run `npm run dev`.
+To update app on github pages commit & push changes to main repository branch, then in terminal run `npm run deploy`.
+
 # REST API
 
 Free Fake REST API for Placeholder JSON Data
@@ -45,5 +50,4 @@ To start app run `npm run dev`.
 **ProductCard.jsx**
 Just finished carousel for each product.
 
-1. Add to every btn component its tooltip.
-2. Add to it more parameters than a simple text value, something like `tooltip = { text, position, color, orientation, ...etc }`. Perhaps even a separate component(subcomponent of the btn component).
+1. Go to Tooltip.jsx

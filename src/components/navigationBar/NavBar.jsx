@@ -20,13 +20,33 @@ function NavBar() {
         <img src={logo} alt="Logo" className="md:w-12 md:h-8 w-8 h-6" />
         <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>
       </Link>
-      <Button
-        variant="icon"
-        extraStyles="text-4xl"
-        onClick={() => setIsMenuVisible(!isMenuVisible)}
-      >
-        {isMenuVisible ? <IoCloseSharp /> : <GiHamburgerMenu />}
-      </Button>
+      {isMenuVisible ? (
+        <Button
+          variant="icon"
+          extraStyles="text-4xl"
+          tooltipOptions={{
+            text: "Hide menu",
+            position: "left",
+            distance: "150",
+          }}
+          onClick={() => setIsMenuVisible(!isMenuVisible)}
+        >
+          <IoCloseSharp />
+        </Button>
+      ) : (
+        <Button
+          variant="icon"
+          extraStyles="text-4xl"
+          tooltipOptions={{
+            text: "Show menu",
+            position: "left",
+            distance: "150",
+          }}
+          onClick={() => setIsMenuVisible(!isMenuVisible)}
+        >
+          <GiHamburgerMenu />
+        </Button>
+      )}
       {/* By changing its class I hide the element. */}
       <div
         className={`mobile-expanded-menu absolute top-[92.8px] right-0 w-full bg-slate-100 px-4 py-12 z-20 shadow-lg ${

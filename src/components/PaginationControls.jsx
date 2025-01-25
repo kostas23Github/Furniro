@@ -8,6 +8,11 @@ function PaginationControls({ currentPage, totalPages, onPageChange }) {
       <Button
         variant='primary-reversed'
         extraStyles="px-4 py-2 rounded text-4xl"
+        tooltipOptions={{
+          text: "Previous page",
+          position: "top",
+          distance: "150",
+        }}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -16,6 +21,11 @@ function PaginationControls({ currentPage, totalPages, onPageChange }) {
       <Button
         variant='primary-reversed'
         extraStyles="px-4 py-2 rounded text-4xl"
+        tooltipOptions={{
+          text: "Next page",
+          position: "top",
+          distance: "150",
+        }}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages || totalPages === 0}
       >

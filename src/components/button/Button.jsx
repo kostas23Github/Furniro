@@ -4,12 +4,13 @@
 
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Tooltip from "./tooltip";
 
 function Button({
   variant = "icon",
   extraStyles = "",
   disabled,
-  titleText,
+  tooltipOptions,
   children,
   ...rest
 }) {
@@ -65,12 +66,7 @@ function Button({
       onMouseLeave={() => setIsHovered(false)}
     >
       {children}
-      {isHovered && titleText && (
-        <span className="absolute top-[110%] left-1/2 transform -translate-x-1/2 bg-grey-800 text-white text-sm px-3 py-1 rounded shadow-lg shadow-grey-500 z-10">
-          {titleText}
-          <div className="absolute left-1/2 -top-3 transform -translate-x-1/2 border-8 border-transparent border-b-grey-800"></div>
-        </span>
-      )}
+      {isHovered && tooltipOptions && <Tooltip {...tooltipOptions} />}
     </button>
   );
 }
@@ -87,8 +83,14 @@ Button.propTypes = {
   ]).isRequired,
   extraStyles: PropTypes.string,
   disabled: PropTypes.bool,
-  titleText: PropTypes.string,
+  tooltipOptions: PropTypes.object,
   children: PropTypes.node.isRequired, // React node
 };
+
+// Button.defaultProps = {
+//   disabled: false,
+//   tooltip: null,
+//   variant: "icon"
+// }
 
 export default Button;

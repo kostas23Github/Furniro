@@ -59,6 +59,11 @@ function ProductCard({ product }) {
                 <Button
                   variant={"primary-reversed"}
                   extraStyles="px-4 py-2 mb-4"
+                  tooltipOptions={{
+                    text: "Add to cart",
+                    position: "top",
+                    distance: "150",
+                  }}
                 >
                   <FaCartArrowDown />
                 </Button>
@@ -98,7 +103,11 @@ function ProductCard({ product }) {
           <Button
             variant={"icon"}
             extraStyles="text-4xl block mx-auto p-2"
-            titleText="Close details"
+            tooltipOptions={{
+              text: "Close",
+              position: "bottom",
+              distance: "100",
+            }}
             onClick={() => setVisibleSide("frontSide")}
           >
             <IoCloseSharp />
@@ -110,7 +119,11 @@ function ProductCard({ product }) {
               disabled={
                 product.images.length === 1
               } /* Only one image exist so the buttons are not necessary. */
-              titleText="Previous image"
+              tooltipOptions={{
+                text: "Previous page",
+                position: "right",
+                distance: "150",
+              }}
               onClick={() => {
                 setActiveSlide(
                   activeSlide === 0
@@ -134,8 +147,12 @@ function ProductCard({ product }) {
             <Button
               variant={"icon"}
               extraStyles="text-4xl"
+              tooltipOptions={{
+                text: "Next page",
+                position: "left",
+                distance: "150",
+              }}
               disabled={product.images.length === 1}
-              titleText="Next image"
               onClick={() => {
                 if (product.images.length > 0) {
                   setActiveSlide((activeSlide + 1) % product.images.length);

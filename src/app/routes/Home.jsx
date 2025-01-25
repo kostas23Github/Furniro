@@ -22,7 +22,15 @@ function Home() {
               tellus, luctus nec ullamcorper mattis.
             </p>
           </div>
-          <Button variant="primary" extraStyles="px-16 py-6 mt-16" titleText="Go to our shop page">
+          <Button
+            variant="primary"
+            extraStyles="px-16 py-6 mt-16"
+            tooltipOptions={{
+              text: "Go to our shop page",
+              position: "bottom",
+              distance: "100",
+            }}
+          >
             BUY NOW
           </Button>
         </div>

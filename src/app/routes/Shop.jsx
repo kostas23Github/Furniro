@@ -70,7 +70,11 @@ function Shop() {
           <Button
             variant="icon"
             extraStyles="border rounded border-gray p-1"
-            titleText="Filter by category"
+            tooltipOptions={{
+              text: "Filter",
+              position: "bottom",
+              distance: "150",
+            }}
             onClick={() => setIsDropdownHidden(!isDropdownHidden)}
           >
             <MdFilterList />
@@ -80,7 +84,6 @@ function Shop() {
               <div className="flex justify-between">
                 <Button
                   variant="text"
-                  titleText=""
                   onClick={() => {
                     setCategories(OPTIONS);
                     setCurrentPage(1);
