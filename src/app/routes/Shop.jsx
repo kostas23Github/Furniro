@@ -68,7 +68,6 @@ function Shop() {
 
   return (
     <div>
-      <span>This is the current branch!</span>
       <SearchBar
         onFilterCheckboxClick={handleFilterEdgeCases}
         handleCheckbox={handleCheckbox}
