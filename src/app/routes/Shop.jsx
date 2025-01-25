@@ -61,7 +61,7 @@ function Shop() {
   }
 
   return (
-    <>
+    <div>
       <div
         id="searchBar"
         className="bg-gold-light-3 h-24 w-full flex justify-evenly items-center"
@@ -148,7 +148,7 @@ function Shop() {
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
-    </>
+    </div>
   );
 }
 

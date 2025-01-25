@@ -26,7 +26,7 @@ function Home() {
             variant="primary"
             extraStyles="px-16 py-6 mt-16"
             tooltipOptions={{
-              text: "Go to our shop page",
+              text: "Visit our shop page",
               position: "bottom",
               distance: "100",
             }}
