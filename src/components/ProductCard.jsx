@@ -181,7 +181,7 @@ ProductCard.propTypes = {
     discountPercentage: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    brand: PropTypes.string.isRequired,
+    brand: PropTypes.string,
     description: PropTypes.string.isRequired,
   }).isRequired,
 };

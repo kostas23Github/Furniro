@@ -80,7 +80,7 @@ Button.propTypes = {
     "text",
     "icon",
     "link",
-  ]).isRequired,
+  ]),
   extraStyles: PropTypes.string,
   disabled: PropTypes.bool,
   tooltipOptions: PropTypes.object,

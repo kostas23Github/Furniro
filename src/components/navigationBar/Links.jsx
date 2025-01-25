@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import PropTypes from "prop-types";
-
 function Links({ mobileStyles }) {
   return (
     <ul
@@ -20,7 +19,7 @@ function Links({ mobileStyles }) {
 }
 
 Links.propTypes = {
-  mobileStyles: PropTypes.string.isRequired,
+  mobileStyles: PropTypes.string,
 }
 
 export default Links;
