@@ -48,6 +48,6 @@ To start app run `npm run dev`.
 ## Continue from
 
 **ProductCard.jsx**
-Just finished carousel for each product.
 
-1. Go to Tooltip.jsx
+Continue with Home.jsx page's next sections.
+Handle mobile/table view.
