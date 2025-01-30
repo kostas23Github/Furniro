@@ -69,7 +69,7 @@ function NavBar() {
     <nav className="px-20 py-8 flex justify-between">
       <Link to="/" className="flex justify-between gap-1 items-center">
         <img src={logo} alt="Logo" className="md:w-12 md:h-8 w-8 h-6" />
-        <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>{" "}
+        <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>
         {/* custom font-size */}
       </Link>
       <Links />

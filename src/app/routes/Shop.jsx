@@ -1,12 +1,17 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
+import { useLocation } from "react-router";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
 import ProductCard from "../../components/productCard";
 import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
+import Loading from "../../components/Loading";
 
 function Shop() {
   // Get product data from ProductsContext in ProductsProvider component.
   const { products } = useContext(ProductsContext);
+  // Content is a bit laggy
+  // Content loading, filtering, scrollToTop(redirecting from home page).
+  const [isLoading, setIsLoading] = useState(true);
   // The current list of products being displayed.
   const [productList, setProductList] = useState(products);
   // Which products' categories are checked.
@@ -19,30 +24,46 @@ function Shop() {
   const [searchQuery, setSearchQuery] = useState("");
   // Which part of the product-list is visible.
   const [currentPage, setCurrentPage] = useState(1);
+  const location = useLocation();
+  const fromHomePageCategory = location.state?.selectedCategory;
+
+  // I had previously included this logic inside the useEffect hook(apart from the useMemo hook). Now with useMemo it is calculated only when the dependancy array changes and not when the component renders.
+  const filteredProducts = useMemo(() => {
+    const filteredByCategory = products.filter((product) =>
+      categories.includes(product.category)
+    );
+
+    return searchQuery
+      ? filteredByCategory.filter((product) =>
+          product.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : filteredByCategory;
+  }, [products, categories, searchQuery]);
 
   // Set pagination values.
   const itemsPerPage = 12;
   const totalPages = Math.ceil(productList.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedItems = productList.slice(
+  const paginatedItems = filteredProducts.slice(
     startIndex,
     startIndex + itemsPerPage
   );
 
-  // Sync productList whenever products, categories, or searchQuery changes.
   useEffect(() => {
-    const filteredProducts = products.filter((product) =>
-      categories.includes(product.category)
-    );
+    setIsLoading(true);
+    setProductList(filteredProducts);
+    setIsLoading(false);
+  }, [filteredProducts]);
 
-    const finalProducts = searchQuery
-      ? filteredProducts.filter((product) =>
-          product.title.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      : filteredProducts;
-
-    setProductList(finalProducts);
-  }, [products, categories, searchQuery]);
+  // Updates categories state on redirection from Home page/categories section.
+  useEffect(() => {
+    // This if statement ensures that only when the user comes from the home page(categories section) i.e. the fromHomePageCategory has a value, the useEffect logic is executed.
+    if (fromHomePageCategory) {
+      setIsLoading(true);
+      setCategories([fromHomePageCategory]);
+      setCurrentPage(1);
+    }
+  }, [fromHomePageCategory]);
 
   // Handles the checkbox options inside filter menu.
   function handleFilterEdgeCases(categories) {
@@ -65,6 +86,8 @@ function Shop() {
   function handleSearchQuery(value) {
     setSearchQuery(value);
   }
+
+  if (isLoading) return <Loading />;
 
   return (
     <div>
