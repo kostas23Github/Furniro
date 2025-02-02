@@ -4,12 +4,12 @@ import { ProductsContext } from "../../components/contexts/ProductsContext";
 import ProductCard from "../../components/productCard";
 import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loadingAnimation/Loading";
 
 function Shop() {
   // Get product data from ProductsContext in ProductsProvider component.
   const { products } = useContext(ProductsContext);
-  // Content is a bit laggy
+  // Content is a bit laggyyy
   // Content loading, filtering, scrollToTop(redirecting from home page).
   const [isLoading, setIsLoading] = useState(true);
   // The current list of products being displayed.
