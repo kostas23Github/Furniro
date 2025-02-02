@@ -4,7 +4,7 @@ import { ProductsContext } from "../../components/contexts/ProductsContext";
 import ProductCard from "../../components/productCard";
 import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
-import Loading from "../../components/Loading";
+import Loading from "../../components/loadingAnimation/Loading";
 
 function Shop() {
   // Get product data from ProductsContext in ProductsProvider component.
