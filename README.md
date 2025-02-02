@@ -49,5 +49,8 @@ To start app run `npm run dev`.
 
 **ProductCard.jsx**
 
-Continue with Home.jsx page's next sections.
-Handle mobile/table view.
+Home.jsx
+
+1. Somewhat make the carousel functional.
+   Need to finalize it. The button, the animations and responsivenes.
+2. Prompt chatGPT for lazyloading to reduce site's loading times.

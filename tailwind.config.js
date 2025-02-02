@@ -58,14 +58,14 @@ export default {
           lineHeight: '1.2em',
           fontWeight: '700'
         }], /* 40px h3-tag */
-        '6xl': ['2.5em', {
+        '6xl': ['3em', {
           lineHeight: '1.5em',
           fontWeight: '700'
         }], /* 48px h2-tag */
-        '7xl': ['3.5em', {
+        '7xl': ['3.25em', {
           lineHeight: '65px',
           fontWeight: '700'
-        }], /* 56px h1-tag */
+        }], /* 52px h1-tag */
       },
     },
   },
