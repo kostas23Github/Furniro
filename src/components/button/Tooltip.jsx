@@ -42,7 +42,7 @@ function Tooltip({ text = "hello", position = "bottom", distance = "80" }) {
   };
   return (
     <span
-      className="absolute bg-grey-800/90 text-white text-sm px-3 py-1 rounded shadow-lg shadow-grey-500 z-10 cursor-default pointer-events-none text-nowrap"
+      className="absolute bg-grey-800/90 text-white text-sm leading-none font-medium px-3 py-2 rounded shadow-lg shadow-grey-500 z-10 cursor-default pointer-events-none text-nowrap"
       style={positionStyles[position].tooltip}
     >
       {text}
