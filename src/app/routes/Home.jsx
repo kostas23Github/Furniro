@@ -3,9 +3,13 @@ import { Link } from "react-router";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
 import heroBg from "../../assets/images/hero-bg/home-hero-bg-scandinavian.png";
 import Button from "../../components/button/Button.jsx";
+import Carousel from "../../components/Carousel.jsx";
+import Loading from "../../components/loadingAnimation/Loading.jsx";
+import { useScreenSize } from "../../components/contexts/ScreenSizeProvider.jsx";
 
 function Home() {
   const { products, loading } = useContext(ProductsContext);
+  const { isMobile, isLaptop } = useScreenSize();
 
   const CATEGORIES = [
     { name: "furniture", selectedProduct: products[2] },
@@ -13,19 +17,28 @@ function Home() {
     { name: "kitchen-accessories", selectedProduct: products[11] },
   ];
 
-  return loading ? (
-    <div>Loading....</div>
-  ) : (
+  // A compact line of code that: Array(3) -> [ , , ], .fill(null) -> (null, null, null) is mandatory since flatMap would otherwise skip empty slots. .flatMap() = flat+Map.
+  const carouselitems = Array(6)
+    .fill(null)
+    .flatMap(() =>
+      products.filter((product) => product.category === "home-decoration")
+    );
+
+  if (loading) return <Loading />;
+
+  return (
     <div>
       <section
         id="hero-section"
-        className="h-[716px] px-12 flex flex-row-reverse items-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        className="h-max md:h-[716px] md:px-12 flex flex-row-reverse items-center"
+        style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover" }}
       >
-        <div className="w-1/2 h-max bg-gold-light-2 px-10 py-12">
+        <div className="md:w-1/2 bg-gold-light-2/70 md:bg-gold-light-2 px-10 py-12">
           <div>
             <p className="font-semibold">New Arrival</p>
-            <h1 className="text-gold">Discover Our New Collection</h1>
+            <p className="text-gold text-5xl md:text-7xl">
+              Discover Our New Collection
+            </p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
               tellus, luctus nec ullamcorper mattis.
@@ -68,6 +81,33 @@ function Home() {
             </Link>
           ))}
         </div>
+      </section>
+      <section
+        id="what-to-expect"
+        className="bg-gold-light px-12 py-8 md:flex gap-5 md:items-center"
+      >
+        <div className="what-to-expect-title text-center md:text-left mx-auto md:w-1/3 max-w-xs shrink-0">
+          <p className="text-5xl mb-2">
+            <span className="">100s</span> of items {!isLaptop && <br />} to
+            choose from...
+          </p>
+          <p className="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing
+            {!isLaptop || isMobile && <br />} elit. Recusandae, repudiandae!
+          </p>
+          <Button
+            variant="primary"
+            extraStyles="px-6 py-2 mt-6"
+            tooltipOptions={{
+              text: "Browse Products",
+              position: "right",
+              distance: "100",
+            }}
+          >
+            Explore More
+          </Button>
+        </div>
+        <Carousel items={carouselitems} />
       </section>
       <section id="share-your-setup">
         <header className="flex flex-col gap-1 text-center">

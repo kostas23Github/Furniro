@@ -112,7 +112,7 @@ function ProductCard({ product }) {
           >
             <IoCloseSharp />
           </Button>
-          <div className="more-images-container relative p-4 flex justify-center items-center">
+          <div className="more-images-container p-4 flex justify-center items-center">
             <Button
               variant={"icon"}
               extraStyles="text-4xl"

@@ -49,8 +49,12 @@ To start app run `npm run dev`.
 
 **ProductCard.jsx**
 
-Home.jsx
+Carousel.jsx
 
-1. Somewhat make the carousel functional.
-   Need to finalize it. The button, the animations and responsivenes.
-2. Prompt chatGPT for lazyloading to reduce site's loading times.
+The carousel has two modes:
+
+1. For maxWidth: 450px,
+2. For minWidth: 451px
+
+Make the 1st have a fade away(optional).
+See that the code is working on all occasions. NO BUGS.
