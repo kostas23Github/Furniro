@@ -22,10 +22,10 @@ function Button({
   const variantClass = {
     primary: {
       regular: "bg-gold text-white",
-      hover: "bg-slate-50 text-gold ring-gold ring-2 ring-inset",
+      hover: "bg-transparent text-gold ring-gold ring-2 ring-inset",
     },
     "primary-reversed": {
-      regular: "bg-slate-50 text-gold ring-gold ring-2 ring-inset",
+      regular: "bg-transparent text-gold ring-gold ring-2 ring-inset",
       hover: "bg-gold text-white",
     },
     secondary: {
@@ -55,9 +55,13 @@ function Button({
     ? variantClass[variant].hover
     : variantClass[variant].regular;
 
+  if (!extraStyles.includes("absolute")) {
+    extraStyles += " relative";
+  }
+
   return (
     <button
-      className={`${variantState} ${extraStyles} relative inline-block ${
+      className={`${variantState} ${extraStyles} inline-block ${
         disabled ? "opacity-50" : ""
       }`}
       disabled={disabled}
@@ -86,11 +90,5 @@ Button.propTypes = {
   tooltipOptions: PropTypes.object,
   children: PropTypes.node.isRequired, // React node
 };
-
-// Button.defaultProps = {
-//   disabled: false,
-//   tooltip: null,
-//   variant: "icon"
-// }
 
 export default Button;
