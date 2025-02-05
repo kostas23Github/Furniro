@@ -9,7 +9,7 @@ import { useScreenSize } from "../../components/contexts/ScreenSizeProvider.jsx"
 
 function Home() {
   const { products, loading } = useContext(ProductsContext);
-  const { isMobile, isLaptop } = useScreenSize();
+  const { isMobilePortrait, isMobile, isLaptop } = useScreenSize();
 
   const CATEGORIES = [
     { name: "furniture", selectedProduct: products[2] },
@@ -62,25 +62,50 @@ function Home() {
           <p className="mb-1 text-logo">Browse The Range</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </header>
-        <div id="categories" className="flex gap-3 mx-20">
-          {CATEGORIES.map((category) => (
-            <Link
-              key={category.name}
-              to="/shop"
-              state={{ selectedCategory: category.name }}
-              className="mb-10"
-            >
-              <img
-                className="aspect-[0.80] bg-gold/60 rounded-2xl"
-                src={category.selectedProduct.images[0]}
-                alt={category.selectedProduct.title}
-              />
-              <p className="my-4 text-2xl text-center">
-                {category.selectedProduct.category.toUpperCase()}
-              </p>
-            </Link>
-          ))}
-        </div>
+        {isMobilePortrait ? (
+          <div>
+            {CATEGORIES.map((category, index) => (
+              <Link
+                to="/shop"
+                state={{ selectedCategory: category.name }}
+                className={`flex justify-between items-center mb-10 w-full ${
+                  index === 1 ? "flex-row-reverse" : ""
+                }`}
+                key={category.name}
+              >
+                <img
+                  className="shrink-0 w-[120px] h-[150px] bg-gold/60 rounded-2xl"
+                  src={category.selectedProduct.images[0]}
+                  alt={category.selectedProduct.title}
+                />
+                <p className="w-[140px] text-1xl text-center">
+                  {category.selectedProduct.category.toUpperCase()}
+                </p>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-row gap-3 md:gap-5 md:mx-20">
+            {CATEGORIES.map((category) => (
+              <Link
+                key={category.name}
+                to="/shop"
+                // Using react-router's state functionality to pass to the target page a given state to predetermine the content displayed/functionality.
+                state={{ selectedCategory: category.name }}
+                className="min-w-1/3 lg:min-w-[250px]"
+              >
+                <img
+                  className="shrink-0 aspect-[0.8] bg-gold/60 rounded-2xl"
+                  src={category.selectedProduct.images[0]}
+                  alt={category.selectedProduct.title}
+                />
+                <p className="my-4 text-2xl text-center">
+                  {category.selectedProduct.category.toUpperCase()}
+                </p>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
       <section
         id="what-to-expect"
@@ -93,7 +118,7 @@ function Home() {
           </p>
           <p className="text">
             Lorem ipsum dolor sit amet consectetur adipisicing
-            {!isLaptop || isMobile && <br />} elit. Recusandae, repudiandae!
+            {!isLaptop || (isMobile && <br />)} elit. Recusandae, repudiandae!
           </p>
           <Button
             variant="primary"
@@ -118,49 +143,49 @@ function Home() {
           <div className="flex justify-center items-center relative w-[110%] right-[5%] my-6 mx-auto">
             <div className="flex flex-row-reverse flex-wrap items-baseline w-2/5">
               <img
-                className="m-1 w-[70%] aspect-[1.45] bg-gold/60 rounded-2xl"
+                className="m-[2px] sm:m-1 w-[70%] aspect-[1.45] bg-gold/60 rounded-2xl"
                 src={products[10].images[0]}
                 alt={products[10].title}
               />
               <img
-                className="m-1 w-[25%] aspect-[0.72] bg-gold/70 rounded-2xl"
+                className="m-[2px] sm:m-1 w-[25%] aspect-[0.72] bg-gold/70 rounded-2xl"
                 src={products[11].images[0]}
                 alt={products[11].title}
               />
               <img
-                className="m-1 w-[50%] aspect-[1.18] bg-yellow-600/80 rounded-2xl self-start"
+                className="m-[2px] sm:m-1 w-[50%] aspect-[1.18] bg-yellow-600/80 rounded-2xl self-start"
                 src={products[12].images[0]}
                 alt={products[12].title}
               />
               <img
-                className="m-1 w-[40%] aspect-[1.42] bg-gold/90 rounded-2xl self-start"
+                className="m-[2px] sm:m-1 w-[40%] aspect-[1.42] bg-gold/90 rounded-2xl self-start"
                 src={products[13].images[0]}
                 alt={products[13].title}
               />
             </div>
             <img
-              className="m-1 w-[18%] lg:w-[20%] aspect-[3/4] bg-gold/80 rounded-2xl"
+              className="m-1 w-[18%] lg:w-[20%] aspect-[3/4] bg-gold/80 rounded-2xl shadow-[0_0_15px_#d4a941]"
               src={products[14].images[0]}
               alt={products[14].title}
             />
             <div className="flex flex-wrap items-baseline w-2/5">
               <img
-                className="m-1 w-[42%] aspect-[0.83] bg-yellow-700/90 rounded-2xl"
+                className="m-[2px] sm:m-1 w-[42%] aspect-[0.83] bg-yellow-700/90 rounded-2xl"
                 src={products[15].images[0]}
                 alt={products[15].title}
               />
               <img
-                className="m-1 w-[53%] aspect-[0.98] bg-gold/60 rounded-2xl"
+                className="m-[2px] sm:m-1 w-[53%] aspect-[0.98] bg-gold/60 rounded-2xl"
                 src={products[16].images[0]}
                 alt={products[16].title}
               />
               <img
-                className="m-1 self-start w-[25%] aspect-[0.74] bg-gold/50 rounded-2xl"
+                className="m-[2px] sm:m-1 self-start w-[25%] aspect-[0.74] bg-gold/50 rounded-2xl"
                 src={products[17].images[0]}
                 alt={products[17].title}
               />
               <img
-                className="m-1 self-start w-[40%] aspect-[1.32] bg-gold/50 rounded-2xl"
+                className="m-[2px] sm:m-1 self-start w-[40%] aspect-[1.32] bg-gold/50 rounded-2xl"
                 src={products[18].images[0]}
                 alt={products[18].title}
               />
