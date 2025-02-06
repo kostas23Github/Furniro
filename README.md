@@ -47,14 +47,7 @@ To start app run `npm run dev`.
 
 ## Continue from
 
-**ProductCard.jsx**
-
-Carousel.jsx
-
-The carousel has two modes:
-
-1. For maxWidth: 450px,
-2. For minWidth: 451px
-
-Make the 1st have a fade away(optional).
-See that the code is working on all occasions. NO BUGS.
+1. Footer.jsx 
+   1. Complete styling, responsive views.
+2. Links.jsx
+   1. Complete footer's placement link styles. 
