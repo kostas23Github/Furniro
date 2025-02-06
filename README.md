@@ -51,3 +51,4 @@ To start app run `npm run dev`.
    1. Complete styling, responsive views.
 2. Links.jsx
    1. Complete footer's placement link styles. 
+   2. Fix responsiveness with links placement in navbar.
