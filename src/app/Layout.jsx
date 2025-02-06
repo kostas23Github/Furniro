@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import ProductsProvider from "../components/contexts/ProductsProvider";
 import ScreenSizeProvider from "../components/contexts/ScreenSizeProvider";
 import NavBar from "../components/navigationBar/navBar";
+import Footer from "../components/Footer";
 
 // Apply global(root) styles here!
 function Layout() {
@@ -15,7 +16,7 @@ function Layout() {
           <main className="">
             <Outlet />
           </main>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </ProductsProvider>
     </ScreenSizeProvider>
