@@ -61,7 +61,7 @@ function NavBar() {
           !isMenuVisible && "opacity-0 invisible pointer-events-none"
         }`}
       >
-        <Links mobileStyles="mb-10 mx-auto" />
+        <Links items={["Shop", "About", "Contact"]} placement="navBar" mobileStyles="mb-10 mx-auto" />
         <UserActions mobileStyles="mx-auto" />
       </div>
     </nav>
@@ -72,7 +72,7 @@ function NavBar() {
         <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>
         {/* custom font-size */}
       </Link>
-      <Links />
+      <Links items={["Shop", "About", "Contact"]} placement="navBar" />
       <UserActions />
     </nav>
   );
