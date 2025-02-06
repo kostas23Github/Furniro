@@ -8,6 +8,7 @@ import Tooltip from "./tooltip";
 
 function Button({
   variant = "icon",
+  type,
   extraStyles = "",
   disabled,
   tooltipOptions,
@@ -61,6 +62,7 @@ function Button({
 
   return (
     <button
+      type={type}
       className={`${variantState} ${extraStyles} inline-block ${
         disabled ? "opacity-50" : ""
       }`}
@@ -85,6 +87,7 @@ Button.propTypes = {
     "icon",
     "link",
   ]),
+  type: PropTypes.string,
   extraStyles: PropTypes.string,
   disabled: PropTypes.bool,
   tooltipOptions: PropTypes.object,
