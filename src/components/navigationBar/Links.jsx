@@ -9,11 +9,12 @@ function Links({ items, placement, mobileStyles }) {
       : "";
 
   const linkClassValues = "hover:text-gray-500";
+  const liClassValues = "mb-2"
 
   return (
     <ul className={ulClassValues}>
       {items.map((item) => (
-        <li key={item}>
+        <li key={item} className={liClassValues}>
           <Link to={`/${item}`} className={linkClassValues}>
             {item}
           </Link>
