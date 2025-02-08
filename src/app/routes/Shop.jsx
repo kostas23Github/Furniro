@@ -5,6 +5,7 @@ import ProductCard from "../../components/productCard";
 import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
 import Loading from "../../components/loadingAnimation/Loading";
+import CharacteristicsList from "../../components/CharacteristicsList";
 
 function Shop() {
   // Get product data from ProductsContext in ProductsProvider component.
@@ -113,6 +114,7 @@ function Shop() {
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
+      <CharacteristicsList />
     </div>
   );
 }
