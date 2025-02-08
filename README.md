@@ -47,8 +47,6 @@ To start app run `npm run dev`.
 
 ## Continue from
 
-1. Footer.jsx 
-   1. Complete styling, responsive views.
-2. Links.jsx
-   1. Complete footer's placement link styles. 
-   2. Fix responsiveness with links placement in navbar.
+1. Fix responsiveness of navbar.
+2. Fix responsiveness of filter bar on Shop.jsx.
+3. Maybe add a backdrop to every modal/filter menu.
