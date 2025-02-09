@@ -1,4 +1,4 @@
-import Button from "./button/Button";
+import Button from "./button/button";
 import { IoCloseSharp } from "react-icons/io5";
 import PropTypes from "prop-types";
 import Backdrop from "./Backdrop";

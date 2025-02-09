@@ -4,7 +4,7 @@ import { FaStar, FaShareAlt, FaCartArrowDown } from "react-icons/fa";
 import { TbHeart } from "react-icons/tb";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
-import Button from "./button/Button";
+import Button from "./button/button";
 
 function ProductCard({ product }) {
   const [isHovered, setIsHovered] = useState(false);

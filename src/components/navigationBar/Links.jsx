@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 function Links({ items, placement, mobileStyles }) {
   const ulClassValues =
     placement === "navBar"
-      ? `flex justify-between items-center max-w-[230px] grow font-medium ${mobileStyles}`
+      ? `flex justify-between items-center max-w-[200px] lg:max-w-[230px] grow font-medium ${mobileStyles}`
       : placement === "footer"
       ? ""
       : "";
 
   const linkClassValues = "hover:text-gray-500";
-  const liClassValues = "mb-2"
+  const liClassValues = placement === "footer" ? "mb-2" : "";
 
   return (
     <ul className={ulClassValues}>

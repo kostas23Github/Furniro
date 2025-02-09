@@ -10,7 +10,7 @@ function UserActions({ mobileStyles }) {
 
   return (
     <ul
-      className={"flex justify-between items-center w-[300px] " + mobileStyles}
+      className={"flex justify-between items-center w-[200px] lg:w-[300px] " + mobileStyles}
     >
       <li>
         <Button
