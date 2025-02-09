@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import PropTypes from "prop-types";
-function Links({ items, placement, mobileStyles }) {
+function Links({ items, placement, mobileStyles, onShowMenu }) {
   const ulClassValues =
     placement === "navBar"
       ? `flex justify-between items-center max-w-[200px] lg:max-w-[230px] grow font-medium ${mobileStyles}`
@@ -15,7 +15,7 @@ function Links({ items, placement, mobileStyles }) {
     <ul className={ulClassValues}>
       {items.map((item) => (
         <li key={item} className={liClassValues}>
-          <Link to={`/${item}`} className={linkClassValues}>
+          <Link to={`/${item}`} className={linkClassValues} onClick={()=>onShowMenu(false)}>
             {item}
           </Link>
         </li>
@@ -28,6 +28,7 @@ Links.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   placement: PropTypes.oneOf(["navBar", "footer"]).isRequired,
   mobileStyles: PropTypes.string,
+  onShowMenu: PropTypes.func,
 };
 
 export default Links;
