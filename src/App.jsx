@@ -6,6 +6,7 @@ import Home from "./app/routes/Home";
 import Shop from "./app/routes/Shop";
 import About from "./app/routes/About";
 import Contact from "./app/routes/Contact";
+import ErrorPage from "./app/routes/ErrorPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<ErrorPage />} />   
       </Route>
     </Routes>
   );
