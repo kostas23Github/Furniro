@@ -11,13 +11,12 @@ import ErrorPage from "./app/routes/ErrorPage";
 function App() {
   return (
     <Routes>
-      {/* Add not found/404/etc routes/pages. */}
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<ErrorPage />} />   
+        <Route path="/*" element={<ErrorPage />} />   
       </Route>
     </Routes>
   );

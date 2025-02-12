@@ -15,7 +15,7 @@ function Links({ items, placement, mobileStyles, onShowMenu }) {
     <ul className={ulClassValues}>
       {items.map((item) => (
         <li key={item} className={liClassValues}>
-          <Link to={`/${item}`} className={linkClassValues} onClick={()=>onShowMenu(false)}>
+          <Link to={`/${item}`.toLowerCase()} className={linkClassValues} onClick={()=>onShowMenu(false)}>
             {item}
           </Link>
         </li>
