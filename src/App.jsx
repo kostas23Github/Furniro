@@ -16,8 +16,8 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="404" element={<ErrorPage />} /> Match the redirect
-        <Route path="*" element={<ErrorPage message="Page not found. Please check the URL."/>} />   
+        <Route path="404" element={<ErrorPage />} /> {/*Match the redirect */}
+        <Route path="*" element={<ErrorPage message="Please check the URL."/>} />   
       </Route>
     </Routes>
   );
