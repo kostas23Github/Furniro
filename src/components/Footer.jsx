@@ -14,25 +14,25 @@ function Footer() {
 
   return (
     <div>
-      <div className="p-6 md:p-10 md:flex md:justify-between min-h-[300px]">
-        <div className="mb-5 md:mx-4">
+      <div className="p-5 sm:p-10 lg:p-20 md:flex md:justify-between md:gap-4 min-h-[300px]">
+        <div className="mb-5">
           <header className="text-3xl mb-3">Furniro.</header>
           <p className="text-grey-300">
             400 University Drive Suite 200 Coral Gables, FL 33134 USA
           </p>
         </div>
-        <div className="mb-5 md:mx-4">
+        <div className="mb-5">
           <header className="mb-3 text-2xl">Links</header>
           <Links items={["Shop", "About", "Contact"]} placement="footer" />
         </div>
-        <div className="mb-5 md:mx-4">
+        <div className="mb-5">
           <header className="mb-3 text-2xl">Help</header>
           <Links
             items={["Payment Options", "Returns", "Privacy Policies"]}
             placement="footer"
           />
         </div>
-        <div className="mb-5 md:mx-4">
+        <div className="mb-5">
           <header className="mb-3 text-2xl">Newsletter</header>
           <Form>
             <input
