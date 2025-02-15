@@ -5,7 +5,7 @@ import { PiHeadsetThin } from "react-icons/pi";
 
 function CharacteristicsList() {
   return (
-    <ul className="px-6 py-12 flex flex-wrap gap-6 xl:gap-0 justify-center md:px-10 md:py-24 bg-gold-light-2">
+    <ul className="px-5 sm:px-10 lg:px-20 py-12 flex flex-wrap gap-6 xl:gap-0 justify-center md:px-10 md:py-24 bg-gold-light-2">
       <li key="High Quality" className="flex justify-center items-center gap-6">
         <HiOutlineTrophy className="text-[4em] stroke-[.7]" />
         <div>
