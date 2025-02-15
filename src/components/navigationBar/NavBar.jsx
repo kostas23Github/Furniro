@@ -5,7 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import Links from "./Links.jsx";
 import UserActions from "./UserActions.jsx";
 import { useScreenSize } from "../contexts/ScreenSizeProvider";
-import Button from "../button/button.jsx";
+import Button from "../button/Button";
 import logo from "../../assets/images/logo/Meubel_House_Logo.png";
 import MobileExpandMenu from "./mobileExpandMenu.jsx";
 import useOutsideClick from "../hooks/useOutsideClick.jsx";
