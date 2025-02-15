@@ -143,49 +143,49 @@ function Home() {
           <div className="flex justify-center items-center relative w-[110%] right-[5%] my-6 mx-auto">
             <div className="flex flex-row-reverse flex-wrap items-baseline w-2/5">
               <img
-                className="m-[2px] sm:m-1 w-[70%] aspect-[1.45] bg-gold/60 rounded-2xl"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] w-[70%] aspect-[1.45] bg-gold/60 rounded-lg md:rounded-2xl hover:shadow-[0_0_15px_#d4a941] hover:scale-110 hover:bg-gold duration-100"
                 src={products[10].images[0]}
                 alt={products[10].title}
               />
               <img
-                className="m-[2px] sm:m-1 w-[25%] aspect-[0.72] bg-gold/70 rounded-2xl"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] w-[25%] aspect-[0.72] bg-gold/70 rounded-lg md:rounded-2xl hover:shadow-[0_0_15px_#d4a941] hover:scale-110 hover:bg-gold duration-100"
                 src={products[11].images[0]}
                 alt={products[11].title}
               />
               <img
-                className="m-[2px] sm:m-1 w-[50%] aspect-[1.18] bg-yellow-600/80 rounded-2xl self-start"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] w-[50%] aspect-[1.18] bg-yellow-600/80 rounded-lg md:rounded-2xl self-start hover:shadow-[0_0_15px_#d4a941] hover:scale-110 hover:bg-gold duration-100"
                 src={products[12].images[0]}
                 alt={products[12].title}
               />
               <img
-                className="m-[2px] sm:m-1 w-[40%] aspect-[1.42] bg-gold/90 rounded-2xl self-start"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] w-[40%] aspect-[1.42] bg-gold/90 rounded-lg md:rounded-2xl self-start hover:shadow-[0_0_15px_#d4a941] hover:scale-110 hover:bg-gold duration-100"
                 src={products[13].images[0]}
                 alt={products[13].title}
               />
             </div>
             <img
-              className="m-1 w-[18%] lg:w-[20%] aspect-[3/4] bg-gold/80 rounded-2xl shadow-[0_0_15px_#d4a941]"
+              className="m-1 w-[18%] lg:w-[20%] aspect-[3/4] bg-gold/80 rounded-2xl shadow-[0_0_15px_#d4a941] hover:scale-125 hover:bg-gold duration-100"
               src={products[14].images[0]}
               alt={products[14].title}
             />
             <div className="flex flex-wrap items-baseline w-2/5">
               <img
-                className="m-[2px] sm:m-1 w-[42%] aspect-[0.83] bg-yellow-700/90 rounded-2xl"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] w-[42%] aspect-[0.83] bg-yellow-700/90 rounded-lg md:rounded-2xl hover:scale-110 hover:bg-gold duration-100"
                 src={products[15].images[0]}
                 alt={products[15].title}
               />
               <img
-                className="m-[2px] sm:m-1 w-[53%] aspect-[0.98] bg-gold/60 rounded-2xl"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] w-[53%] aspect-[0.98] bg-gold/60 rounded-lg md:rounded-2xl hover:scale-110 hover:bg-gold duration-100"
                 src={products[16].images[0]}
                 alt={products[16].title}
               />
               <img
-                className="m-[2px] sm:m-1 self-start w-[25%] aspect-[0.74] bg-gold/50 rounded-2xl"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px]  self-start w-[25%] aspect-[0.74] bg-gold/50 rounded-lg md:rounded-2xl hover:scale-110 hover:bg-gold duration-100"
                 src={products[17].images[0]}
                 alt={products[17].title}
               />
               <img
-                className="m-[2px] sm:m-1 self-start w-[40%] aspect-[1.32] bg-gold/50 rounded-2xl"
+                className="m-[1px] sm:m-[3px] md:m-1 xl:m-[6px] self-start w-[40%] aspect-[1.32] bg-gold/50 rounded-lg md:rounded-2xl hover:scale-110 hover:bg-gold duration-100"
                 src={products[18].images[0]}
                 alt={products[18].title}
               />
