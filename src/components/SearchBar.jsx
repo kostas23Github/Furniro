@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import Button from "./button/Button";
+import Button from "./button/button";
 import { MdFilterList } from "react-icons/md";
 
 function SearchBar({
@@ -21,12 +21,12 @@ function SearchBar({
   return (
     <div
       id="searchBar"
-      className="bg-gold-light-3 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12"
+      className="bg-gold-light-2 hover:bg-gold-light-3 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12"
     >
       <div className="filter-container relative" title="Category Filter">
         <Button
           variant="icon"
-          extraStyles="border rounded border-gray p-1"
+          extraStyles="bg-transparent outline outline-1 rounded outline-grey-400 focus:outline-2 p-1"
           tooltipOptions={{
             text: "Filter",
             position: "bottom",
@@ -75,7 +75,7 @@ function SearchBar({
         products
       </span>
       <input
-        className=" bg-transparent border rounded border-gray px-2 py-1 focus:outline-none"
+        className="bg-transparent px-2 py-1 outline outline-1 rounded outline-grey-400 focus:outline-2 placeholder:text-grey-500"
         type="search"
         name="search"
         id="search"
