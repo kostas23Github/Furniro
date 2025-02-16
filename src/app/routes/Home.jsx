@@ -33,7 +33,7 @@ function Home() {
         className="h-max md:h-[716px] md:px-12 flex flex-row-reverse items-center"
         style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover" }}
       >
-        <div className="md:w-1/2 bg-gold-light-2/70 md:bg-gold-light-2 px-10 py-12">
+        <div className="md:w-1/2 bg-gold-light-2/70 md:bg-gold-light-3 px-10 py-12">
           <div>
             <p className="font-semibold">New Arrival</p>
             <p className="text-gold text-5xl md:text-7xl">

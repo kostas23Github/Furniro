@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useMemo } from "react";
-import { useLocation } from "react-router";
+import { useLocation, Link } from "react-router";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
 import ProductCard from "../../components/productCard";
 import PaginationControls from "../../components/paginationControls";
@@ -92,6 +92,7 @@ function Shop() {
 
   return (
     <div>
+      <Link to={"/shop/43"}>A product</Link>
       <SearchBar
         onFilterCheckboxClick={handleFilterEdgeCases}
         handleCheckbox={handleCheckbox}
