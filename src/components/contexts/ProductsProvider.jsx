@@ -21,7 +21,6 @@ function ProductsProvider({ children }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true);
         const categories = [
           "furniture",
           "home-decoration",
@@ -51,6 +50,7 @@ function ProductsProvider({ children }) {
         setLoading(false);
       } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
