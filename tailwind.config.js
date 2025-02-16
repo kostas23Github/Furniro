@@ -13,8 +13,8 @@ export default {
       colors: {
         gold: '#B88E2F', /* primary */
         'gold-light': '#FCF8F3',
-        'gold-light-2': '#FFF3E3',
-        'gold-light-3': '#F9F1E7',
+        'gold-light-2': '#F9F1E7',
+        'gold-light-3': '#F2E1C9',
         'grey-100': '#F4F5F7', // lighter
         'grey-200': '#B0B0B0', // lighter
         'grey-300': '#9F9F9F', // lighter
