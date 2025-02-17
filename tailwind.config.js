@@ -20,8 +20,8 @@ export default {
         'grey-300': '#9F9F9F', // lighter
         'grey-400': '#898989', // light
         'grey-500': '#666666', // light
-        'grey-700': '#333333', // Dark - title
-        'grey-800': '#3A3A3A', // Dark
+        'grey-700': '#3A3A3A', // Dark
+        'grey-800': '#333333', // Dark
         green: '#2EC1AC',
         red: '#E97171',
       },
