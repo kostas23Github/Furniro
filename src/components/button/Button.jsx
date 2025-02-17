@@ -22,20 +22,20 @@ function Button({
   // Main button categories for regular & hover states.
   const variantClass = {
     primary: {
-      regular: "bg-gold text-white",
-      hover: "bg-transparent text-gold ring-gold ring-2 ring-inset",
+      regular: "bg-gold text-white ring-gold ring-2",
+      hover: "bg-gold-light-2 text-gold outline outline-2 outline-gold",
     },
     "primary-reversed": {
-      regular: "bg-transparent text-gold ring-gold ring-2 ring-inset",
-      hover: "bg-gold text-white",
+      regular: "bg-slate-50 text-gold outline outline-2 outline-gold",
+      hover: "bg-gold-light-2 text-gold outline outline-2 outline-gold",
     },
     secondary: {
-      regular: "bg-grey-800 text-white",
-      hover: "bg-slate-50 text-grey-800 ring-grey-500 ring-2 ring-inset",
+      regular: "bg-grey-800 text-white ring-grey-800 ring-2",
+      hover: "bg-slate-50 outline outline-2 outline-grey-800",
     },
     "secondary-reversed": {
-      regular: "bg-slate-50 text-grey-800 ring-grey-500 ring-2 ring-inset",
-      hover: "bg-grey-800 text-white",
+      regular: "bg-slate-50 outline outline-2 outline-grey-800",
+      hover: "bg-gold-light-2 outline outline-2 outline-grey-800",
     },
     text: /* Plain text button */ {
       regular: "text-grey-500 italic",
