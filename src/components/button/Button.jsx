@@ -2,9 +2,9 @@
 // Refer to this prompt from yesterday ->
 // "Which styles do they usually conditionally apply to the button element bc in an e-commerce one can have multiple different buttons"
 
-import { useState } from "react";
 import PropTypes from "prop-types";
 import Tooltip from "./tooltip";
+import useHover from "../hooks/useHover";
 
 function Button({
   variant = "icon",
@@ -17,7 +17,7 @@ function Button({
 }) {
   // { ...rest } currently supports external event handlers.
 
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoverRef, isHovered] = useHover();
 
   // Main button categories for regular & hover states.
   const variantClass = {
@@ -63,13 +63,12 @@ function Button({
   return (
     <button
       type={type}
+      ref={hoverRef}
       className={`${variantState} ${extraStyles} inline-block ${
         disabled ? "opacity-50" : ""
       }`}
       disabled={disabled}
       {...rest}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {children}
       {isHovered && tooltipOptions && <Tooltip {...tooltipOptions} />}
