@@ -4,20 +4,17 @@ import { FaStar, FaShareAlt, FaCartArrowDown } from "react-icons/fa";
 import { TbHeart } from "react-icons/tb";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
-import Button from "./button/button";
+import Button from "./button/Button";
+import useHover from "./hooks/useHover";
 
 function ProductCard({ product }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoverRef, isHovered] = useHover();
   const [visibleSide, setVisibleSide] = useState("frontSide");
   const [activeSlide, setActiveSlide] = useState(0);
 
   return (
-    <div
+    <div ref={hoverRef}
       className="card-container w-full h-full flex flex-col border rounded-lg border-gray text-right relative hover:cursor-pointer"
-      onMouseEnter={() => {
-        if (visibleSide === "frontSide") setIsHovered(true);
-      }}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Each product card has 2 sides. The front which shows the main product info and the back with more details & images. */}
       {visibleSide === "frontSide" && (
