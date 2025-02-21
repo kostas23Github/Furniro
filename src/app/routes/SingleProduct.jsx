@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaSquareXTwitter } from "react-icons/fa6";
@@ -17,6 +17,16 @@ function SingleProduct() {
   const [hoverRef, isHovered] = useHover();
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [productBgColor, setProductBgColor] = useState("gold");
+  const [accordionIndex, setAccordionIndex] = useState(1);
+  const [accordionHeight, setAccordionHeight] = useState(192);
+  const contentRef = useRef(null);
+
+  // Measure content height when the component is mounted
+  useEffect(() => {
+    if (contentRef.current) {
+      setAccordionHeight(contentRef.current.scrollHeight); // Get actual content height
+    }
+  }, []);
 
   if (loading) return <Loading />;
   if (error) return <ErrorPage />; // Add a message here.
@@ -28,6 +38,16 @@ function SingleProduct() {
   const images = product.images;
   const hasImages = images.length > 1;
 
+  const toggleAccordion = (index) => {
+    setAccordionIndex(accordionIndex === index ? null : index);
+  };
+
+  function dateFormater(isoString) {
+    const date = new Date(isoString);
+
+    return date.toLocaleString();
+  }
+
   return (
     <div>
       <ul className="bg-gold-light-3 min-h-24 flex gap-2 justify-center items-center flex-wrap px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12">
@@ -36,7 +56,7 @@ function SingleProduct() {
         <li className="font-bold">{product.title}</li>
       </ul>
       <div className="product-hero-container px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 grid grid-cols-1 md:grid-cols-2 gap-11">
-        <div className={`images-container grid grid-cols-[76px_1fr] gap-8`}>
+        <div className="images-container grid grid-cols-[76px_1fr] gap-8">
           {hasImages && (
             <div className="grid self-start gap-8">
               {images.map(
@@ -145,6 +165,98 @@ function SingleProduct() {
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className={`product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 mb-10 h-${accordionHeight}`}
+      >
+        <ul className="accordion-details sm:flex sm:justify-evenly relative">
+          <li key={"description-details"} className="">
+            <div className="">
+              <Button
+                variant="icon"
+                extraStyles={`my-2 ${
+                  accordionIndex === 1 && "font-bold text-black"
+                }`}
+                onClick={() => toggleAccordion(1)}
+              >
+                Description
+              </Button>
+              <p
+                ref={contentRef}
+                style={{
+                  height: accordionIndex === 1 ? `${accordionHeight}px` : "0px",
+                }}
+                className={`absolute left-0 overflow-hidden transition-max-h duration-300`}
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+                obcaecati blanditiis totam itaque rerum delectus ducimus iste
+                illum reiciendis.
+              </p>
+            </div>
+          </li>
+          <li key={"additional-information-details"} className="">
+            <div className="">
+              <Button
+                variant="icon"
+                extraStyles={`my-2 ${
+                  accordionIndex === 2 && "font-bold text-black"
+                }`}
+                onClick={() => toggleAccordion(2)}
+              >
+                Additional Information
+              </Button>
+              <p
+                ref={contentRef}
+                style={{
+                  height: accordionIndex === 2 ? `${accordionHeight}px` : "0px",
+                }}
+                className={`absolute left-0 overflow-hidden transition-max-h duration-300`}
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+                obcaecati blanditiis totam itaque rerum delectus ducimus iste
+                illum reiciendis. Laboriosam aspernatur mollitia dignissimos
+                temporibus molestias repudiandae sit consequatur quod. Quod!
+              </p>
+            </div>
+          </li>
+          <li key={"reviews-details"}>
+            <div className="">
+              <Button
+                variant="icon"
+                extraStyles={`my-2 ${
+                  accordionIndex === 3 && "font-bold text-black"
+                }`}
+                onClick={() => toggleAccordion(3)}
+              >
+                Reviews [{product.reviews.length}]
+              </Button>
+            </div>
+            <ul
+              ref={contentRef}
+              style={{
+                height: accordionIndex === 3 ? `${accordionHeight}px` : "0px",
+              }}
+              className={`absolute left-0 overflow-hidden transition-max-h duration-300 w-full`}
+            >
+              <li key={1} className="mb-5 px-6 py-4 w-full border border-grey-200 rounded-md">
+                <StarRating rating={product.reviews[1].rating} />
+                <div className="flex gap-3 mt-1 mb-5">
+                  <p>{product.reviews[1].reviewerName}</p>
+                  <p>{dateFormater(product.reviews[1].date)}</p>
+                </div>
+                <p>{product.reviews[1].comment}</p>
+              </li>
+              <li key={2} className="mb-5 px-6 py-4 w-full border border-grey-300 rounded-md">
+                <StarRating rating={product.reviews[2].rating} />
+                <div className="flex gap-3 mt-1 mb-5">
+                  <p>{product.reviews[2].reviewerName}</p>
+                  <p>{dateFormater(product.reviews[2].date)}</p>
+                </div>
+                <p>{product.reviews[2].comment}</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   );
