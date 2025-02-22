@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaSquareXTwitter } from "react-icons/fa6";
@@ -10,23 +10,16 @@ import StarRating from "../../components/StarRating";
 import useHover from "../../components/hooks/useHover";
 import Tooltip from "../../components/button/tooltip";
 import Button from "../../components/button/Button";
+import { useScreenSize } from "../../components/contexts/ScreenSizeProvider";
 
 function SingleProduct() {
   const { productId } = useParams();
   const { products, loading, error } = useContext(ProductsContext);
+  const { isXS } = useScreenSize();
   const [hoverRef, isHovered] = useHover();
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [productBgColor, setProductBgColor] = useState("gold");
   const [accordionIndex, setAccordionIndex] = useState(1);
-  const [accordionHeight, setAccordionHeight] = useState(192);
-  const contentRef = useRef(null);
-
-  // Measure content height when the component is mounted
-  useEffect(() => {
-    if (contentRef.current) {
-      setAccordionHeight(contentRef.current.scrollHeight); // Get actual content height
-    }
-  }, []);
 
   if (loading) return <Loading />;
   if (error) return <ErrorPage />; // Add a message here.
@@ -167,96 +160,191 @@ function SingleProduct() {
         </div>
       </div>
       <div
-        className={`product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 mb-10 h-${accordionHeight}`}
+        className={`product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12`}
       >
-        <ul className="accordion-details sm:flex sm:justify-evenly relative">
-          <li key={"description-details"} className="">
-            <div className="">
-              <Button
-                variant="icon"
-                extraStyles={`my-2 ${
-                  accordionIndex === 1 && "font-bold text-black"
+        {isXS ? (
+          <ul className="accordion-details-mobile relative">
+            <li key={"description-details"} className="">
+              <div className="">
+                <Button
+                  variant="icon"
+                  extraStyles={`my-2 ${
+                    accordionIndex === 1 && "font-bold text-black"
+                  }`}
+                  onClick={() => toggleAccordion(1)}
+                >
+                  Description
+                </Button>
+                <p
+                  className={`left-0 overflow-hidden ${
+                    accordionIndex === 1
+                      ? "max-h-[300px] transition-all duration-500"
+                      : "max-h-0"
+                  }`}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Tempora obcaecati blanditiis totam itaque rerum delectus
+                  ducimus iste illum reiciendis.
+                </p>
+              </div>
+            </li>
+            <li key={"additional-information-details"} className="">
+              <div className="">
+                <Button
+                  variant="icon"
+                  extraStyles={`my-2 ${
+                    accordionIndex === 2 && "font-bold text-black"
+                  }`}
+                  onClick={() => toggleAccordion(2)}
+                >
+                  Additional Information
+                </Button>
+                <p
+                  className={`left-0 overflow-hidden ${
+                    accordionIndex === 2
+                      ? "max-h-[300px] transition-all duration-500"
+                      : "max-h-0"
+                  }`}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Tempora obcaecati blanditiis totam itaque rerum delectus
+                  ducimus iste illum reiciendis. Laboriosam aspernatur mollitia
+                  dignissimos temporibus molestias repudiandae sit consequatur
+                  quod. Quod!
+                </p>
+              </div>
+            </li>
+            <li key={"reviews-details"}>
+              <div className="">
+                <Button
+                  variant="icon"
+                  extraStyles={`my-2 ${
+                    accordionIndex === 3 && "font-bold text-black"
+                  }`}
+                  onClick={() => toggleAccordion(3)}
+                >
+                  Reviews [{product.reviews.length}]
+                </Button>
+              </div>
+              {/* Max-h should have an arbitrary large value so that no content overflows, mainly the reviews section. */}
+              <ul
+                className={`left-0 overflow-hidden ${
+                  accordionIndex === 3
+                    ? "max-h-[1000px] transition-all duration-500"
+                    : "max-h-0"
                 }`}
-                onClick={() => toggleAccordion(1)}
               >
-                Description
-              </Button>
-              <p
-                ref={contentRef}
-                style={{
-                  height: accordionIndex === 1 ? `${accordionHeight}px` : "0px",
-                }}
-                className={`absolute left-0 overflow-hidden transition-max-h duration-300`}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-                obcaecati blanditiis totam itaque rerum delectus ducimus iste
-                illum reiciendis.
-              </p>
-            </div>
-          </li>
-          <li key={"additional-information-details"} className="">
-            <div className="">
-              <Button
-                variant="icon"
-                extraStyles={`my-2 ${
-                  accordionIndex === 2 && "font-bold text-black"
-                }`}
-                onClick={() => toggleAccordion(2)}
-              >
-                Additional Information
-              </Button>
-              <p
-                ref={contentRef}
-                style={{
-                  height: accordionIndex === 2 ? `${accordionHeight}px` : "0px",
-                }}
-                className={`absolute left-0 overflow-hidden transition-max-h duration-300`}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-                obcaecati blanditiis totam itaque rerum delectus ducimus iste
-                illum reiciendis. Laboriosam aspernatur mollitia dignissimos
-                temporibus molestias repudiandae sit consequatur quod. Quod!
-              </p>
-            </div>
-          </li>
-          <li key={"reviews-details"}>
-            <div className="">
-              <Button
-                variant="icon"
-                extraStyles={`my-2 ${
-                  accordionIndex === 3 && "font-bold text-black"
-                }`}
-                onClick={() => toggleAccordion(3)}
-              >
-                Reviews [{product.reviews.length}]
-              </Button>
-            </div>
-            <ul
-              ref={contentRef}
-              style={{
-                height: accordionIndex === 3 ? `${accordionHeight}px` : "0px",
-              }}
-              className={`absolute left-0 overflow-hidden transition-max-h duration-300 w-full`}
-            >
-              <li key={1} className="mb-5 px-6 py-4 w-full border border-grey-200 rounded-md">
-                <StarRating rating={product.reviews[1].rating} />
-                <div className="flex gap-3 mt-1 mb-5">
-                  <p>{product.reviews[1].reviewerName}</p>
-                  <p>{dateFormater(product.reviews[1].date)}</p>
-                </div>
-                <p>{product.reviews[1].comment}</p>
+                {product.reviews.map((review, index) => (
+                  <li
+                    key={index}
+                    className="mb-5 px-6 py-4 w-full border border-grey-200 rounded-md"
+                  >
+                    <StarRating rating={review.rating} />
+                    <div className="flex gap-3 mt-1 mb-5">
+                      <p>{review.reviewerName}</p>
+                      <p>{dateFormater(review.date)}</p>
+                    </div>
+                    <p>{review.comment}</p>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        ) : (
+          <>
+            <ul className="accordion-header-buttons sm:flex sm:justify-evenly">
+              <li key={"description-details"} className="w-1/3 text-center">
+                <Button
+                  variant="icon"
+                  extraStyles={`my-2 ${
+                    accordionIndex === 1 && "font-bold text-black"
+                  }`}
+                  onClick={() => toggleAccordion(1)}
+                >
+                  Description
+                </Button>
               </li>
-              <li key={2} className="mb-5 px-6 py-4 w-full border border-grey-300 rounded-md">
-                <StarRating rating={product.reviews[2].rating} />
-                <div className="flex gap-3 mt-1 mb-5">
-                  <p>{product.reviews[2].reviewerName}</p>
-                  <p>{dateFormater(product.reviews[2].date)}</p>
-                </div>
-                <p>{product.reviews[2].comment}</p>
+              <li
+                key={"additional-information-details"}
+                className="w-1/3 text-center"
+              >
+                <Button
+                  variant="icon"
+                  extraStyles={`my-2 ${
+                    accordionIndex === 2 && "font-bold text-black"
+                  }`}
+                  onClick={() => toggleAccordion(2)}
+                >
+                  Additional Information
+                </Button>
+              </li>
+              <li key={"reviews-details"} className="w-1/3 text-center">
+                <Button
+                  variant="icon"
+                  extraStyles={`my-2 ${
+                    accordionIndex === 3 && "font-bold text-black"
+                  }`}
+                  onClick={() => toggleAccordion(3)}
+                >
+                  Reviews [{product.reviews.length}]
+                </Button>
               </li>
             </ul>
-          </li>
-        </ul>
+            <ul className="accordion-details sm:flex sm:justify-evenly w-full mt-4">
+              {accordionIndex === 1 && (
+                <li key={"description-details"}>
+                  <p
+                    className={`left-0 overflow-hidden ${
+                      accordionIndex === 1
+                        ? "max-h-[300px] transition-all duration-500"
+                        : "max-h-0"
+                    }`}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempora obcaecati blanditiis totam itaque rerum delectus
+                    ducimus iste illum reiciendis.
+                  </p>
+                </li>
+              )}
+              {accordionIndex === 2 && (
+                <li key={"additional-information-details"} className="">
+                  <p
+                    className={`left-0 overflow-hidden ${
+                      accordionIndex === 2
+                        ? "max-h-[300px] transition-all duration-500"
+                        : "max-h-0"
+                    }`}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempora obcaecati blanditiis totam itaque rerum delectus
+                    ducimus iste illum reiciendis. Laboriosam aspernatur
+                    mollitia dignissimos temporibus molestias repudiandae sit
+                    consequatur quod. Quod!
+                  </p>
+                </li>
+              )}
+              {accordionIndex === 3 && (
+                <li key={"reviews-details"} className="w-full">
+                  <ul className="transition-max-h duration-300">
+                    {product.reviews.map((review, index) => (
+                      <li
+                        key={index}
+                        className="mb-5 px-6 py-4 w-full border border-grey-200 rounded-md"
+                      >
+                        <StarRating rating={review.rating} />
+                        <div className="flex gap-3 mt-1 mb-5">
+                          <p>{review.reviewerName}</p>
+                          <p>{dateFormater(review.date)}</p>
+                        </div>
+                        <p>{review.comment}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );
