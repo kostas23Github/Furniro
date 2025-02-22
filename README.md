@@ -50,6 +50,5 @@ To start app run `npm run dev`.
 Continue SingeProduct.jsx page.
 To navigate there go to Shop.jsx -> click "A product" text button at the top-left side.
 
-1. Once there check responsiveness.
-2. Handle edge case when product has only one image. Both in what is displayed and the different tailwind classes(use ternary operator & preferably handle it outside the component in a separate class value).
-3. Continue with the details of the product.
+Double check accordion for small erros, then move it to its separate component.
+Check the new breakpoints whether they break parts of the code.
