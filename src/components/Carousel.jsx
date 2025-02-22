@@ -6,10 +6,10 @@ import { useScreenSize } from "./contexts/ScreenSizeProvider";
 
 function Carousel({ items }) {
   const [activeCard, setActiveCard] = useState(0);
-  const { isMobilePortrait } = useScreenSize();
+  const { isXXS } = useScreenSize();
 
   function carouselActions(currentIndex) {
-    if (isMobilePortrait) {
+    if (isXXS) {
       return currentIndex === activeCard ? "max-w-full" : "hidden";
     }
 
@@ -34,7 +34,7 @@ function Carousel({ items }) {
       <div
         className="carousel-container relative flex items-center gap-8 transition-transform duration-300"
         style={{
-          transform: !isMobilePortrait ? `translateX(-${(activeCard % items.length) * 320}px)` : null,
+          transform: !isXXS ? `translateX(-${(activeCard % items.length) * 320}px)` : null,
         }}
       >
         {items.map((product, index) => (
@@ -51,7 +51,7 @@ function Carousel({ items }) {
       </div>
       <Button
         variant="primary-reversed"
-        extraStyles={`text-4xl absolute ${isMobilePortrait ? "right-3 top-1/2 -translate-y-1/2" : "bottom-9 left-[360px]"} border border-gold rounded-3xl p-1`}
+        extraStyles={`text-4xl absolute ${isXXS ? "right-3 top-1/2 -translate-y-1/2" : "bottom-9 left-[360px]"} border border-gold rounded-3xl p-1`}
         tooltipOptions={{
           text: "Next product",
           position: "left",

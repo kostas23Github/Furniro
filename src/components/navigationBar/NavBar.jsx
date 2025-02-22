@@ -5,14 +5,14 @@ import { IoCloseSharp } from "react-icons/io5";
 import Links from "./Links.jsx";
 import UserActions from "./UserActions.jsx";
 import { useScreenSize } from "../contexts/ScreenSizeProvider";
-import Button from "../button/button";
+import Button from "../button/Button";
 import logo from "../../assets/images/logo/Meubel_House_Logo.png";
 import MobileExpandMenu from "./mobileExpandMenu.jsx";
 import useOutsideClick from "../hooks/useOutsideClick.jsx";
 
 function NavBar() {
   // Boolean of whether it is a small(<768px) width breakpoint.
-  const { isMobile } = useScreenSize();
+  const { isXS } = useScreenSize();
   // Toggle the expansion of mobile full navigation menu.
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -23,7 +23,7 @@ function NavBar() {
     if (isMenuVisible) setIsMenuVisible(false);
   });
 
-  return isMobile ? (
+  return isXS ? (
     <nav className="px-5 sm:px-10 lg:px-20 py-8 flex flex-wrap justify-between relative">
       <Button
         tooltipOptions={{
@@ -65,7 +65,7 @@ function NavBar() {
         </Button>
       )}
       {isMenuVisible && (
-        <div ref={menuRef} className="w-full">
+        <div ref={menuRef} className="w-full sm">
           <MobileExpandMenu
             isMenuVisible={isMenuVisible}
             onShowMenu={setIsMenuVisible} // This prop is drilled first to this component & then to the Links component bc each Link in the MobileExpandMenu must be able to modify this state(its grandparent's), so that when a Link is clicked this menu becomes invisible.

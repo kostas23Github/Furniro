@@ -7,25 +7,27 @@ const ScreenSizeContext = createContext();
 
 // Define breakpoints - might add more!
 const breakpoints = {
-  mobilePortrait: { maxWidth: 450 },
-  mobile: { maxWidth: 767 },
-  tablet: { minWidth: 768, maxWidth: 1023 },
-  laptop: { minWidth: 1024, maxWidth: 1279 },
-  desktop: { minWidth: 1280, maxWidth: 1535 },
-  monitor: { minWidth: 1536 },
+  xxs: { maxWidth: 450 },
+  xs: { maxWidth: 639 },
+  sm: { minWidth: 640, maxWidth: 767 },
+  md: { minWidth: 768, maxWidth: 1023 },
+  lg: { minWidth: 1024, maxWidth: 1279 },
+  xl: { minWidth: 1280, maxWidth: 1535 },
+  xxl: { minWidth: 1536 },
 };
 
 // Provider Component
 export default function ScreenSizeProvider({ children }) {
-  const isMobilePortrait = useMediaQuery(breakpoints.mobilePortrait);
-  const isMobile = useMediaQuery(breakpoints.mobile);
-  const isTablet = useMediaQuery(breakpoints.tablet);
-  const isLaptop = useMediaQuery(breakpoints.laptop);
-  const isDesktop = useMediaQuery(breakpoints.desktop);
-  const isMonitor = useMediaQuery(breakpoints.monitor);
+  const isXXS = useMediaQuery(breakpoints.xxs);
+  const isXS = useMediaQuery(breakpoints.xs);
+  const isSM = useMediaQuery(breakpoints.sm);
+  const isMD = useMediaQuery(breakpoints.md);
+  const isLG = useMediaQuery(breakpoints.lg);
+  const isXL = useMediaQuery(breakpoints.xl);
+  const isXXL = useMediaQuery(breakpoints.xxl);
 
   return (
-    <ScreenSizeContext.Provider value={{ isMobilePortrait, isMobile, isTablet, isLaptop, isDesktop, isMonitor }}>
+    <ScreenSizeContext.Provider value={{ isXXS, isXS, isSM, isMD, isLG, isXL, isXXL }}>
       {children}
     </ScreenSizeContext.Provider>
   );

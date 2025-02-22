@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Link } from "react-router";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
 import heroBg from "../../assets/images/hero-bg/home-hero-bg-scandinavian.png";
-import Button from "../../components/button/button.jsx";
+import Button from "../../components/button/Button.jsx";
 import Carousel from "../../components/Carousel.jsx";
 import Loading from "../../components/loadingAnimation/Loading.jsx";
 import { useScreenSize } from "../../components/contexts/ScreenSizeProvider.jsx";
 
 function Home() {
   const { products, loading } = useContext(ProductsContext);
-  const { isMobilePortrait, isMobile, isLaptop } = useScreenSize();
+  const { isXXS, isSM, isLG } = useScreenSize();
 
   const CATEGORIES = [
     { name: "furniture", selectedProduct: products[2] },
@@ -62,7 +62,7 @@ function Home() {
           <p className="mb-1 text-logo">Browse The Range</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </header>
-        {isMobilePortrait ? (
+        {isXXS ? (
           <div>
             {CATEGORIES.map((category, index) => (
               <Link
@@ -113,12 +113,12 @@ function Home() {
       >
         <div className="what-to-expect-title text-center md:text-left mx-auto md:w-1/3 max-w-xs shrink-0">
           <p className="text-5xl mb-2">
-            <span className="">100s</span> of items {!isLaptop && <br />} to
+            <span className="">100s</span> of items {!isLG && <br />} to
             choose from...
           </p>
           <p className="text">
             Lorem ipsum dolor sit amet consectetur adipisicing
-            {!isLaptop || (isMobile && <br />)} elit. Recusandae, repudiandae!
+            {!isLG || (isSM && <br />)} elit. Recusandae, repudiandae!
           </p>
           <Button
             variant="primary"
