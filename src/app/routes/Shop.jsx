@@ -92,7 +92,6 @@ function Shop() {
 
   return (
     <div>
-      <Link to={"/shop/43"}>A product</Link>
       <SearchBar
         onFilterCheckboxClick={handleFilterEdgeCases}
         handleCheckbox={handleCheckbox}
@@ -106,7 +105,9 @@ function Shop() {
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center w-5/6 mt-10 mx-auto">
         {paginatedItems.map((product) => (
           <li key={product.id} className="w-full h-full">
-            <ProductCard product={product} />
+            <Link to={`/shop/${product.id}`}>
+              <ProductCard product={product} />
+            </Link>
           </li>
         ))}
       </ul>
