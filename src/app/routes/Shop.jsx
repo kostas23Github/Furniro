@@ -6,6 +6,8 @@ import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
 import Loading from "../../components/loadingAnimation/Loading";
 import CharacteristicsList from "../../components/CharacteristicsList";
+import Hero from "../../components/hero";
+import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 
 function Shop() {
   // Get product data from ProductsContext in ProductsProvider component.
@@ -92,6 +94,7 @@ function Shop() {
 
   return (
     <div>
+      <Hero ancestors={["Home"]} currentPage="Shop" hasImage={shopHeroBg} />
       <SearchBar
         onFilterCheckboxClick={handleFilterEdgeCases}
         handleCheckbox={handleCheckbox}

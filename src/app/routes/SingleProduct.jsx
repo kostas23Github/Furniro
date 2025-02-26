@@ -11,6 +11,8 @@ import useHover from "../../components/hooks/useHover";
 import Tooltip from "../../components/button/tooltip";
 import Button from "../../components/button/Button";
 import Accordion from "../../components/Accordion";
+import Hero from "../../components/hero";
+import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 
 function SingleProduct() {
   const { productId } = useParams();
@@ -31,11 +33,7 @@ function SingleProduct() {
 
   return (
     <div>
-      <ul className="bg-gold-light-3 min-h-24 flex gap-2 justify-center items-center flex-wrap px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12">
-        <li className="after:content-['>'] after:ps-2">Home</li>
-        <li className="after:content-['>'] after:ps-2">Shop</li>
-        <li className="font-bold">{product.title}</li>
-      </ul>
+      <Hero ancestors={["Home", "Shop"]} currentPage={product.title} hasImage={shopHeroBg}/>
       <div className="product-hero-container px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 grid grid-cols-1 md:grid-cols-2 gap-11">
         <div className="images-container grid grid-cols-[76px_1fr] gap-8">
           {hasImages && (
