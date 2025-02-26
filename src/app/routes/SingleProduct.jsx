@@ -10,16 +10,14 @@ import StarRating from "../../components/StarRating";
 import useHover from "../../components/hooks/useHover";
 import Tooltip from "../../components/button/tooltip";
 import Button from "../../components/button/Button";
-import { useScreenSize } from "../../components/contexts/ScreenSizeProvider";
+import Accordion from "../../components/Accordion";
 
 function SingleProduct() {
   const { productId } = useParams();
   const { products, loading, error } = useContext(ProductsContext);
-  const { isXS } = useScreenSize();
   const [hoverRef, isHovered] = useHover();
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [productBgColor, setProductBgColor] = useState("gold");
-  const [accordionIndex, setAccordionIndex] = useState(1);
 
   if (loading) return <Loading />;
   if (error) return <ErrorPage />; // Add a message here.
@@ -30,16 +28,6 @@ function SingleProduct() {
 
   const images = product.images;
   const hasImages = images.length > 1;
-
-  const toggleAccordion = (index) => {
-    setAccordionIndex(accordionIndex === index ? null : index);
-  };
-
-  function dateFormater(isoString) {
-    const date = new Date(isoString);
-
-    return date.toLocaleString();
-  }
 
   return (
     <div>
@@ -159,193 +147,7 @@ function SingleProduct() {
           </div>
         </div>
       </div>
-      <div
-        className={`product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12`}
-      >
-        {isXS ? (
-          <ul className="accordion-details-mobile relative">
-            <li key={"description-details"} className="">
-              <div className="">
-                <Button
-                  variant="icon"
-                  extraStyles={`my-2 ${
-                    accordionIndex === 1 && "font-bold text-black"
-                  }`}
-                  onClick={() => toggleAccordion(1)}
-                >
-                  Description
-                </Button>
-                <p
-                  className={`left-0 overflow-hidden ${
-                    accordionIndex === 1
-                      ? "max-h-[300px] transition-all duration-500"
-                      : "max-h-0"
-                  }`}
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Tempora obcaecati blanditiis totam itaque rerum delectus
-                  ducimus iste illum reiciendis.
-                </p>
-              </div>
-            </li>
-            <li key={"additional-information-details"} className="">
-              <div className="">
-                <Button
-                  variant="icon"
-                  extraStyles={`my-2 ${
-                    accordionIndex === 2 && "font-bold text-black"
-                  }`}
-                  onClick={() => toggleAccordion(2)}
-                >
-                  Additional Information
-                </Button>
-                <p
-                  className={`left-0 overflow-hidden ${
-                    accordionIndex === 2
-                      ? "max-h-[300px] transition-all duration-500"
-                      : "max-h-0"
-                  }`}
-                >
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Tempora obcaecati blanditiis totam itaque rerum delectus
-                  ducimus iste illum reiciendis. Laboriosam aspernatur mollitia
-                  dignissimos temporibus molestias repudiandae sit consequatur
-                  quod. Quod!
-                </p>
-              </div>
-            </li>
-            <li key={"reviews-details"}>
-              <div className="">
-                <Button
-                  variant="icon"
-                  extraStyles={`my-2 ${
-                    accordionIndex === 3 && "font-bold text-black"
-                  }`}
-                  onClick={() => toggleAccordion(3)}
-                >
-                  Reviews [{product.reviews.length}]
-                </Button>
-              </div>
-              {/* Max-h should have an arbitrary large value so that no content overflows, mainly the reviews section. */}
-              <ul
-                className={`left-0 overflow-hidden ${
-                  accordionIndex === 3
-                    ? "max-h-[1000px] transition-all duration-500"
-                    : "max-h-0"
-                }`}
-              >
-                {product.reviews.map((review, index) => (
-                  <li
-                    key={index}
-                    className="mb-5 px-6 py-4 w-full border border-grey-200 rounded-md"
-                  >
-                    <StarRating rating={review.rating} />
-                    <div className="flex gap-3 mt-1 mb-5">
-                      <p>{review.reviewerName}</p>
-                      <p>{dateFormater(review.date)}</p>
-                    </div>
-                    <p>{review.comment}</p>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
-        ) : (
-          <>
-            <ul className="accordion-header-buttons sm:flex sm:justify-evenly">
-              <li key={"description-details"} className="w-1/3 text-center">
-                <Button
-                  variant="icon"
-                  extraStyles={`my-2 ${
-                    accordionIndex === 1 && "font-bold text-black"
-                  }`}
-                  onClick={() => toggleAccordion(1)}
-                >
-                  Description
-                </Button>
-              </li>
-              <li
-                key={"additional-information-details"}
-                className="w-1/3 text-center"
-              >
-                <Button
-                  variant="icon"
-                  extraStyles={`my-2 ${
-                    accordionIndex === 2 && "font-bold text-black"
-                  }`}
-                  onClick={() => toggleAccordion(2)}
-                >
-                  Additional Information
-                </Button>
-              </li>
-              <li key={"reviews-details"} className="w-1/3 text-center">
-                <Button
-                  variant="icon"
-                  extraStyles={`my-2 ${
-                    accordionIndex === 3 && "font-bold text-black"
-                  }`}
-                  onClick={() => toggleAccordion(3)}
-                >
-                  Reviews [{product.reviews.length}]
-                </Button>
-              </li>
-            </ul>
-            <ul className="accordion-details sm:flex sm:justify-evenly w-full mt-4">
-              {accordionIndex === 1 && (
-                <li key={"description-details"}>
-                  <p
-                    className={`left-0 overflow-hidden ${
-                      accordionIndex === 1
-                        ? "max-h-[300px] transition-all duration-500"
-                        : "max-h-0"
-                    }`}
-                  >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempora obcaecati blanditiis totam itaque rerum delectus
-                    ducimus iste illum reiciendis.
-                  </p>
-                </li>
-              )}
-              {accordionIndex === 2 && (
-                <li key={"additional-information-details"} className="">
-                  <p
-                    className={`left-0 overflow-hidden ${
-                      accordionIndex === 2
-                        ? "max-h-[300px] transition-all duration-500"
-                        : "max-h-0"
-                    }`}
-                  >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempora obcaecati blanditiis totam itaque rerum delectus
-                    ducimus iste illum reiciendis. Laboriosam aspernatur
-                    mollitia dignissimos temporibus molestias repudiandae sit
-                    consequatur quod. Quod!
-                  </p>
-                </li>
-              )}
-              {accordionIndex === 3 && (
-                <li key={"reviews-details"} className="w-full">
-                  <ul className="transition-max-h duration-300">
-                    {product.reviews.map((review, index) => (
-                      <li
-                        key={index}
-                        className="mb-5 px-6 py-4 w-full border border-grey-200 rounded-md"
-                      >
-                        <StarRating rating={review.rating} />
-                        <div className="flex gap-3 mt-1 mb-5">
-                          <p>{review.reviewerName}</p>
-                          <p>{dateFormater(review.date)}</p>
-                        </div>
-                        <p>{review.comment}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              )}
-            </ul>
-          </>
-        )}
-      </div>
+      <Accordion product={product} />
     </div>
   );
 }
