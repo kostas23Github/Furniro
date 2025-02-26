@@ -13,7 +13,8 @@ function ProductCard({ product }) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   return (
-    <div ref={hoverRef}
+    <div
+      ref={hoverRef}
       className="card-container w-full h-full flex flex-col border rounded-lg border-gray text-right relative hover:cursor-pointer"
     >
       {/* Each product card has 2 sides. The front which shows the main product info and the back with more details & images. */}
@@ -61,6 +62,9 @@ function ProductCard({ product }) {
                     position: "top",
                     distance: "150",
                   }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
                 >
                   <FaCartArrowDown />
                 </Button>
@@ -68,6 +72,7 @@ function ProductCard({ product }) {
                   variant={"primary-reversed"}
                   extraStyles="px-4 py-2 mb-4"
                   onClick={(e) => {
+                    e.preventDefault();
                     e.stopPropagation(); // Won't bubble up the DOM tree, mainly its parent element which onClick -> setVisibleDetails(false), essentialy canceling this handler.
                     setVisibleSide("backSide");
                   }}
@@ -79,6 +84,9 @@ function ProductCard({ product }) {
                 <Button
                   variant={"link"}
                   extraStyles="flex gap-1 justify-between items-center"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
                 >
                   <FaShareAlt />
                   Share
@@ -86,6 +94,9 @@ function ProductCard({ product }) {
                 <Button
                   variant={"link"}
                   extraStyles="flex gap-1 justify-between items-center"
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
                 >
                   <TbHeart />
                   Like
@@ -105,7 +116,10 @@ function ProductCard({ product }) {
               position: "bottom",
               distance: "100",
             }}
-            onClick={() => setVisibleSide("frontSide")}
+            onClick={(e) => {
+              e.preventDefault();
+              setVisibleSide("frontSide");
+            }}
           >
             <IoCloseSharp />
           </Button>
@@ -121,7 +135,8 @@ function ProductCard({ product }) {
                 position: "right",
                 distance: "150",
               }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 setActiveSlide(
                   activeSlide === 0
                     ? product.images.length - 1
@@ -150,7 +165,8 @@ function ProductCard({ product }) {
                 distance: "150",
               }}
               disabled={product.images.length === 1}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 if (product.images.length > 0) {
                   setActiveSlide((activeSlide + 1) % product.images.length);
                 }
