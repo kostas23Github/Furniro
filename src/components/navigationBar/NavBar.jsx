@@ -79,7 +79,7 @@ function NavBar() {
         <img src={logo} alt="Logo" className="md:w-12 md:h-8 w-8 h-6" />
         <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>
       </Link>
-      <Links items={["Shop", "About", "Contact"]} placement="navBar" />
+      <Links items={["Shop", "Contact"]} placement="navBar" />
       <UserActions />
     </nav>
   );

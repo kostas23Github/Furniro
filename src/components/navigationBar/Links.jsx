@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 function Links({ items, placement, mobileStyles, onShowMenu }) {
   const ulClassValues =
     placement === "navBar"
-      ? `flex justify-between items-center max-w-[200px] lg:max-w-[230px] grow font-medium ${mobileStyles}`
+      ? `flex justify-between gap-4 items-center font-medium ${mobileStyles}`
       : placement === "footer"
       ? ""
       : "";
