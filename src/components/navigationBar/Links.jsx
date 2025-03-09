@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 function Links({ items, placement, mobileStyles, onShowMenu }) {
   const ulClassValues =
     placement === "navBar"
-      ? `flex justify-between gap-4 items-center font-medium ${mobileStyles}`
-      : placement === "footer"
-      ? ""
+      ? `${mobileStyles} flex gap-10 items-center font-medium`
       : "";
 
   const linkClassValues = "hover:text-gray-500";
@@ -15,7 +13,11 @@ function Links({ items, placement, mobileStyles, onShowMenu }) {
     <ul className={ulClassValues}>
       {items.map((item) => (
         <li key={item} className={liClassValues}>
-          <Link to={`/${item}`.toLowerCase()} className={linkClassValues} onClick={()=>onShowMenu(false)}>
+          <Link
+            to={`/${item}`.toLowerCase()}
+            className={linkClassValues}
+            onClick={() => onShowMenu(false)}
+          >
             {item}
           </Link>
         </li>

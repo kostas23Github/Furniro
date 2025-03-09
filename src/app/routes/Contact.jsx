@@ -7,6 +7,7 @@ import Hero from "../../components/hero";
 import { MdLocationPin } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { GoClockFill } from "react-icons/go";
+import ContactForm from "../../components/ContactForm";
 
 function Contact() {
   const { products, loading, error } = useContext(ProductsContext);
@@ -49,19 +50,24 @@ function Contact() {
           Not Hesitate!
         </p>
       </div>
-      <ul className="mx-auto w-8/12 max-w-96">
-        {companyInfo.map((info) => (
-          <li key={info.id} className="my-4 flex gap-3">
-            <p className="text-4xl">{info.icon}</p>
-            <div>
-              <p className="text-3xl">{info.id}</p>
-              {Object.values(info.info).map((details, i) => (
-                <p key={i} className="text-xl">{details}</p>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="p-5 sm:p-10 lg:p-20 md:flex md:justify-between md:gap-4">
+        <ul className="mx-auto md:basis-96 md:grow-0">
+          {companyInfo.map((info) => (
+            <li key={info.id} className="my-4 flex gap-3">
+              <p className="text-4xl">{info.icon}</p>
+              <div>
+                <p className="text-3xl">{info.id}</p>
+                {Object.values(info.info).map((details, i) => (
+                  <p key={i} className="text-xl">
+                    {details}
+                  </p>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+        <ContactForm />
+      </div>
     </div>
   );
 }
