@@ -7,7 +7,7 @@ import Hero from "../../components/hero";
 import { MdLocationPin } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { GoClockFill } from "react-icons/go";
-import ContactForm from "../../components/ContactForm";
+import ContactForm from "../../components/form/ContactForm";
 
 function Contact() {
   const { products, loading, error } = useContext(ProductsContext);
