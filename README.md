@@ -26,6 +26,9 @@ React(^18.3.1) + Vite(^6.0.5)
   - [Official page](https://tailwindcss.com/)
 - **Figma**
   - Found a challenging yet appealing full e-commerce design to code.
+- **React Hook Form**
+  - Used for easier form validation.
+  - [Official page](https://react-hook-form.com/)
 
 ## Cmds
 
