@@ -7,7 +7,7 @@ import UserActions from "./UserActions.jsx";
 import { useScreenSize } from "../contexts/ScreenSizeProvider";
 import Button from "../button/Button";
 import logo from "../../assets/images/logo/Meubel_House_Logo.png";
-import MobileExpandMenu from "./mobileExpandMenu.jsx";
+import MobileExpandMenu from "./MobileExpandMenu.jsx";
 import useOutsideClick from "../hooks/useOutsideClick.jsx";
 
 function NavBar() {
@@ -65,7 +65,7 @@ function NavBar() {
         </Button>
       )}
       {isMenuVisible && (
-        <div ref={menuRef} className="w-full sm">
+        <div ref={menuRef} className="w-full">
           <MobileExpandMenu
             isMenuVisible={isMenuVisible}
             onShowMenu={setIsMenuVisible} // This prop is drilled first to this component & then to the Links component bc each Link in the MobileExpandMenu must be able to modify this state(its grandparent's), so that when a Link is clicked this menu becomes invisible.

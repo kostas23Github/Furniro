@@ -23,7 +23,7 @@ function Footer() {
         </div>
         <div className="mb-5">
           <header className="mb-3 text-2xl">Links</header>
-          <Links items={["Shop", "About", "Contact"]} placement="footer" />
+          <Links items={["Shop", "Contact"]} placement="footer" />
         </div>
         <div className="mb-5">
           <header className="mb-3 text-2xl">Help</header>

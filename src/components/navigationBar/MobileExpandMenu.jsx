@@ -5,14 +5,14 @@ import UserActions from "./UserActions";
 function MobileExpandMenu({ isMenuVisible, onShowMenu }) {
   return (
     <div
-      className={`mobile-expanded-menu absolute top-[92.8px] right-0 w-full px-4 py-12 z-20 shadow-lg bg-slate-50 ${
+      className={`mobile-expanded-menu absolute top-[92.8px] right-0 w-full py-12 z-20 shadow-lg bg-slate-50 ${
         !isMenuVisible && "opacity-0 invisible pointer-events-none"
       }`}
     >
       <Links
-        items={["Shop", "About", "Contact"]}
+        items={["Shop", "Contact"]}
         placement="navBar"
-        mobileStyles="mb-10 mx-auto"
+        mobileStyles="mb-10 mx-auto justify-center gap-4"
         onShowMenu={onShowMenu}
       />
       <UserActions mobileStyles="mx-auto" />
