@@ -30,9 +30,9 @@ function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`mx-auto grow max-w-[500px] md:max-w-[600px] ${!submitted ? "h-max md:my-auto" : ""}`}
+      className={`mx-auto grow max-w-[500px] md:max-w-[600px] ${submitted ? "h-max md:my-auto" : ""}`}
     >
-      {!submitted ? (
+      {submitted ? (
         // Comfirmation msg upon form submittion.
         <div className="my-10 md:text-center">
           ✅ Thank you! Your message has been received.
