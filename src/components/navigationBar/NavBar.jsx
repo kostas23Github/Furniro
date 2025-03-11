@@ -1,11 +1,11 @@
-import { useState, useRef } from "react";
-import { Link } from "react-router";
+import { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import Links from "./Links.jsx";
 import UserActions from "./UserActions.jsx";
 import { useScreenSize } from "../contexts/ScreenSizeProvider";
-import Button from "../button/Button";
+import Button from "../button/button";
 import logo from "../../assets/images/logo/Meubel_House_Logo.png";
 import MobileExpandMenu from "./MobileExpandMenu.jsx";
 import useOutsideClick from "../hooks/useOutsideClick.jsx";
@@ -14,14 +14,21 @@ function NavBar() {
   // Boolean of whether it is a small(<768px) width breakpoint.
   const { isXS } = useScreenSize();
   // Toggle the expansion of mobile full navigation menu.
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const location = useLocation();
 
   const menuRef = useRef(null);
 
-  // Hide the menu when clicking outside of it
+  // Hide the navbar menu when clicking outside of it.
   useOutsideClick(menuRef, () => {
-    if (isMenuVisible) setIsMenuVisible(false);
+    if (isOpen) setIsOpen(false);
   });
+
+  // Close navbar menu when route changes.
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   return isXS ? (
     <nav className="px-5 sm:px-10 lg:px-20 py-8 flex flex-wrap justify-between relative">
@@ -37,7 +44,7 @@ function NavBar() {
           <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>
         </Link>
       </Button>
-      {isMenuVisible ? (
+      {isOpen ? (
         <Button
           variant="icon"
           extraStyles="text-4xl"
@@ -46,7 +53,7 @@ function NavBar() {
             position: "left",
             distance: "150",
           }}
-          onClick={() => setIsMenuVisible(!isMenuVisible)}
+          onClick={() => setIsOpen(!isOpen)}
         >
           <IoCloseSharp />
         </Button>
@@ -59,16 +66,16 @@ function NavBar() {
             position: "left",
             distance: "150",
           }}
-          onClick={() => setIsMenuVisible(!isMenuVisible)}
+          onClick={() => setIsOpen(!isOpen)}
         >
           <GiHamburgerMenu />
         </Button>
       )}
-      {isMenuVisible && (
+      {isOpen && (
         <div ref={menuRef} className="w-full">
           <MobileExpandMenu
-            isMenuVisible={isMenuVisible}
-            onShowMenu={setIsMenuVisible} // This prop is drilled first to this component & then to the Links component bc each Link in the MobileExpandMenu must be able to modify this state(its grandparent's), so that when a Link is clicked this menu becomes invisible.
+            isOpen={isOpen}
+            onShowMenu={setIsOpen} // This prop is drilled first to this component & then to the Links component bc each Link in the MobileExpandMenu must be able to modify this state(its grandparent's), so that when a Link is clicked this menu becomes invisible.
           />
         </div>
       )}

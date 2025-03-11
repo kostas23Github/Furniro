@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import Links from "./Links";
 import UserActions from "./UserActions";
 
-function MobileExpandMenu({ isMenuVisible, onShowMenu }) {
+function MobileExpandMenu({ isOpen, onShowMenu }) {
   return (
     <div
       className={`mobile-expanded-menu absolute top-[92.8px] right-0 w-full py-12 z-20 shadow-lg bg-slate-50 ${
-        !isMenuVisible && "opacity-0 invisible pointer-events-none"
+        !isOpen && "opacity-0 invisible pointer-events-none"
       }`}
     >
       <Links
@@ -21,7 +21,7 @@ function MobileExpandMenu({ isMenuVisible, onShowMenu }) {
 }
 
 MobileExpandMenu.propTypes = {
-  isMenuVisible: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onShowMenu: PropTypes.func.isRequired,
 };
 
