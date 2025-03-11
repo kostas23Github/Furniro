@@ -34,8 +34,8 @@ function Button({
       hover: "bg-slate-50 outline outline-2 outline-grey-800",
     },
     "secondary-reversed": {
-      regular: "bg-slate-50 outline outline-2 outline-grey-800",
-      hover: "bg-gold-light-2 outline outline-2 outline-grey-800",
+      regular: "outline outline-2 outline-grey-800",
+      hover: "outline outline-2 outline-grey-800",
     },
     text: /* Plain text button */ {
       regular: "text-grey-500 italic",
@@ -52,7 +52,7 @@ function Button({
   };
 
   // Apply proper styles based on hover state.
-  const variantState = isHovered
+  const variantState = isHovered && !disabled
     ? variantClass[variant].hover
     : variantClass[variant].regular;
 
