@@ -20,7 +20,7 @@ function ContactForm() {
   const nameValue = watch("name");
   const emailValue = watch("email");
   const subjectValue = watch("subject");
-  const messageValue = watch("message"); 
+  const messageValue = watch("message");
 
   const onSubmit = (data) => {
     console.log(data); // Add data to local storage.
@@ -30,7 +30,9 @@ function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`mx-auto grow max-w-[500px] md:max-w-[600px] ${submitted ? "h-max md:my-auto" : ""}`}
+      className={`mx-auto grow max-w-[500px] md:max-w-[600px] ${
+        submitted ? "h-max md:my-auto" : ""
+      }`}
     >
       {submitted ? (
         // Comfirmation msg upon form submittion.
@@ -56,19 +58,19 @@ function ContactForm() {
               {...register("name", {
                 required: "Name is required",
                 pattern: {
-                  value: /^[A-Za-z\s]+$/i, // Only letters (case-insensitive)
+                  value: /^[A-Za-zΑ-Ωα-ωΆ-Ώά-ώ\s]+$/i, // Only letters (case-insensitive)
                   message: "Only letters and spaces are allowed",
                 },
                 onChange: () => trigger("name"),
               })}
-              className={`mb-2 outline outline-2 ${
-                errors.name ? "outline-red text-red" : "outline-grey-300"
+              className={`bg-transparent mb-2 outline outline-2 ${
+                errors.name ? "outline-red focus:outline-red text-red" : "outline-grey-300"
               } px-3 py-2 focus:outline-grey-700`}
               onFocus={() => setFocusedField("name")}
               onBlur={() => setFocusedField(null)}
             />
             {errors.name && (
-              <p className="red-600 text-xs my-1">{errors.name.message}</p>
+              <p className="text-red text-xs my-1">{errors.name.message}</p>
             )}
           </div>
           {/* Email Input Field */}
@@ -93,14 +95,14 @@ function ContactForm() {
                 },
                 onChange: () => trigger("email"),
               })}
-              className={`outline outline-2 ${
+              className={`bg-transparent outline outline-2 ${
                 errors.email ? "outline-red text-red" : "outline-grey-300"
               } px-3 py-2 focus:outline-grey-700`}
               onFocus={() => setFocusedField("email")}
               onBlur={() => setFocusedField(null)}
             />
             {errors.email && (
-              <p className="red-600 text-xs mt-1">{errors.email.message}</p>
+              <p className="text-red text-xs mt-1">{errors.email.message}</p>
             )}
           </div>
           {/* Subject Input Field */}
@@ -121,14 +123,14 @@ function ContactForm() {
                 required: "Message subject is required",
                 onChange: () => trigger("name"),
               })}
-              className={`mb-2 outline outline-2 ${
+              className={`bg-transparent mb-2 outline outline-2 ${
                 errors.subject ? "outline-red text-red" : "outline-grey-300"
               } px-3 py-2 focus:outline-grey-700`}
               onFocus={() => setFocusedField("subject")}
               onBlur={() => setFocusedField(null)}
             />
             {errors.subject && (
-              <p className="red-600 text-xs mt-1">{errors.subject.message}</p>
+              <p className="text-red text-xs mt-1">{errors.subject.message}</p>
             )}
           </div>
           {/* Message Input Field */}
@@ -148,7 +150,7 @@ function ContactForm() {
                 required: "Message is required",
                 onChange: () => trigger("name"),
               })}
-              className={`mb-2 outline outline-2 ${
+              className={`bg-transparent mb-2 outline outline-2 ${
                 errors.message ? "outline-red text-red" : "outline-grey-300"
               } p-2 focus:outline-grey-700`}
               placeholder="Type your message..."
@@ -156,9 +158,7 @@ function ContactForm() {
               onBlur={() => setFocusedField(null)}
             />
             {errors.message && (
-              <p className="text-red-500 text-xs mt-1">
-                {errors.message.message}
-              </p>
+              <p className="text-red text-xs mt-1">{errors.message.message}</p>
             )}
           </div>
           <Button
