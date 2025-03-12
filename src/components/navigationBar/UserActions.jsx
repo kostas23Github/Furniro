@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router";
 import { LuSearch } from "react-icons/lu";
 import { TbHeart, TbShoppingCart, TbUserExclamation } from "react-icons/tb";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
@@ -10,7 +11,10 @@ function UserActions({ mobileStyles }) {
 
   return (
     <ul
-      className={"flex justify-between items-center w-[200px] lg:w-[300px] " + mobileStyles}
+      className={
+        "flex justify-between items-center w-[200px] lg:w-[300px] " +
+        mobileStyles
+      }
     >
       <li>
         <Button
@@ -48,15 +52,17 @@ function UserActions({ mobileStyles }) {
         {/* <Tooltip text="Favorites" position="bottom" distance="150" /> */}
       </li>
       <li>
-        <Button
-          tooltipOptions={{
-            text: "Cart items",
-            position: "bottom",
-            distance: "150",
-          }}
-        >
-          <TbShoppingCart className={stylesValue} />
-        </Button>
+        <Link to={"/cart"}>
+          <Button
+            tooltipOptions={{
+              text: "Cart items",
+              position: "bottom",
+              distance: "150",
+            }}
+          >
+            <TbShoppingCart className={stylesValue} />
+          </Button>
+        </Link>
         {/* <Tooltip text="Cart items" position="bottom" distance="150" /> */}
       </li>
       <li>
