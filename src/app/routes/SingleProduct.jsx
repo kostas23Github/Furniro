@@ -9,7 +9,7 @@ import ErrorPage from "./ErrorPage";
 import StarRating from "../../components/StarRating";
 import useHover from "../../components/hooks/useHover";
 import Tooltip from "../../components/button/tooltip";
-import Button from "../../components/button/Button";
+import Button from "../../components/button/button";
 import Accordion from "../../components/Accordion";
 import Hero from "../../components/hero";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
@@ -44,6 +44,7 @@ function SingleProduct() {
                     <img
                       key={index}
                       src={image}
+                      loading="lazy"
                       className="bg-gold-light-2 hover:bg-gold-light-3 rounded-sm w-[76px] h-20 cursor-pointer"
                       onClick={() => setCurrentImgIndex(index)}
                     />
@@ -54,6 +55,7 @@ function SingleProduct() {
           <img
             src={images[currentImgIndex]}
             alt={product.title}
+            loading="lazy"
             className={`bg-${productBgColor} rounded-lg shrink w-full max-w-[423px] aspect-[0.846]`}
           />
         </div>

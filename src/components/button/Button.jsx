@@ -10,6 +10,7 @@ function Button({
   variant = "icon",
   type,
   extraStyles = "",
+  handleClick,
   disabled,
   tooltipOptions,
   children,
@@ -65,8 +66,9 @@ function Button({
       type={type}
       ref={hoverRef}
       className={`${variantState} ${extraStyles} inline-block ${
-        disabled ? "opacity-50" : ""
+        disabled ? "opacity-50 cursor-not-allowed" : ""
       }`}
+      onClick={handleClick}
       disabled={disabled}
       {...rest}
     >
@@ -88,6 +90,7 @@ Button.propTypes = {
   ]),
   type: PropTypes.string,
   extraStyles: PropTypes.string,
+  handleClick: PropTypes.func,
   disabled: PropTypes.bool,
   tooltipOptions: PropTypes.object,
   children: PropTypes.node.isRequired, // React node
