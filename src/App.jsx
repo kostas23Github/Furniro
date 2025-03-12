@@ -6,6 +6,8 @@ import Home from "./app/routes/Home";
 import Shop from "./app/routes/Shop";
 import SingleProduct from "./app/routes/SingleProduct";
 import Contact from "./app/routes/Contact";
+import Cart from "./app/routes/Cart";
+import Checkout from "./app/routes/Checkout";
 import ErrorPage from "./app/routes/ErrorPage";
 
 function App() {
@@ -19,7 +21,10 @@ function App() {
           element={<SingleProduct />}
         />
         <Route path="contact" element={<Contact />} />
-        <Route path="404" element={<ErrorPage />} /> {/*Match the redirect */}
+        <Route path="cart" element={<Cart />} />
+        <Route path="cart/checkout" element={<Checkout />} />
+        <Route path="404" element={<ErrorPage message="The page you are looking for doesn't exist."/>} /> {/*Match the redirect */}
+        <Route path="error" element={<ErrorPage />} /> {/* Match the redirect */}
         <Route
           path="*"
           element={<ErrorPage message="Please check the URL." />}
