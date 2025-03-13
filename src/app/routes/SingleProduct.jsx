@@ -13,6 +13,7 @@ import Button from "../../components/button/button";
 import Accordion from "../../components/Accordion";
 import Hero from "../../components/hero";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
+import CartContext from "../../components/contexts/CartContext";
 
 function SingleProduct() {
   const { productId } = useParams();
@@ -20,20 +21,51 @@ function SingleProduct() {
   const [hoverRef, isHovered] = useHover();
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [productBgColor, setProductBgColor] = useState("gold");
+  const { cart, updateCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
 
   if (loading) return <Loading />;
-  if (error) return <ErrorPage />; // Add a message here.
 
+  // Find the currently displayed product among all products.
   const product = products.find((p) => p.id === Number(productId));
 
-  if (!product) return <ErrorPage />; // Add a message here.
+  if (error || !product) return <ErrorPage />; // Add a message here.
 
   const images = product.images;
-  const hasImages = images.length > 1;
+  const hasImages = images.length > 0;
+
+  // Find the currently displayed product among all cart products. If absent get the currently displayed product.
+  const cartItem = cart.find((p) => p.id === Number(productId)) || product;
+
+  // Add a limiter to the quantity based on available stock.
+  function handleQuantity(by) {
+    return setQuantity((prevQuantity) => {
+      if (by === -1) {
+        if (prevQuantity > 1) {
+          return prevQuantity - 1;
+        } else {
+          return prevQuantity;
+        }
+      } else if (by === +1) {
+        if (prevQuantity === product.stock) {
+          return prevQuantity;
+        } else {
+          return prevQuantity + 1;
+        }
+      } else {
+        return prevQuantity;
+      }
+    });
+  }
+  console.log(product);
 
   return (
     <div>
-      <Hero ancestors={["Home", "Shop"]} currentPage={product.title} hasImage={shopHeroBg}/>
+      <Hero
+        ancestors={["Home", "Shop"]}
+        currentPage={product.title}
+        hasImage={shopHeroBg}
+      />
       <div className="product-hero-container px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 grid grid-cols-1 md:grid-cols-2 gap-11">
         <div className="images-container grid grid-cols-[76px_1fr] gap-8">
           {hasImages && (
@@ -93,14 +125,19 @@ function SingleProduct() {
             )}
           </div>
           <div className="flex gap-4 md:gap-6 lg:gap-8">
-            <div className="cart-actions-container flex justify-between w-[106px] md:w-[130px] lg:w-[150px] outline outline-2 outline-gray-800 rounded-lg px-3 py-2 md:px-5 md:py-4 hover:bg-gold-light-2">
-              <Button variant="text">-</Button>
-              <p>1</p>
-              <Button variant="text">+</Button>
+            <div className="cart-actions-container flex justify-between w-[106px] md:w-[130px] lg:w-[150px] outline outline-2 outline-gray-800 rounded-lg px-3 py-2 md:px-5 md:py-4">
+              <Button variant="text" handleClick={() => handleQuantity(-1)}>
+                -
+              </Button>
+              <span>{quantity}</span>
+              <Button variant="text" handleClick={() => handleQuantity(+1)}>
+                +
+              </Button>
             </div>
             <Button
               variant="secondary-reversed"
               extraStyles="w-[106px] md:w-[130px] lg:w-[150px] px-3 py-2 rounded-lg"
+              handleClick={() => updateCart(cartItem, "increment", quantity)}
             >
               Add to Cart
             </Button>
