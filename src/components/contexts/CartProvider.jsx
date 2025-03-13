@@ -3,23 +3,16 @@ import PropTypes from "prop-types";
 import CartContext from "./CartContext";
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
+  // Initialize state directly from localStorage
+  const [cart, setCart] = useState(() => {
     try {
       const storedCart = localStorage.getItem("cart");
-      // Only parse if the storedCart exists (not null or undefined)
-      if (storedCart) {
-        setCart(JSON.parse(storedCart));
-      } else {
-        setCart([]); // Fallback to empty array if no cart in localStorage
-      }
+      return storedCart ? JSON.parse(storedCart) : []; // Use stored cart or fallback to empty array
     } catch (error) {
-      console.error("Error reading from localStorage:", error);
-      setCart([]); // Fallback to empty array if JSON parsing fails
+      console.error("Error parsing cart from localStorage:", error);
+      return []; // Fallback to empty cart on error
     }
-  }, []);
+  });
 
   // Update localStorage whenever cart changes
   useEffect(() => {
@@ -27,37 +20,38 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   // Add product to cart
-  const updateCart = (product, action) => {
+  const updateCart = (product, action, value) => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === product.id);
+      const existingProduct = prevCart.find((cartItem) => cartItem.id === product.id);
 
       if (existingProduct) {
         if (action === "increment") {
           if (existingProduct.quantity < product.stock) {
-            // Increment quantity if below stock limit
-            return prevCart.map((item) =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
+            // Increment quantity up to stock limit if below stock limit.
+            return prevCart.map((cartItem) =>
+              cartItem.id === product.id
+                ? { ...cartItem, quantity: Math.min(cartItem.quantity + value, product.stock) }
+                : cartItem
             );
           }
         } else if (action === "decrement") {
           if (existingProduct.quantity > 1) {
-            // Decrement quantity if greater than 1
-            return prevCart.map((item) =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
+            // Decrement quantity if greater than 1.
+            return prevCart.map(cartItem => {
+              if (cartItem.id === product.id) {
+                // If with value quantity drops below 1, 1 is returned.
+                return {...cartItem, quantity: Math.max(1, cartItem.quantity - value)}
+              } else {
+                // If quantity is already at 1, item is removed.
+                return prevCart.filter((cartItem) => cartItem.id !== product.id)
+              }}
             );
-          } else {
-            // Remove the product from the cart if quantity is 1 and decrement is attempted
-            return prevCart.filter((item) => item.id !== product.id);
           }
         }
       } else if (action === "increment") {
-        // Add new product to cart when incrementing
-        if (product.stock === 0) return prevCart;
-        return [...prevCart, { ...product, quantity: 1 }];
+        // The product doesn't exist in cart and added to it by the shop page via the increment action.
+        if (product.stock <= 0) return prevCart;
+        return [...prevCart, { ...product, quantity: value }];
       }
 
       return prevCart; // No changes if action is neither increment nor decrement
@@ -65,8 +59,8 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeItem = (productId) => {
-    setCart(prevCart=>prevCart.filter(item=>item.id !== productId))
-  }
+    setCart((prevCart) => prevCart.filter((cartItem) => cartItem.id !== productId));
+  };
 
   // Clear cart
   const clearCart = () => {
