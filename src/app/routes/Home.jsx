@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
 import heroBg from "../../assets/images/hero-bg/home-hero-bg-scandinavian.png";
-import Button from "../../components/button/Button.jsx";
+import Button from "../../components/button/button.jsx";
 import Carousel from "../../components/Carousel.jsx";
 import Loading from "../../components/loadingAnimation/Loading.jsx";
 import { useScreenSize } from "../../components/contexts/ScreenSizeProvider.jsx";

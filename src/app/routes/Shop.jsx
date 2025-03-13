@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, useMemo } from "react";
 import { useLocation, Link } from "react-router";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
-import ProductCard from "../../components/productCard";
+import ProductCard from "../../components/ProductCard";
 import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
 import Loading from "../../components/loadingAnimation/Loading";
@@ -11,12 +11,10 @@ import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 
 function Shop() {
   // Get product data from ProductsContext in ProductsProvider component.
-  const { products } = useContext(ProductsContext);
-  // Content is a bit laggyyy
-  // Content loading, filtering, scrollToTop(redirecting from home page).
-  const [isLoading, setIsLoading] = useState(true);
+  const { products, loading } = useContext(ProductsContext);
   // The current list of products being displayed.
   const [productList, setProductList] = useState(products);
+
   // Which products' categories are checked.
   const [categories, setCategories] = useState([
     "furniture",
@@ -53,16 +51,13 @@ function Shop() {
   );
 
   useEffect(() => {
-    setIsLoading(true);
     setProductList(filteredProducts);
-    setIsLoading(false);
   }, [filteredProducts]);
 
   // Updates categories state on redirection from Home page/categories section.
   useEffect(() => {
     // This if statement ensures that only when the user comes from the home page(categories section) i.e. the fromHomePageCategory has a value, the useEffect logic is executed.
     if (fromHomePageCategory) {
-      setIsLoading(true);
       setCategories([fromHomePageCategory]);
       setCurrentPage(1);
     }
@@ -90,7 +85,7 @@ function Shop() {
     setSearchQuery(value);
   }
 
-  if (isLoading) return <Loading />;
+  if (loading) return <Loading />;
 
   return (
     <div>
@@ -106,13 +101,15 @@ function Shop() {
         onSearch={handleSearchQuery}
       />
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center w-5/6 mt-10 mx-auto">
-        {paginatedItems.map((product) => (
-          <li key={product.id} className="w-full h-full">
-            <Link to={`/shop/${product.id}`}>
-              <ProductCard product={product} />
-            </Link>
-          </li>
-        ))}
+        {paginatedItems.map((product) => {
+          return (
+            <li key={product.id} className="w-full h-full">
+              <Link to={`/shop/${product.id}`}>
+                <ProductCard key={product.id} product={product} />
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <PaginationControls
         currentPage={currentPage}
