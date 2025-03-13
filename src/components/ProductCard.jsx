@@ -1,23 +1,28 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { FaStar, FaShareAlt, FaCartArrowDown } from "react-icons/fa";
 import { TbHeart } from "react-icons/tb";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
-import Button from "./button/Button";
+import Button from "./button/button";
 import useHover from "./hooks/useHover";
+import CartContext from "./contexts/CartContext";
 
-function ProductCard({ product }) {
+const ProductCard = ({ product }) => {
   const [hoverRef, isHovered] = useHover();
   const [visibleSide, setVisibleSide] = useState("frontSide");
   const [activeSlide, setActiveSlide] = useState(0);
+  const { cart, updateCart } = useContext(CartContext);
+
+  const cartQuantity =
+    cart.find((item) => item.id === product.id)?.quantity || 0;
 
   return (
     <div
       ref={hoverRef}
       className="card-container w-full h-full flex flex-col border rounded-lg border-gray text-right relative hover:cursor-pointer"
     >
-      {/* Each product card has 2 sides. The front which shows the main product info and the back with more details & images. */}
+      {/* Each product card has 2 sides. The front, which shows the main product info and the back, with more details & images. */}
       {visibleSide === "frontSide" && (
         <div className="card-frontSide grow flex flex-col">
           <div className="image-container relative p-4">
@@ -25,10 +30,22 @@ function ProductCard({ product }) {
               className="w-full max-w-[285px] h-[301px] mx-auto"
               src={product.images[0]}
               alt={product.thumbnail}
+              loading="lazy"
             />
             <div className="absolute top-4 right-4 w-10 h-10 text-center leading-[38px] text-white rounded-full bg-red">
               -{Math.round(product.discountPercentage)}%
             </div>
+            {product.stock - cartQuantity < 2 && (
+              <div className="absolute top-10 left-10 text-center text-white rounded-full bg-red px-6 py-4 -rotate-12">
+                {product.stock - cartQuantity === 1 ? (
+                  <p>Last Item</p>
+                ) : product.stock - cartQuantity === 0 ? (
+                  <p className="">Out of stock</p>
+                ) : (
+                  ""
+                )}
+              </div>
+            )}
           </div>
           <div className="card-info grow px-4 pb-6 bg-grey-200 rounded-b-lg">
             <div className="card-title">
@@ -62,8 +79,12 @@ function ProductCard({ product }) {
                     position: "top",
                     distance: "150",
                   }}
-                  onClick={(e) => {
+                  disabled={
+                    product.stock === 0 || cartQuantity >= product.stock
+                  }
+                  handleClick={(e) => {
                     e.preventDefault();
+                    updateCart(product, "increment", +1);
                   }}
                 >
                   <FaCartArrowDown />
@@ -184,14 +205,16 @@ function ProductCard({ product }) {
       )}
     </div>
   );
-}
+};
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     discountPercentage: PropTypes.number.isRequired,
+    stock: PropTypes.number,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     brand: PropTypes.string,
