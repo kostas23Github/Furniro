@@ -21,7 +21,7 @@ function Accordion({ product }) {
 
   return (
     <div
-      className={`product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12`}
+      className="product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12"
     >
       {isXS ? (
         <ul className="accordion-details-mobile relative">

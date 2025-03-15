@@ -60,7 +60,7 @@ function Footer() {
         <div className="mb-5 md:grow">
           <header className="mb-3 text-2xl">Help</header>
           <Links
-            items={["Payment Options", "Returns", "Privacy Policies"]}
+            items={["Payment Options", "Returns", "Purchase Security"]}
             placement="footer"
           />
         </div>

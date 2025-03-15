@@ -8,7 +8,7 @@ import useHover from "../hooks/useHover";
 
 function Button({
   variant = "icon",
-  type,
+  type = "button",
   extraStyles = "",
   handleClick,
   disabled,

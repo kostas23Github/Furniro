@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect, useCallback } from "react";
 import { useNavigate, Link } from "react-router";
-import Hero from "../../components/hero";
+import Hero from "../../components/Hero";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 import { FaTrash } from "react-icons/fa";
-import Button from "../../components/button/button";
+import Button from "../../components/button/Button";
 import CharacteristicsList from "../../components/CharacteristicsList";
 import { ProductsContext } from "../../components/contexts/ProductsContext";
 import Loading from "../../components/loadingAnimation/Loading";

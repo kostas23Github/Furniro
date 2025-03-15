@@ -9,9 +9,9 @@ import ErrorPage from "./ErrorPage";
 import StarRating from "../../components/StarRating";
 import useHover from "../../components/hooks/useHover";
 import Tooltip from "../../components/button/tooltip";
-import Button from "../../components/button/button";
+import Button from "../../components/button/Button";
 import Accordion from "../../components/Accordion";
-import Hero from "../../components/hero";
+import Hero from "../../components/Hero";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 import CartContext from "../../components/contexts/CartContext";
 
