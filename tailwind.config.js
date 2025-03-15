@@ -25,6 +25,9 @@ export default {
         green: '#2EC1AC',
         red: '#E97171',
       },
+      backgroundImage: {
+        'instagram': 'linear-gradient(315deg, #f58529, #feda77, #dd2a7b, #8134af, #515bd4)',
+      },
       fontFamily: {
         sans: ['Inter, system-ui, Avenir, Helvetica, Arial, sans-serif'],
       },
