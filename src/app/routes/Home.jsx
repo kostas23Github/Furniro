@@ -44,17 +44,19 @@ function Home() {
               tellus, luctus nec ullamcorper mattis.
             </p>
           </div>
-          <Button
-            variant="primary"
-            extraStyles="px-16 py-6 mt-16"
-            tooltipOptions={{
-              text: "Visit our shop page",
-              position: "bottom",
-              distance: "100",
-            }}
-          >
-            BUY NOW
-          </Button>
+          <Link to={"/shop"}>
+            <Button
+              variant="primary"
+              extraStyles="px-16 py-6 mt-16"
+              tooltipOptions={{
+                text: "Visit our shop page",
+                position: "bottom",
+                distance: "100",
+              }}
+            >
+              BUY NOW
+            </Button>
+          </Link>
         </div>
       </section>
       <section id="browse-collection" className="px-12 py-8">
@@ -113,8 +115,8 @@ function Home() {
       >
         <div className="what-to-expect-title text-center md:text-left mx-auto md:w-1/3 max-w-xs shrink-0">
           <p className="text-5xl mb-2">
-            <span className="">100s</span> of items {!isLG && <br />} to
-            choose from...
+            <span className="">100s</span> of items {!isLG && <br />} to choose
+            from...
           </p>
           <p className="text">
             Lorem ipsum dolor sit amet consectetur adipisicing
