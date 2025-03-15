@@ -6,7 +6,7 @@ import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
 import Loading from "../../components/loadingAnimation/Loading";
 import CharacteristicsList from "../../components/CharacteristicsList";
-import Hero from "../../components/hero";
+import Hero from "../../components/Hero";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 
 function Shop() {

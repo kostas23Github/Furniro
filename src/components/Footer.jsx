@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "./button/button";
+import Button from "./button/Button";
 import Links from "./navigationBar/Links";
 import Form from "./Form";
 import FormModal from "./FormModal";
