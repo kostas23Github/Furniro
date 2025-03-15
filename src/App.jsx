@@ -9,6 +9,9 @@ import Contact from "./app/routes/Contact";
 import Cart from "./app/routes/Cart";
 import Checkout from "./app/routes/Checkout";
 import ErrorPage from "./app/routes/ErrorPage";
+import PaymentOptions from "./app/routes/PaymentOptions";
+import Returns from "./app/routes/Returns";
+import PurchaseSecurity from "./app/routes/PurchaseSecurity";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
         <Route path="cart/checkout" element={<Checkout />} />
+        <Route path="Payment Options" element={<PaymentOptions />} />
+        <Route path="Returns" element={<Returns />} />
+        <Route path="Purchase Security" element={<PurchaseSecurity />} />
         <Route path="404" element={<ErrorPage message="The page you are looking for doesn't exist."/>} /> {/*Match the redirect */}
         <Route path="error" element={<ErrorPage />} /> {/* Match the redirect */}
         <Route
