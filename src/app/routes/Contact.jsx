@@ -3,14 +3,14 @@ import { ProductsContext } from "../../components/contexts/ProductsContext";
 import Loading from "../../components/loadingAnimation/Loading";
 import ErrorPage from "./ErrorPage";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
-import Hero from "../../components/hero";
+import Hero from "../../components/Hero";
 import { MdLocationPin } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { GoClockFill } from "react-icons/go";
 import ContactForm from "../../components/form/ContactForm";
 
 function Contact() {
-  const { products, loading, error } = useContext(ProductsContext);
+  const { loading, error } = useContext(ProductsContext);
 
   if (loading) return <Loading />;
   if (error) return <ErrorPage />;

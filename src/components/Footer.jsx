@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "./button/Button";
 import Links from "./navigationBar/Links";
-import Form from "./Form";
-import FormModal from "./FormModal";
+import SubscribeForm from "./form/SubscribeForm";
 import SubFooter from "./SubFooter";
 import { IoLogoFacebook } from "react-icons/io";
 import { IoLogoYoutube } from "react-icons/io";
@@ -11,12 +8,6 @@ import { IoLogoTwitter } from "react-icons/io";
 import { IoLogoInstagram } from "react-icons/io";
 
 function Footer() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function handleModal(bool) {
-    setIsModalOpen(bool);
-  }
-
   return (
     <div>
       <div className="p-5 sm:p-10 lg:p-20 md:flex md:justify-between md:gap-4 min-h-[300px]">
@@ -66,19 +57,7 @@ function Footer() {
         </div>
         <div className="mb-5 md:w-[33%]">
           <header className="mb-3 text-2xl">Newsletter</header>
-          <Form>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter Your Email Address"
-              className="block bg-transparent placeholder:italic border-b-4 focus:border-grey-400 me-2 focus:outline-0"
-            />
-            <Button type="submit" onClick={() => handleModal(true)}>
-              SUBSCRIBE
-            </Button>
-            {isModalOpen && <FormModal modalOpen={handleModal} />}
-          </Form>
+          <SubscribeForm />
         </div>
       </div>
       <SubFooter />
