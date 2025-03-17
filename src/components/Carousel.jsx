@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LuArrowBigRight } from "react-icons/lu";
 import PropTypes from "prop-types";
-import Button from "./button/button";
+import Button from "./button/Button";
 import { useScreenSize } from "./contexts/ScreenSizeProvider";
 
 function Carousel({ items }) {
