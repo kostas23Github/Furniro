@@ -16,6 +16,11 @@ function Cart() {
   const [vat, setVat] = useState(true);
   const [discount, setDiscount] = useState(false);
 
+  // Update localStorage whenever cart changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  
   useEffect(() => {
     if (error) navigate("/error", { state: { message: error } });
   }, [error, navigate]);
@@ -39,12 +44,10 @@ function Cart() {
   );
 
   useEffect(() => {
-    let subTotal = subTotalPrice();
-    if (vat) subTotal *= 1.23; // Apply VAT
-    if (discount) subTotal *= 0.8; // Apply discount
+    totalPrice(vat, discount);
 
-    localStorage.setItem("totalPrice", subTotal.toFixed(2));
-  }, [vat, discount, cart, subTotalPrice]);
+    localStorage.setItem("totalPrice", totalPrice);
+  }, [vat, discount, cart, totalPrice]);
 
   if (loading) return <Loading />;
 
@@ -169,7 +172,15 @@ function Cart() {
             </div>
           </div>
           <div className="justify-self-center">
-            <Link to={"/cart/checkout"}>
+            <Link
+              to="/cart/checkout"
+              state={{
+                subTotal: subTotalPrice(),
+                vat,
+                discount,
+                total: totalPrice(vat, discount),
+              }}
+            >
               <Button
                 variant="secondary-reversed"
                 type={"button"}
