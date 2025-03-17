@@ -189,6 +189,7 @@ function Cart() {
                   position: "bottom",
                   distance: "120",
                 }}
+                disabled={cart.length < 1}
                 extraStyles="px-10 py-2 mt-3 lg:mt-6 mb-[2px] justify-self-center align-self-center"
               >
                 Checkout
