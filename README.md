@@ -44,14 +44,4 @@ To start app run `npm run dev`.
 
 ## TODO
 
-1. Add for each product a modal displaying more information about the product, some text of its characteristics. To that modal a button navigating to a specific product page.
-2. Make expanding navigation bar for mobile, add user-action buttons functionality.
-3. Finish Shop & Home pages by adding their remaining components(footer, aknowledges etc)
-
-## Continue from
-
-Continue SingeProduct.jsx page.
-To navigate there go to Shop.jsx -> click "A product" text button at the top-left side.
-
-Double check accordion for small erros, then move it to its separate component.
-Check the new breakpoints whether they break parts of the code.
+1. Continue with the billingForm at Checkout.jsx page.
