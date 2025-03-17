@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Button from "../button/Button";
+import FormField from "./FormField";
 
 function ContactForm() {
   const {
@@ -21,7 +22,7 @@ function ContactForm() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     // Find user's index by name & email
-    const existingUserIndex  = users.findIndex(
+    const existingUserIndex = users.findIndex(
       (user) =>
         user.name.toLowerCase() === data.name.toLowerCase() &&
         user.email.toLowerCase() === data.email.toLowerCase()
@@ -64,99 +65,44 @@ function ContactForm() {
       }`}
     >
       {/* Name Input Field */}
-      <div className="relative flex flex-col">
-        <label
-          htmlFor={"name"}
-          className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 ${
-            watch("name") || focusedField === "name"
-              ? "top-0 bg-transparent text-grey-700"
-              : "top-[10px] bg-slate-50 text-grey-300"
-          } ${errors.name && "text-red"}`}
-        >
-          Name
-        </label>
-        <input
-          type="text"
-          {...register("name", {
-            required: "Name is required",
-            pattern: {
-              value: /^[A-Za-zΑ-Ωα-ωΆ-Ώά-ώ\s]+$/i, // Only letters (case-insensitive)
-              message: "Only letters and spaces are allowed",
-            },
-            onChange: () => trigger("name"),
-          })}
-          className={`bg-transparent mb-2 outline outline-2 ${
-            errors.name
-              ? "outline-red focus:outline-red text-red"
-              : "outline-grey-300"
-          } px-3 py-2 focus:outline-grey-700`}
-          onFocus={() => setFocusedField("name")}
-          onBlur={() => setFocusedField(null)}
-        />
-        {errors.name && (
-          <p className="text-red text-xs my-1">{errors.name.message}</p>
-        )}
-      </div>
+      <FormField
+        name="name"
+        labelName="Name"
+        register={register}
+        watch={watch}
+        errors={errors}
+        trigger={trigger}
+        pattern={{
+          value: /^[A-Za-zΑ-Ωα-ωΆ-Ώά-ώ\s]+$/i,
+          message: "Only letters and spaces are allowed.",
+        }}
+      />
       {/* Email Input Field */}
-      <div className="relative flex flex-col">
-        <label
-          htmlFor={"email"}
-          className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 ${
-            watch("email") || focusedField === "email"
-              ? "top-0 bg-transparent text-grey-700"
-              : "top-[10px] bg-slate-50 text-grey-300"
-          } ${errors.email && "text-red"}`}
-        >
-          Email
-        </label>
-        <input
-          type="email"
-          {...register("email", {
-            required: "E-mail is required",
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: "Invalid email address",
-            },
-            onChange: () => trigger("email"),
-          })}
-          className={`bg-transparent outline outline-2 ${
-            errors.email ? "outline-red text-red" : "outline-grey-300"
-          } px-3 py-2 focus:outline-grey-700`}
-          onFocus={() => setFocusedField("email")}
-          onBlur={() => setFocusedField(null)}
-        />
-        {errors.email && (
-          <p className="text-red text-xs mt-1">{errors.email.message}</p>
-        )}
-      </div>
+      <FormField
+        name="email"
+        labelName="Email Address"
+        register={register}
+        watch={watch}
+        errors={errors}
+        trigger={trigger}
+        pattern={{
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+          message: "someone@email.com",
+        }}
+      />
       {/* Subject Input Field */}
-      <div className="relative flex flex-col">
-        <label
-          htmlFor={"subject"}
-          className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 ${
-            watch("subject") || focusedField === "subject"
-              ? "top-0 bg-transparent text-grey-700"
-              : "top-[10px] bg-slate-50 text-grey-300"
-          } ${errors.subject && "text-red"}`}
-        >
-          Subject
-        </label>
-        <input
-          type="text"
-          {...register("subject", {
-            required: "Message subject is required",
-            onChange: () => trigger("name"),
-          })}
-          className={`bg-transparent mb-2 outline outline-2 ${
-            errors.subject ? "outline-red text-red" : "outline-grey-300"
-          } px-3 py-2 focus:outline-grey-700`}
-          onFocus={() => setFocusedField("subject")}
-          onBlur={() => setFocusedField(null)}
-        />
-        {errors.subject && (
-          <p className="text-red text-xs mt-1">{errors.subject.message}</p>
-        )}
-      </div>
+      <FormField
+        name="subject"
+        labelName="Subject"
+        register={register}
+        watch={watch}
+        errors={errors}
+        trigger={trigger}
+        pattern={{
+          value: /^[A-Za-z0-9Α-Ωα-ωΆ-Ώά-ώ\s]+$/i,
+          message: "Only letters, numbers, and spaces are allowed",
+        }}
+      />
       {/* Message Input Field */}
       <div className="relative flex flex-col">
         <label
@@ -165,14 +111,14 @@ function ContactForm() {
             watch("message") || focusedField === "message"
               ? "top-0 bg-transparent text-grey-700"
               : "top-[10px] bg-slate-50 text-grey-300"
-          } ${errors.subject && "text-red"}`}
+          } ${errors.message && "text-red"}`}
         >
           Message
         </label>
         <textarea
           {...register("message", {
             required: "Message is required",
-            onChange: () => trigger("name"),
+            onChange: () => trigger("message"),
           })}
           className={`bg-transparent mb-2 outline outline-2 ${
             errors.message ? "outline-red text-red" : "outline-grey-300"
@@ -189,9 +135,7 @@ function ContactForm() {
         variant="primary"
         type="submit"
         extraStyles={`mt-4 px-5 py-1 md:px-10 md:py-2 ${
-          !isValid
-            ? "disabled opacity-50 cursor-not-allowed"
-            : ""
+          !isValid ? "disabled opacity-50 cursor-not-allowed" : ""
         }`}
         disabled={!isValid}
       >
