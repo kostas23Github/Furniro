@@ -22,7 +22,9 @@ export const CartProvider = ({ children }) => {
   // Add product to cart
   const updateCart = (product, action, value) => {
     setCart((prevCart) => {
-      const existingProduct = prevCart.find((cartItem) => cartItem.id === product.id);
+      const existingProduct = prevCart.find(
+        (cartItem) => cartItem.id === product.id
+      );
 
       if (existingProduct) {
         if (action === "increment") {
@@ -30,26 +32,35 @@ export const CartProvider = ({ children }) => {
             // Increment quantity up to stock limit if below stock limit.
             return prevCart.map((cartItem) =>
               cartItem.id === product.id
-                ? { ...cartItem, quantity: Math.min(cartItem.quantity + value, product.stock) }
+                ? {
+                    ...cartItem,
+                    quantity: Math.min(
+                      cartItem.quantity + value,
+                      product.stock
+                    ),
+                  }
                 : cartItem
             );
           }
         } else if (action === "decrement") {
           if (existingProduct.quantity > 1) {
             // Decrement quantity if greater than 1.
-            return prevCart.map(cartItem => {
-              if (cartItem.id === product.id) {
-                // If with value quantity drops below 1, 1 is returned.
-                return {...cartItem, quantity: Math.max(1, cartItem.quantity - value)}
-              } else {
-                // If quantity is already at 1, item is removed.
-                return prevCart.filter((cartItem) => cartItem.id !== product.id)
-              }}
+            return prevCart.map((cartItem) =>
+              cartItem.id === product.id
+                ? // If the value quantity drops below 1, 1 is returned.
+                  {
+                    ...cartItem,
+                    quantity: Math.max(1, cartItem.quantity - value),
+                  }
+                : cartItem
             );
+          } else {
+            // If quantity is already at 1, item is removed.
+            return prevCart.filter((cartItem) => cartItem.id !== product.id);
           }
         }
       } else if (action === "increment") {
-        // The product doesn't exist in cart and added to it by the shop page via the increment action.
+        // The product doesn't exist in cart, added by the shop page via the increment action.
         if (product.stock <= 0) return prevCart;
         return [...prevCart, { ...product, quantity: value }];
       }
@@ -59,7 +70,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeItem = (productId) => {
-    setCart((prevCart) => prevCart.filter((cartItem) => cartItem.id !== productId));
+    setCart((prevCart) =>
+      prevCart.filter((cartItem) => cartItem.id !== productId)
+    );
   };
 
   // Clear cart
