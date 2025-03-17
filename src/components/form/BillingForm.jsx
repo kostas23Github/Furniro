@@ -79,7 +79,7 @@ function BillingForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="p-5 sm:p-10 lg:p-20 flex flex-wrap justify-evenly relative"
     >
-      <div className="max-w-sm">
+      <div className="w-full sm:max-w-sm">
         <p className="text-5xl">Billing details</p>
         {/* Name Input Field */}
         <FormField
@@ -199,7 +199,7 @@ function BillingForm() {
           )}
         </div>
       </div>
-      <div className="xl:w-96 max-h-max px-16 sticky top-10">
+      <div className="xl:w-96 max-h-max  sm:px-16 sticky top-10">
         <p className="text-4xl text-center mb-5">Cart Total</p>
         <div className="flex flex-col">
           <div className="flex space-x-16 justify-between pt-5 pb-2">
