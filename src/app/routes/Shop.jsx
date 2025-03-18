@@ -49,6 +49,7 @@ function Shop() {
     startIndex,
     startIndex + itemsPerPage
   );
+  const displayedItems = Math.min(12, paginatedItems.length);
 
   useEffect(() => {
     setProductList(filteredProducts);
@@ -72,6 +73,7 @@ function Shop() {
   // Update categories list state.
   function handleCheckbox(e) {
     const value = e.target.value;
+    setCurrentPage(1); // Reset displayed page to avoid SearchBar showing wrong "currently displaying products".
     setCategories(
       (prevCategories) =>
         prevCategories.includes(value)
@@ -95,7 +97,7 @@ function Shop() {
         handleCheckbox={handleCheckbox}
         categories={categories}
         startIndex={startIndex}
-        itemsPerPage={itemsPerPage}
+        displayedItems={displayedItems}
         productList={productList}
         searchQuery={searchQuery}
         onSearch={handleSearchQuery}
