@@ -19,3 +19,7 @@ function useOutsideClick(ref, callback) {
 }
 
 export default useOutsideClick;
+
+// explain why the importance of this line of code whenever this hook is used.
+// const menuRef = useRef(null);
+// The ref is set to null initialy bc it is set before rendering so their is no element to be assigned to. When the appropriate element, in this case the div container of the filter dropdown & fitler button, has rendered this menuRef variable is assigned to it.
