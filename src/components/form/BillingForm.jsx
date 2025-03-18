@@ -50,7 +50,6 @@ function BillingForm() {
 
     // Save back to localStorage
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
-    console.log(order);
 
     // Set placeOrder to true to show the confirmation message
     setPlaceOrder(true);

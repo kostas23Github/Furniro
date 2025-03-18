@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
-import Button from './button/Button';
+import Button from './button/button';
 
 function PaginationControls({ currentPage, totalPages, onPageChange }) {
   return (

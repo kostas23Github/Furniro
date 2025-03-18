@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import Button from "../button/Button";
+import Button from "../button/button";
 import FormModal from "./FormModal";
 
 function SubscribeForm() {
@@ -15,13 +15,10 @@ function SubscribeForm() {
   const [modalMsg, setModalMsg] = useState(""); // Store modal message in state
 
   function onSubmit(data) {
-    console.log(data);
     // data contains the currently submitted form values as an object.
     const subscribedUsers =
       JSON.parse(localStorage.getItem("subscribedUsers")) || [];
 
-      console.log(subscribedUsers);
-      
     // Find the user by email
     const existingUser = subscribedUsers.find(
       (user) => user.toLowerCase() === data.email.toLowerCase()
