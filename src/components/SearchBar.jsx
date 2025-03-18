@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Button from "./button/button";
 import { MdFilterList } from "react-icons/md";
+import useOutsideClick from "./hooks/useOutsideClick";
 
 function SearchBar({
   onFilterCheckboxClick,
   handleCheckbox,
   categories,
   startIndex,
-  itemsPerPage,
+  displayedItems,
   productList,
   searchQuery,
   onSearch,
 }) {
   // Whether the dropdown list of categories is visible.
   const [isDropdownHidden, setIsDropdownHidden] = useState(true);
+
+  const menuRef = useRef(null);
+
+  function toggleDropdown() {
+    setIsDropdownHidden((prev) => !prev);
+  }
+
+  function closeDropdown() {
+    setIsDropdownHidden(true);
+  }
+
+  // Hide the filter menu when clicking outside of it.
+  useOutsideClick(menuRef, closeDropdown);
+
   // Possible category values.
   const OPTIONS = ["furniture", "home-decoration", "kitchen-accessories"];
 
@@ -23,7 +38,7 @@ function SearchBar({
       id="searchBar"
       className="bg-gold-light-2 hover:bg-gold-light-3 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12"
     >
-      <div className="filter-container relative" title="Category Filter">
+      <div ref={menuRef} className="filter-container relative" title="Category Filter">
         <Button
           variant="icon"
           extraStyles="bg-transparent outline outline-1 rounded outline-grey-400 focus:outline-2 p-1"
@@ -32,7 +47,10 @@ function SearchBar({
             position: "bottom",
             distance: "150",
           }}
-          onClick={() => setIsDropdownHidden(!isDropdownHidden)}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleDropdown();
+          }}
         >
           <MdFilterList />
         </Button>
@@ -67,13 +85,14 @@ function SearchBar({
           </div>
         )}
       </div>
-      <span>
-        Showing {startIndex} of{" "}
-        {startIndex + itemsPerPage > productList.length
-          ? productList.length
-          : startIndex + itemsPerPage}{" "}
-        products
-      </span>
+      {productList.length < 1 ? (
+        <span>Showing 0 products</span>
+      ) : (
+        <span>
+          Showing [{startIndex + 1} - {startIndex + displayedItems}] of{" "}
+          {productList.length} products
+        </span>
+      )}
       <input
         className="bg-transparent px-2 py-1 outline outline-1 rounded outline-grey-400 focus:outline-2 placeholder:text-grey-500"
         type="search"
@@ -92,7 +111,7 @@ SearchBar.propTypes = {
   handleCheckbox: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired,
   startIndex: PropTypes.number.isRequired,
-  itemsPerPage: PropTypes.number.isRequired,
+  displayedItems: PropTypes.number.isRequired,
   productList: PropTypes.array.isRequired,
   searchQuery: PropTypes.string,
   onSearch: PropTypes.func.isRequired,
