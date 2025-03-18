@@ -77,7 +77,7 @@ function BillingForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="p-5 sm:p-10 lg:p-20 flex flex-wrap justify-evenly relative"
+      className="p-5 sm:p-10 lg:p-20 flex flex-wrap justify-evenly relative max-w-[1200px] mx-auto"
     >
       <div className="w-full sm:max-w-sm">
         <p className="text-5xl">Billing details</p>

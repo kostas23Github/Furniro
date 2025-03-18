@@ -25,7 +25,7 @@ function Returns() {
         currentPage="Payment Options"
         hasImage={shopHeroBg}
       />
-      <div className="p-5 sm:p-10 lg:p-20">
+      <div className="p-5 sm:p-10 lg:p-20 max-w-[1200px] mx-auto">
         <div className="outline outline-2 outline-grey-200 p-6 mb-6">
           <Button
             variant="icon"

@@ -57,7 +57,6 @@ function SingleProduct() {
       }
     });
   }
-  console.log(product);
 
   return (
     <div>
@@ -66,7 +65,7 @@ function SingleProduct() {
         currentPage={product.title}
         hasImage={shopHeroBg}
       />
-      <div className="product-hero-container px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 grid grid-cols-1 md:grid-cols-2 gap-11">
+      <div className="product-hero-container px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 grid grid-cols-1 md:grid-cols-2 gap-11 max-w-[1200px] mx-auto">
         <div className="images-container grid grid-cols-[76px_1fr] gap-8">
           {hasImages && (
             <div className="grid self-start gap-8">
@@ -88,7 +87,7 @@ function SingleProduct() {
             src={images[currentImgIndex]}
             alt={product.title}
             loading="lazy"
-            className={`bg-${productBgColor} rounded-lg shrink w-full max-w-[423px] aspect-[0.846]`}
+            className={`bg-${productBgColor} rounded-lg shrink w-full max-w-[350px] aspect-[0.846]`}
           />
         </div>
         <div className="product-info-container md:py-6">

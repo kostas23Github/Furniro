@@ -13,7 +13,7 @@ function PaymentOptions() {
         currentPage="Payment Options"
         hasImage={shopHeroBg}
       />
-      <div className="p-5 sm:p-10 lg:p-20">
+      <div className="p-5 sm:p-10 lg:p-20 max-w-[1200px] mx-auto">
         <div className="mb-6">
           <p className="text-3xl text-center mb-3">
             Payment Options at Furniro

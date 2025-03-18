@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useScreenSize } from "./contexts/ScreenSizeProvider";
 import StarRating from "./StarRating";
-import Button from "./button/Button";
+import Button from "./button/button";
 
 function Accordion({ product }) {
   const { isXS } = useScreenSize();
@@ -21,7 +21,7 @@ function Accordion({ product }) {
 
   return (
     <div
-      className="product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12"
+      className="product-detailed-info-container-accordion px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12 max-w-[1200px] mx-auto"
     >
       {isXS ? (
         <ul className="accordion-details-mobile relative">

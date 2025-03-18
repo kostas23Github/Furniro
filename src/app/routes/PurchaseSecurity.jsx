@@ -14,7 +14,7 @@ function PurchaseSecurity() {
         currentPage="Purchase Security"
         hasImage={shopHeroBg}
       />
-      <div className="p-5 sm:p-10 lg:p-20">
+      <div className="p-5 sm:p-10 lg:p-20 max-w-[1200px] mx-auto">
         <div className="flex flex-col items-center mb-28">
           <img
             src={SecurityBadgeIcon}

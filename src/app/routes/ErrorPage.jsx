@@ -8,7 +8,7 @@ function ErrorPage({ defaultMessage = "Oops! Something went wrong." }) {
   
 
   return (
-    <div className="text-center p-5 min-h-80 md:min-h-fit">
+    <div className="text-center p-5 min-h-80 md:min-h-fit max-w-[1200px] mx-auto">
       <p className="my-5 text-6xl">Error</p>
       <p className="my-2">{errorMessage}</p>
       <p><strong>Attempted URL:</strong> <u>{pathname}</u></p>

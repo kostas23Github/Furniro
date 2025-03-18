@@ -10,7 +10,7 @@ import { IoLogoInstagram } from "react-icons/io";
 function Footer() {
   return (
     <div>
-      <div className="p-5 sm:p-10 lg:p-20 md:flex md:justify-between md:gap-4 min-h-[300px]">
+      <div className="p-5 sm:p-10 lg:p-20 md:flex md:justify-between md:gap-4 min-h-[300px] max-w-[1200px] mx-auto">
         <div className="mb-5 md:w-[33%]">
           <header className="text-3xl mb-3">Furniro.</header>
           <p className="text-grey-300">

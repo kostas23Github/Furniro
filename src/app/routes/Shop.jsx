@@ -100,7 +100,7 @@ function Shop() {
         searchQuery={searchQuery}
         onSearch={handleSearchQuery}
       />
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center w-5/6 mt-10 mx-auto">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center w-5/6 mt-10 max-w-[1200px] mx-auto">
         {paginatedItems.map((product) => {
           return (
             <li key={product.id} className="w-full h-full">
