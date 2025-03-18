@@ -25,7 +25,10 @@ function Shop() {
   const [searchQuery, setSearchQuery] = useState("");
   // Which part of the product-list is visible.
   const [currentPage, setCurrentPage] = useState(1);
+
   const location = useLocation();
+
+  // To set the state based on the fact that the user was redirected to this page upon clicking on a category at Home.jsx
   const fromHomePageCategory = location.state?.selectedCategory;
 
   // I had previously included this logic inside the useEffect hook(apart from the useMemo hook). Now with useMemo it is calculated only when the dependancy array changes and not when the component renders.
@@ -81,6 +84,21 @@ function Shop() {
           : [...prevCategories, value] // Select option
     );
   }
+
+  useEffect(() => {
+    // When clicking the search icon in navBar the user is redirected to the Shop.jsx page and scrolled to the searchBar & it becomes focused.
+    // This is accomplished by passing as a hash(#) via the url, the id of the searchbar input.
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.focus();
+        window.scrollTo({
+          top: element.offsetTop - 100,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [location]);
 
   // Is passed to to the SearchBar child component & updates the searchQuery state value with the typed search query. Then this searchQuery change triggers the useEffect hook which updates the productList.
   function handleSearchQuery(value) {

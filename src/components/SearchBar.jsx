@@ -34,11 +34,12 @@ function SearchBar({
   const OPTIONS = ["furniture", "home-decoration", "kitchen-accessories"];
 
   return (
-    <div
-      id="searchBar"
-      className="bg-gold-light-2 hover:bg-gold-light-3 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12"
-    >
-      <div ref={menuRef} className="filter-container relative" title="Category Filter">
+    <div className="bg-gold-light-2 hover:bg-gold-light-3 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12">
+      <div
+        ref={menuRef}
+        className="filter-container relative"
+        title="Category Filter"
+      >
         <Button
           variant="icon"
           extraStyles="bg-transparent outline outline-1 rounded outline-grey-400 focus:outline-2 p-1"
@@ -94,10 +95,10 @@ function SearchBar({
         </span>
       )}
       <input
-        className="bg-transparent px-2 py-1 outline outline-1 rounded outline-grey-400 focus:outline-2 placeholder:text-grey-500"
+        className="bg-transparent px-2 py-1 outline outline-1 rounded outline-grey-400 focus:outline-4 placeholder:text-grey-500"
         type="search"
         name="search"
-        id="search"
+        id="searchProducts"
         placeholder="Search products..."
         value={searchQuery}
         onChange={(e) => onSearch(e.target.value)}

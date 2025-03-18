@@ -28,15 +28,17 @@ function UserActions({ mobileStyles }) {
         </Button>
       </li>
       <li>
-        <Button
-          tooltipOptions={{
-            text: "Search Products",
-            position: "bottom",
-            distance: "150",
-          }}
-        >
-          <LuSearch className={stylesValue} />
-        </Button>
+        <Link to={"/shop#searchProducts"}>
+          <Button
+            tooltipOptions={{
+              text: "Search Products",
+              position: "bottom",
+              distance: "150",
+            }}
+          >
+            <LuSearch className={stylesValue} />
+          </Button>
+        </Link>
         {/* <Tooltip text="Search Products" position="bottom" /> */}
       </li>
       <li>
