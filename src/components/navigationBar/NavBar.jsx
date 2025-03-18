@@ -81,12 +81,15 @@ function NavBar() {
       )}
     </nav>
   ) : (
-    <nav className="px-5 sm:px-10 lg:px-20 py-8 flex justify-between">
+    <nav className="px-5 sm:px-10 lg:px-20 py-8 flex justify-between max-w-[1200px] mx-auto w-full">
       <Link to="/" className="flex justify-between gap-1 items-center">
         <img src={logo} alt="Logo" className="md:w-12 md:h-8 w-8 h-6" />
         <h3 className="text-3xl font-bold md:text-logo">Funiro</h3>
       </Link>
-      <Links items={["Shop", "Contact"]} placement="navBar" />
+      <Links
+        items={["Shop", "Contact"]}
+        placement="navBar"
+      />
       <UserActions />
     </nav>
   );

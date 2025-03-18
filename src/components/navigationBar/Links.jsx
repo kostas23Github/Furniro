@@ -16,7 +16,7 @@ function Links({ items, placement, mobileStyles, onShowMenu }) {
           <Link
             to={`/${item}`.toLowerCase()}
             className={linkClassValues}
-            onClick={() => onShowMenu(false)}
+            onClick={() => onShowMenu?.(false)} // optional chaining of onShowMenu since in desktop view menu is always visible.
           >
             {item}
           </Link>
