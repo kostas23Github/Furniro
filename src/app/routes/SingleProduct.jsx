@@ -14,10 +14,12 @@ import Accordion from "../../components/Accordion";
 import Hero from "../../components/Hero";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 import CartContext from "../../components/contexts/CartContext";
+import useIsTouchDevice from "../../components/hooks/useIsTouchDevice";
 
 function SingleProduct() {
   const { productId } = useParams();
   const { products, loading, error } = useContext(ProductsContext);
+  const isTouchDevice = useIsTouchDevice();
   const [hoverRef, isHovered] = useHover();
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [productBgColor, setProductBgColor] = useState("gold");
@@ -119,7 +121,7 @@ function SingleProduct() {
                 onClick={() => setProductBgColor("gold")}
               ></div>
             </div>
-            {isHovered && (
+            {!isTouchDevice && isHovered && (
               <Tooltip text="Set bg color" position="bottom" distance="120" />
             )}
           </div>
