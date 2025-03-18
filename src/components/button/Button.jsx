@@ -5,6 +5,7 @@
 import PropTypes from "prop-types";
 import Tooltip from "./tooltip";
 import useHover from "../hooks/useHover";
+import useIsTouchDevice from "../hooks/useIsTouchDevice";
 
 function Button({
   variant = "icon",
@@ -19,6 +20,9 @@ function Button({
   // { ...rest } currently supports external event handlers.
 
   const [hoverRef, isHovered] = useHover();
+
+  // Detect so to disable tooltip pop ups.
+  const isTouchDevice = useIsTouchDevice();
 
   // Main button categories for regular & hover states.
   const variantClass = {
@@ -53,9 +57,10 @@ function Button({
   };
 
   // Apply proper styles based on hover state.
-  const variantState = isHovered && !disabled
-    ? variantClass[variant].hover
-    : variantClass[variant].regular;
+  const variantState =
+    isHovered && !disabled
+      ? variantClass[variant].hover
+      : variantClass[variant].regular;
 
   if (!extraStyles.includes("absolute")) {
     extraStyles += " relative";
@@ -73,7 +78,9 @@ function Button({
       {...rest}
     >
       {children}
-      {isHovered && tooltipOptions && <Tooltip {...tooltipOptions} />}
+      {!isTouchDevice && isHovered && tooltipOptions && (
+        <Tooltip {...tooltipOptions} />
+      )}
     </button>
   );
 }

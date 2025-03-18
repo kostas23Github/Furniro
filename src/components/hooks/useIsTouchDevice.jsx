@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 const useIsTouchDevice = () => {
-  const [isTouch, setIsTouch] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
     const checkTouch = () => {
-      setIsTouch(
+      setIsTouchDevice(
         ("maxTouchPoints" in navigator && navigator.maxTouchPoints > 0) ||
           window.matchMedia("(pointer: coarse)").matches
       );
@@ -15,7 +15,7 @@ const useIsTouchDevice = () => {
     return () => window.removeEventListener("resize", checkTouch);
   }, []);
 
-  return isTouch;
+  return isTouchDevice;
 };
 
 export default useIsTouchDevice;
