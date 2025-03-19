@@ -31,7 +31,7 @@ function NavBar() {
   }, [location.pathname]);
 
   return isXS ? (
-    <nav className="px-5 sm:px-10 lg:px-20 py-8 flex flex-wrap justify-between relative">
+    <nav className="px-5 sm:px-10 lg:px-20 py-8 flex flex-wrap justify-between">
       <Button
         tooltipOptions={{
           text: "Home Page",
