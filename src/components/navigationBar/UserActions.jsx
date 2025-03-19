@@ -5,16 +5,19 @@ import { LuSearch } from "react-icons/lu";
 import { TbHeart, TbShoppingCart, TbUserExclamation } from "react-icons/tb";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import Button from "../button/button";
-import LoginModal from "../LoginModal";
+import LoginModal from "../modals/LoginModal";
 import useOutsideClick from "../hooks/useOutsideClick";
+import FavoritesModal from "../modals/FavoritesModal";
 
 function UserActions({ mobileStyles }) {
   const stylesValue = "text-2xl";
-  const [isUserModalVisible, setIsUserModalVisible] = useState(false);
+  const [isUserLoginModalVisible, setIsUserLoginModalVisible] = useState(false);
+  const [isFavoritesModalVisible, setIsFavoritedModalVisible] = useState(false);
   const loginRef = useRef(null);
+  const favoritesRef = useRef(null);
 
   // Hide the Login-Signup form modal when clicking outside of it.
-  useOutsideClick(loginRef, () => setIsUserModalVisible(false));
+  useOutsideClick(loginRef, () => setIsUserLoginModalVisible(false));
 
   return (
     <ul
@@ -30,11 +33,13 @@ function UserActions({ mobileStyles }) {
             position: "bottom",
             distance: "150",
           }}
-          handleClick={() => setIsUserModalVisible(!isUserModalVisible)}
+          handleClick={() =>
+            setIsUserLoginModalVisible(!isUserLoginModalVisible)
+          }
         >
           <TbUserExclamation className={stylesValue} />
         </Button>
-        <LoginModal isUserModalVisible={isUserModalVisible} />
+        <LoginModal isUserModalVisible={isUserLoginModalVisible} />
       </li>
       <li>
         <Link to={"/shop#searchProducts"}>
@@ -50,17 +55,20 @@ function UserActions({ mobileStyles }) {
         </Link>
         {/* <Tooltip text="Search Products" position="bottom" /> */}
       </li>
-      <li>
+      <li ref={favoritesRef} className="relative">
         <Button
           tooltipOptions={{
             text: "Favorites",
             position: "bottom",
             distance: "150",
           }}
+          handleClick={() =>
+            setIsFavoritedModalVisible(!isFavoritesModalVisible)
+          }
         >
           <TbHeart className={stylesValue} />
         </Button>
-        {/* <Tooltip text="Favorites" position="bottom" distance="150" /> */}
+        <FavoritesModal isFavoritesModalVisible={isFavoritesModalVisible} />
       </li>
       <li>
         <Link to={"/cart"}>

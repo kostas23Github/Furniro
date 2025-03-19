@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import LoginForm from "./form/LoginForm";
-import { useScreenSize } from "./contexts/ScreenSizeProvider";
+import LoginForm from "../form/LoginForm";
+import { useScreenSize } from "../contexts/ScreenSizeProvider";
 
 function LoginModal({ isUserModalVisible }) {
   const { isXXS, isXS } = useScreenSize();

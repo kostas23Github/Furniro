@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Button from "../button/button";
-import FormModal from "./FormModal";
+import FormModal from "../modals/FormModal";
 
 function SubscribeForm() {
   const {
