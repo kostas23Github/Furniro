@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router";
+import { useState, useRef } from "react";
 import { LuSearch } from "react-icons/lu";
 import { TbHeart, TbShoppingCart, TbUserExclamation } from "react-icons/tb";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import Button from "../button/button";
+import LoginModal from "../LoginModal";
+import useOutsideClick from "../hooks/useOutsideClick";
 
-// Interactivity to be added!
 function UserActions({ mobileStyles }) {
   const stylesValue = "text-2xl";
+  const [isUserModalVisible, setIsUserModalVisible] = useState(false);
+  const loginRef = useRef(null);
+
+  // Hide the Login-Signup form modal when clicking outside of it.
+  useOutsideClick(loginRef, () => setIsUserModalVisible(false));
 
   return (
     <ul
@@ -16,16 +23,18 @@ function UserActions({ mobileStyles }) {
         mobileStyles
       }
     >
-      <li>
+      <li ref={loginRef} className="relative">
         <Button
           tooltipOptions={{
             text: "User Profile",
             position: "bottom",
             distance: "150",
           }}
+          handleClick={() => setIsUserModalVisible(!isUserModalVisible)}
         >
           <TbUserExclamation className={stylesValue} />
         </Button>
+        <LoginModal isUserModalVisible={isUserModalVisible} />
       </li>
       <li>
         <Link to={"/shop#searchProducts"}>
