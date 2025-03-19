@@ -13,6 +13,7 @@ function BillingForm() {
     formState: { errors },
     trigger,
   } = useForm({ reValidateMode: "onChange" });
+  
   const location = useLocation();
   const { subTotal, vat, discount, total } = location.state || {};
 

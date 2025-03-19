@@ -1,8 +1,16 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function FormField({ name, labelName, register, watch, errors, trigger, pattern }) {
+function FormField({ name, labelName, type="text", register, watch, errors, trigger, pattern, validate }) {
   const [focusedField, setFocusedField] = useState(null);
+
+  function expandTrigger(name) {
+    if (type === "password" || type === "confirmPassword") {
+      return () => {trigger("password"); trigger("confirmPassword")}
+    } else {
+      return () => trigger(name);
+    }
+  }
 
   return (
     <div className="relative flex flex-col">
@@ -17,14 +25,15 @@ function FormField({ name, labelName, register, watch, errors, trigger, pattern 
         {labelName}
       </label>
       <input
-        type="text"
+        type={type}
         {...register(name, {
           required: name + " is required",
           pattern: {
             value: pattern.value,
             message: pattern.message,
           },
-          onChange: () => trigger(name),
+          validate: validate, // Custom logic(returns boolean) defined in LoginForm to handle is value is valid(matches the other password field).
+          onChange: expandTrigger(name),
         })}
         className={`bg-transparent mb-2 outline outline-2 ${
           errors[name]
@@ -44,6 +53,7 @@ function FormField({ name, labelName, register, watch, errors, trigger, pattern 
 FormField.propTypes = {
   name: PropTypes.string.isRequired,
   labelName: PropTypes.string.isRequired,
+  type: PropTypes.string,
   register: PropTypes.func.isRequired,
   watch: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
@@ -51,7 +61,8 @@ FormField.propTypes = {
   pattern: PropTypes.shape({
     value: PropTypes.instanceOf(RegExp).isRequired,
     message: PropTypes.string.isRequired,
-  })
+  }),
+  validate: PropTypes.func,
 };
 
 export default FormField;
