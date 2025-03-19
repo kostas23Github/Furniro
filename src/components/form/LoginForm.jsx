@@ -13,18 +13,20 @@ function LoginForm({ isXS }) {
     trigger,
   } = useForm({ reValidateMode: "onChange" });
 
+  const [loading, setLoading] = useState(true);
   const [formType, setFormType] = useState("login");
   const [confirmationMsg, setConfirmationMsg] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
 
   useEffect(() => {
-    // Check if user is logged in (stored in localStorage)
+    // Check if user is logged in (name exists in localStorage as "loggedUser" value).
     const user = JSON.parse(localStorage.getItem("loggedUser"));
     if (user) {
       setIsLoggedIn(true);
       setLoggedInUserData(user);
     }
+    setLoading(false);
   }, []);
 
   const handleLogin = (data) => {
@@ -78,6 +80,9 @@ function LoginForm({ isXS }) {
     localStorage.setItem("members", JSON.stringify(members));
     setConfirmationMsg("✅ You have successfully signed up.");
   };
+
+  // While loading state is true render nth. It will be set to false once the useEffect hook has finished checking if the user is already loggedIn.
+  if (loading) return;
 
   if (isLoggedIn) {
     return (
@@ -166,23 +171,31 @@ function LoginForm({ isXS }) {
           }}
         />
       )}
-      <div className={`${!isXS ? "flex flex-col justify-center items-center" : ""}`}>
-      <Button
-        variant="primary"
-        type="submit"
-        disabled={!isValid}
-        extraStyles={`w-max my-4 px-5 md:px-10 py-1 md:py-2 ${
-          !isValid ? "disabled opacity-50 cursor-not-allowed" : ""
+      <div
+        className={`${
+          !isXS ? "flex flex-col justify-center items-center" : ""
         }`}
+      >
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={!isValid}
+          extraStyles={`w-max my-4 px-5 md:px-10 py-1 md:py-2 ${
+            !isValid ? "disabled opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-        {formType === "login" ? "Login" : "Sign Up"}
-      </Button>
-      {confirmationMsg && <p>{confirmationMsg}</p>}
-      {formType === "login" && (
-        <Button variant="text" extraStyles="mt-4" handleClick={() => setFormType("sign")}>
-          Create an account
+          {formType === "login" ? "Login" : "Sign Up"}
         </Button>
-      )}
+        {confirmationMsg && <p>{confirmationMsg}</p>}
+        {formType === "login" && (
+          <Button
+            variant="text"
+            extraStyles="mt-4"
+            handleClick={() => setFormType("sign")}
+          >
+            Create an account
+          </Button>
+        )}
       </div>
     </form>
   );
