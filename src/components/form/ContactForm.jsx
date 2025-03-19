@@ -19,10 +19,10 @@ function ContactForm() {
 
   const onSubmit = (data) => {
     // data contains the currently submitted form values as an object.
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const usersForContact = JSON.parse(localStorage.getItem("to-be-contacted")) || [];
 
     // Find user's index by name & email
-    const existingUserIndex = users.findIndex(
+    const existingUserIndex = usersForContact.findIndex(
       (user) =>
         user.name.toLowerCase() === data.name.toLowerCase() &&
         user.email.toLowerCase() === data.email.toLowerCase()
@@ -30,13 +30,13 @@ function ContactForm() {
 
     if (existingUserIndex !== -1) {
       // Add new subject & message as an object
-      users[existingUserIndex].messages.push({
+      usersForContact[existingUserIndex].messages.push({
         subject: data.subject,
         message: data.message,
       });
     } else {
       // If user doesn't exist, add them
-      users.push({
+      usersForContact.push({
         name: data.name,
         email: data.email,
         messages: [{ subject: data.subject, message: data.message }],
@@ -44,7 +44,7 @@ function ContactForm() {
     }
 
     // Save back to localStorage
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("to-be-contacted", JSON.stringify(usersForContact));
     setSubmitted(true);
   };
 

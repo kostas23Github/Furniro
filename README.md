@@ -44,4 +44,4 @@ To start app run `npm run dev`.
 
 ## TODO
 
-1. Continue with the billingForm at Checkout.jsx page.
+1. 
