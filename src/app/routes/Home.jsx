@@ -59,7 +59,10 @@ function Home() {
           </Link>
         </div>
       </section>
-      <section id="browse-collection" className="px-12 py-8 max-w-[1200px] mx-auto">
+      <section
+        id="browse-collection"
+        className="px-12 py-8 max-w-[1200px] mx-auto"
+      >
         <header className="mb-6 flex-col justify-between mx-auto text-center">
           <p className="mb-1 text-logo">Browse The Range</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -122,17 +125,19 @@ function Home() {
             Lorem ipsum dolor sit amet consectetur adipisicing
             {!isLG || (isSM && <br />)} elit. Recusandae, repudiandae!
           </p>
-          <Button
-            variant="primary"
-            extraStyles="px-6 py-2 mt-6"
-            tooltipOptions={{
-              text: "Browse Products",
-              position: "right",
-              distance: "100",
-            }}
-          >
-            Explore More
-          </Button>
+          <Link to={"/shop"}>
+            <Button
+              variant="primary"
+              extraStyles="px-6 py-2 mt-6"
+              tooltipOptions={{
+                text: "Browse Products",
+                position: "right",
+                distance: "100",
+              }}
+            >
+              Explore More
+            </Button>
+          </Link>
         </div>
         <Carousel items={carouselitems} />
       </section>
