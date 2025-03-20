@@ -10,14 +10,17 @@ import useOutsideClick from "../hooks/useOutsideClick";
 import FavoritesModal from "../modals/FavoritesModal";
 
 function UserActions({ mobileStyles }) {
-  const stylesValue = "text-2xl";
   const [isUserLoginModalVisible, setIsUserLoginModalVisible] = useState(false);
   const [isFavoritesModalVisible, setIsFavoritedModalVisible] = useState(false);
   const loginRef = useRef(null);
   const favoritesRef = useRef(null);
+  
+  const stylesValue = "text-2xl";
 
   // Hide the Login-Signup form modal when clicking outside of it.
   useOutsideClick(loginRef, () => setIsUserLoginModalVisible(false));
+  // Do the same for favorites modal.
+  useOutsideClick(favoritesRef, () => setIsFavoritedModalVisible(false));
 
   return (
     <ul

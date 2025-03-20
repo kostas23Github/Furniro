@@ -4,4 +4,6 @@
 import { createContext } from "react";
 
 // Create the context that will store all fetched product data.
-export const ProductsContext = createContext();
+const ProductsContext = createContext();
+
+export default ProductsContext;
