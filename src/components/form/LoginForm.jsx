@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 import FormField from "./FormField";
 import Button from "../button/button";
 import PropTypes from "prop-types";
@@ -12,83 +13,71 @@ function LoginForm({ isXS }) {
     formState: { errors, isValid },
     trigger,
   } = useForm({ reValidateMode: "onChange" });
-
-  const [loading, setLoading] = useState(true);
+  const { user, login, logout } = useContext(AuthContext);
   const [formType, setFormType] = useState("login");
   const [confirmationMsg, setConfirmationMsg] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInUserData, setLoggedInUserData] = useState(null);
 
-  useEffect(() => {
-    // Check if user is logged in (name exists in localStorage as "loggedUser" value).
-    const user = JSON.parse(localStorage.getItem("loggedUser"));
-    if (user) {
-      setIsLoggedIn(true);
-      setLoggedInUserData(user);
-    }
-    setLoading(false);
-  }, []);
-
-  const handleLogin = (data) => {
-    localStorage.setItem("loggedUser", JSON.stringify(data));
-    setIsLoggedIn(true);
-    setLoggedInUserData(data);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("loggedUser");
-    setIsLoggedIn(false);
-    setLoggedInUserData(null);
-  };
-
+  // Handle form submission
   const onSubmit = (data) => {
+    // Retreive from localStorage all members' items.
     const members = JSON.parse(localStorage.getItem("members")) || [];
 
     if (formType === "login") {
-      // Validate logging user by name.
+      // Find if user's attemp to login is valid, has an account, chech via name value.
       const userLoggingIndex = members.findIndex(
         (member) => member.name === data.name
       );
+      // User data not found.
       if (userLoggingIndex === -1) {
         setConfirmationMsg("User not found. Please sign up.");
         return;
       }
+
+      // Attemp to login failed, wrong password.
       if (members[userLoggingIndex].password !== data.password) {
         setConfirmationMsg("Wrong password!");
         return;
       }
-      handleLogin(data);
+
+      // Login is success.
+      login(data); // Use the login function from context
       setConfirmationMsg("Logged In");
       return;
     }
 
-    // Validate signing user by email.
+    // Handle sign up
+    // Check if user has already an account by email value.
     const userSigningInIndex = members.findIndex(
       (member) => member.email === data.email
     );
 
+    // User's email already exists.
     if (userSigningInIndex !== -1) {
       setConfirmationMsg("You are already a member.");
       return;
     }
 
+    // New user data added to localStorage's members item.
     members.push({
       name: data.name,
       email: data.email,
       password: data.password,
     });
+
+    // On sign-up, log in user.
+    login(data); // Use the login function from context
+    setConfirmationMsg("Logged In");
+    
+    // Update members' item in localStorage.
     localStorage.setItem("members", JSON.stringify(members));
     setConfirmationMsg("✅ You have successfully signed up.");
   };
 
-  // While loading state is true render nth. It will be set to false once the useEffect hook has finished checking if the user is already loggedIn.
-  if (loading) return;
-
-  if (isLoggedIn) {
+  if (user) {
     return (
       <div className="p-5">
-        <p>Welcome, {loggedInUserData.name}!</p>
-        <Button variant="text" extraStyles="mt-4" onClick={handleLogout}>
+        <p>Welcome, {user.name}!</p>
+        <Button variant="text" extraStyles="mt-4" onClick={logout}>
           Sign Out
         </Button>
       </div>
