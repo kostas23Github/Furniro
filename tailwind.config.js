@@ -2,6 +2,7 @@
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class", // Enables dark: mode via prefix class
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "./src/*.{js,jsx,ts,tsx}",
@@ -15,6 +16,9 @@ export default {
         'gold-light': '#FCF8F3',
         'gold-light-2': '#F9F1E7',
         'gold-light-3': '#F2E1C9',
+        'gold-dark-1': '#D0A56A',
+        'gold-dark-2': '#C58E3B',
+        'gold-dark-3': '#A97438',
         'grey-100': '#F4F5F7', // lighter
         'grey-200': '#B0B0B0', // lighter
         'grey-300': '#9F9F9F', // lighter
