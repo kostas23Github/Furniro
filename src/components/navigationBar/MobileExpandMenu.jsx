@@ -5,7 +5,7 @@ import UserActions from "./UserActions";
 function MobileExpandMenu({ isOpen, onShowMenu }) {
   return (
     <div
-      className={`mobile-expanded-menu absolute top-[92.8px] right-0 w-full py-12 z-20 shadow-lg bg-slate-50 ${
+      className={`mobile-expanded-menu absolute top-[92.8px] right-0 w-full py-12 z-20 shadow-lg bg-slate-50 dark:bg-slate-700 ${
         !isOpen && "opacity-0 invisible pointer-events-none"
       }`}
     >

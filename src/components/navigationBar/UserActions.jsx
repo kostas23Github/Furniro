@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { LuSearch } from "react-icons/lu";
 import { TbHeart, TbShoppingCart, TbUserExclamation } from "react-icons/tb";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
@@ -8,13 +8,15 @@ import Button from "../button/button";
 import LoginModal from "../modals/LoginModal";
 import useOutsideClick from "../hooks/useOutsideClick";
 import FavoritesModal from "../modals/FavoritesModal";
+import ThemeContext from "../contexts/ThemeContext";
 
 function UserActions({ mobileStyles }) {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [isUserLoginModalVisible, setIsUserLoginModalVisible] = useState(false);
   const [isFavoritesModalVisible, setIsFavoritedModalVisible] = useState(false);
   const loginRef = useRef(null);
   const favoritesRef = useRef(null);
-  
+
   const stylesValue = "text-2xl";
 
   // Hide the Login-Signup form modal when clicking outside of it.
@@ -85,18 +87,20 @@ function UserActions({ mobileStyles }) {
             <TbShoppingCart className={stylesValue} />
           </Button>
         </Link>
-        {/* <Tooltip text="Cart items" position="bottom" distance="150" /> */}
       </li>
       <li>
         <Button
+          handleClick={toggleTheme}
           tooltipOptions={{
-            text: "Mode",
+            text: theme === "light" ? "Dark Mode" : "Light Mode",
             position: "bottom",
             distance: "150",
           }}
         >
-          {<MdOutlineLightMode className={stylesValue} /> || (
+          {theme === "light" ? (
             <MdOutlineDarkMode className={stylesValue} />
+          ) : (
+            <MdOutlineLightMode className={stylesValue} />
           )}
         </Button>
       </li>

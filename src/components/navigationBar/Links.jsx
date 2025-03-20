@@ -6,7 +6,7 @@ function Links({ items, placement, mobileStyles, onShowMenu }) {
       ? `${mobileStyles} flex gap-10 items-center font-medium`
       : "";
 
-  const linkClassValues = "hover:text-gray-500";
+  const linkClassValues = "dark:text-grey-100 hover:text-gray-500 dark:hover:text-grey-400";
   const liClassValues = placement === "footer" ? "mb-2" : "";
 
   return (
