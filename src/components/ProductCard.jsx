@@ -1,18 +1,30 @@
 import { useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { FaStar, FaShareAlt, FaCartArrowDown } from "react-icons/fa";
-import { TbHeart } from "react-icons/tb";
+import { FaStar, FaCartArrowDown } from "react-icons/fa";
+import { TbHeart, TbHeartFilled } from "react-icons/tb";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "./button/button";
 import useHover from "./hooks/useHover";
 import CartContext from "./contexts/CartContext";
+import FavoritesContext from "./contexts/FavoritesContext";
+import AuthContext from "./contexts/AuthContext";
 
 const ProductCard = ({ product }) => {
+  const { user } = useContext(AuthContext);
+  const { favorites, addToFavorites, removeFromFavorites } =
+    useContext(FavoritesContext);
+  const { cart, updateCart } = useContext(CartContext);
   const [hoverRef, isHovered] = useHover();
   const [visibleSide, setVisibleSide] = useState("frontSide");
   const [activeSlide, setActiveSlide] = useState(0);
-  const { cart, updateCart } = useContext(CartContext);
+
+  const isFavorite = favorites.some((fav) => fav.id === product.id);
+
+  function handleFavorites(e) {
+    e.preventDefault();
+    isFavorite ? removeFromFavorites(product.id) : addToFavorites(product);
+  }
 
   const cartQuantity =
     cart.find((item) => item.id === product.id)?.quantity || 0;
@@ -47,9 +59,9 @@ const ProductCard = ({ product }) => {
               </div>
             )}
           </div>
-          <div className="card-info grow px-4 pb-6 bg-grey-200 rounded-b-lg">
+          <div className="card-info grow px-4 py-6 bg-gold-light-3 rounded-b-lg">
             <div className="card-title">
-              <h5 className="my-2">{product.title}</h5>
+              <h5 className="mb-2">{product.title}</h5>
               <p>{product.brand}</p>
             </div>
             <div className="card-values">
@@ -101,28 +113,30 @@ const ProductCard = ({ product }) => {
                   Details
                 </Button>
               </div>
-              <div className="flex justify-between gap-4">
-                <Button
-                  variant={"link"}
-                  extraStyles="flex gap-1 justify-between items-center"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <FaShareAlt />
-                  Share
-                </Button>
-                <Button
-                  variant={"link"}
-                  extraStyles="flex gap-1 justify-between items-center"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <TbHeart />
-                  Like
-                </Button>
-              </div>
+              {/* Add 2 states to this button, toggle favorites */}
+              <Button
+                variant={"link"}
+                extraStyles="flex gap-1 justify-between items-center"
+                disabled={product.stock === 0}
+                onClick={(e) => handleFavorites(e)}
+              >
+                {user ? (
+                  isFavorite ? (
+                    <TbHeartFilled className="text-rose-600" />
+                  ) : (
+                    <TbHeart />
+                  )
+                ) : (
+                  <TbHeart
+                    onClick={() =>
+                      alert(
+                        "You must first login to be able to add products to your favorites list!"
+                      )
+                    }
+                  />
+                )}
+                Add to Favorites
+              </Button>
             </div>
           )}
         </div>
@@ -197,7 +211,7 @@ const ProductCard = ({ product }) => {
             </Button>
           </div>
           <div>
-            <p className="text-center grow px-4 pb-6 bg-grey-200 rounded-b-lg">
+            <p className="text-center grow px-4 py-6 bg-gold-light-3 rounded-b-lg">
               {product.description}
             </p>
           </div>
