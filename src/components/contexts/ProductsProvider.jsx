@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 // Get the separatly created context, next I will add its values(products, loading state, error state).
-import { ProductsContext } from "./ProductsContext"; 
+import ProductsContext from "./ProductsContext"; 
 
 const fetchCategoryProducts = async (category) => {
   const response = await fetch(

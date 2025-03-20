@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import CartContext from "./CartContext";
 
-export const CartProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
   // Initialize state directly from localStorage
   const [cart, setCart] = useState(() => {
     try {
@@ -91,3 +91,5 @@ export const CartProvider = ({ children }) => {
 CartProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default CartProvider;
