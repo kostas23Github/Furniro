@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { AiFillInstagram } from "react-icons/ai";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { IoLogoFacebook } from "react-icons/io";
+import { IoLogoTwitter } from "react-icons/io";
+import { IoLogoInstagram } from "react-icons/io";
 import ProductsContext from "../../components/contexts/ProductsContext";
 import Loading from "../../components/loadingAnimation/Loading";
 import ErrorPage from "./ErrorPage";
@@ -97,16 +97,16 @@ function SingleProduct() {
           <p className="w-max">{product.price}€</p>
           <div className="flex items-center my-3">
             <StarRating rating={product.rating} />
-            <p className="ms-2 ps-4 me-2 text-grey-400 border-l-2 border-grey-200">
+            <p className="ms-2 ps-4 me-2 text-grey-400 dark:text-grey-100 border-l-2 border-grey-200">
               {product.reviews.length}
             </p>
-            <p className="text-grey-400">Customer Reviews</p>
+            <p className="text-grey-400 dark:text-grey-100">Customer Reviews</p>
           </div>
           <div>
             <p>{product.description}</p>
           </div>
           <div ref={hoverRef} className="w-max relative my-4">
-            <p className="text-grey-400 mb-2">Color</p>
+            <p className="text-grey-400 dark:text-grey-100 mb-2">Color</p>
             <div className="flex gap-2 lg:gap-3">
               <div
                 className="bg-purple-600 w-8 h-8 rounded-full cursor-pointer"
@@ -126,7 +126,7 @@ function SingleProduct() {
             )}
           </div>
           <div className="flex gap-4 md:gap-6 lg:gap-8">
-            <div className="cart-actions-container flex justify-between w-[106px] md:w-[130px] lg:w-[150px] outline outline-2 outline-gray-800 rounded-lg px-3 py-2 md:px-5 md:py-4">
+            <div className="cart-actions-container flex justify-between w-[106px] md:w-[130px] lg:w-[150px] outline outline-2 outline-grey-800 dark:outline-grey-100 rounded-lg px-3 py-2 md:px-5 md:py-4">
               <Button variant="text" handleClick={() => handleQuantity(-1)}>
                 -
               </Button>
@@ -144,7 +144,7 @@ function SingleProduct() {
             </Button>
           </div>
           <hr className="my-8 lg:my-12" />
-          <div className="extra-info text-grey-400">
+          <div className="extra-info text-grey-400 dark:text-grey-100">
             <div className="flex mb-1">
               <p className="w-32">SKU</p>
               <div className="flex">
@@ -175,10 +175,10 @@ function SingleProduct() {
               <p className="w-32">Share</p>
               <div className="flex items-center">
                 <span className="me-3">:</span>
-                <div className="flex">
-                  <FaFacebook className="text-grey-700 text-[21px]" />
-                  <AiFillInstagram className="text-grey-700 text-[21px]" />
-                  <FaSquareXTwitter className="text-grey-700 text-[21px]" />
+                <div className="text-grey-700 dark:text-grey-200 flex gap-2">
+                  <IoLogoFacebook className="text-3xl p-1 rounded-sm w-max bg-grey-200 hover:bg-blue-500 hover:text-slate-50 dark:text-black" />
+                  <IoLogoInstagram className="text-3xl p-1 rounded-sm w-max bg-grey-200 hover:bg-instagram hover:text-slate-50 dark:text-black" />
+                  <IoLogoTwitter className="text-3xl p-1 rounded-sm w-max bg-grey-200 hover:bg-sky-500 hover:text-slate-50 dark:text-black" />
                 </div>
               </div>
             </div>
