@@ -45,7 +45,7 @@ function Contact() {
       <div className="max-w-[1200px] mx-auto">
         <div className="my-9 md:my-14 lg:my-20 text-center mx-auto w-10/12 md:w-8/12 lg:w-[600px]">
           <p className="text-5xl mb-4">Get In Touch With Us</p>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             For More Information About Our Product & Services, Please Feel Free
             To Drop Us An Email. Our Staff Will Always Be There To Help You Out.
             Do Not Hesitate!

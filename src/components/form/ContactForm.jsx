@@ -19,7 +19,8 @@ function ContactForm() {
 
   const onSubmit = (data) => {
     // data contains the currently submitted form values as an object.
-    const usersForContact = JSON.parse(localStorage.getItem("to-be-contacted")) || [];
+    const usersForContact =
+      JSON.parse(localStorage.getItem("to-be-contacted")) || [];
 
     // Find user's index by name & email
     const existingUserIndex = usersForContact.findIndex(
@@ -104,14 +105,14 @@ function ContactForm() {
         }}
       />
       {/* Message Input Field */}
-      <div className="relative flex flex-col">
+      <div className={`${errors.message ? "text-rose-300 focus:text-rose-600" : "text-grey-700 dark:text-grey-100"} relative flex flex-col`}>
         <label
           htmlFor="message"
-          className={`transition-all duration-200 px-1 relative left-1 w-max ${
+          className={`transition-all duration-200 px-1 relative left-1 w-max bg-slate-50 dark:bg-slate-700 ${
             watch("message") || focusedField === "message"
-              ? "top-0 bg-transparent text-grey-700"
-              : "top-[10px] bg-slate-50 text-grey-300"
-          } ${errors.message && "text-red"}`}
+              ? "top-0 bg-transparent text-grey-700 dark:text-grey-100"
+              : "top-[9px] text-grey-300"
+          }`}
         >
           Message
         </label>
@@ -121,14 +122,14 @@ function ContactForm() {
             onChange: () => trigger("message"),
           })}
           className={`bg-transparent mb-2 outline outline-2 ${
-            errors.message ? "outline-red text-red" : "outline-grey-300"
-          } p-2 focus:outline-grey-700`}
+            errors.message ? "outline-rose-300 focus:outline-rose-300 dark:focus:outline-rose-300" : "outline-grey-100"
+          } p-2 focus:outline-grey-700 dark:focus:outline-grey-100`}
           placeholder="Type your message..."
           onFocus={() => setFocusedField("message")}
           onBlur={() => setFocusedField(null)}
         />
         {errors.message && (
-          <p className="text-red text-xs mt-1">{errors.message.message}</p>
+          <p className="text-rose-300 text-xs mt-1">{errors.message.message}</p>
         )}
       </div>
       <Button
