@@ -78,7 +78,7 @@ function Button({
       {...rest}
     >
       {children}
-      {!isTouchDevice && isHovered && tooltipOptions && (
+      {!isTouchDevice && !disabled && isHovered && tooltipOptions && (
         <Tooltip {...tooltipOptions} />
       )}
     </button>
