@@ -25,7 +25,7 @@ function FavoritesModal({ isFavoritesModalVisible }) {
     <div
       className={`py-4 px-4 z-20 absolute ${isXXS ? "-left-24" : "-left-36"} ${
         !isXS ? "-left-60 max-w-[unset]" : "max-w-[1000%]"
-      } top-10 w-80 h-max bg-slate-50 outline outline-1 outline-grey-300`}
+      } top-10 w-80 h-max bg-slate-50 dark:bg-slate-800 outline outline-1 outline-grey-300`}
     >
       {favorites.length > 0 ? (
         <ul>
