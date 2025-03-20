@@ -13,7 +13,7 @@ function BillingForm() {
     formState: { errors },
     trigger,
   } = useForm({ reValidateMode: "onChange" });
-  
+
   const location = useLocation();
   const { subTotal, vat, discount, total } = location.state || {};
 
@@ -61,15 +61,17 @@ function BillingForm() {
       <div className="my-10 md:text-center">
         <p>✅ Thank you! The following order has been received.</p>
         <p>⚠️ Check your e-mail for order updates.</p>
-          <pre className="my-5 mx-auto py-5 border-t-4 border-b-4 border-grey-500 w-max" style={{fontFamily: "inherit"}}>
-            {JSON.stringify(
-              JSON.parse(localStorage.getItem("orders") || "[]").slice(-1)[0] ||
-                {},
-              null,
-              2
-            )}
-          </pre>
-        {/* Maybe show order details, i.e. order variable above. */}
+        <pre
+          className="my-5 mx-auto py-5 border-t-4 border-b-4 border-grey-500 w-max"
+          style={{ fontFamily: "inherit" }}
+        >
+          {JSON.stringify(
+            JSON.parse(localStorage.getItem("orders") || "[]").slice(-1)[0] ||
+              {},
+            null,
+            2
+          )}
+        </pre>
       </div>
     );
   }
@@ -77,7 +79,7 @@ function BillingForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="p-5 sm:p-10 lg:p-20 flex flex-wrap justify-evenly relative max-w-[1200px] mx-auto"
+      className="p-5 sm:p-10 lg:p-20 flex flex-wrap justify-evenly gap-8 relative max-w-[1200px] mx-auto"
     >
       <div className="w-full sm:max-w-sm">
         <p className="text-5xl">Billing details</p>
@@ -164,18 +166,20 @@ function BillingForm() {
           }}
         />
         {/* Additional Information Field */}
-        <div className="relative flex flex-col">
+        <div
+          className={`${
+            errors.message
+              ? "text-rose-300 focus:text-rose-600"
+              : "text-grey-700 dark:text-grey-100"
+          } relative flex flex-col`}
+        >
           <label
             htmlFor="additionalInformation"
-            className={`transition-all duration-200 px-1 relative left-1 w-max ${
+            className={`transition-all duration-200 px-1 relative left-1 w-max bg-slate-50 dark:bg-slate-700 ${
               watch("additionalInformation") ||
               focusedField === "additionalInformation"
-                ? "top-0 bg-transparent text-grey-700"
-                : "top-[9px] bg-slate-50 text-grey-300"
-            } ${errors.additionalInformation && "text-rose-300"} ${
-              errors.additionalInformation &&
-              focusedField === "additionalInformation" &&
-              "text-rose-600"
+                ? "top-0 bg-transparent text-grey-700 dark:text-grey-100"
+                : "top-[9px] text-grey-300"
             }`}
           >
             Additional Information
@@ -185,10 +189,8 @@ function BillingForm() {
               onChange: () => trigger("additionalInformation"),
             })}
             className={`bg-transparent mb-2 outline outline-2 ${
-              errors.additionalInformation
-                ? "outline-rose-300 focus:outline-rose-600 text-rose-300 focus:text-rose-500"
-                : "outline-grey-300 focus:outline-grey-700 text-grey-300 focus:text-grey-700"
-            } px-3 py-2`}
+              errors.additionalInformation ? "outline-rose-300 focus:outline-rose-300 dark:focus:outline-rose-300" : "outline-grey-100"
+            } p-2 focus:outline-grey-700 dark:focus:outline-grey-100`}
             onFocus={() => setFocusedField("additionalInformation")}
             onBlur={() => setFocusedField(null)}
           />
@@ -199,12 +201,12 @@ function BillingForm() {
           )}
         </div>
       </div>
-      <div className="xl:w-96 max-h-max  sm:px-16 sticky top-10">
+      <div className="xl:w-96 max-h-max sm:px-16 sticky top-10">
         <p className="text-4xl text-center mb-5">Cart Total</p>
         <div className="flex flex-col">
           <div className="flex space-x-16 justify-between pt-5 pb-2">
             <span className="font-bold">Subtotal</span>
-            <span className="text-grey-500">{subTotal} €</span>
+            <span className="text-grey-500 dark:text-grey-100">{subTotal} €</span>
           </div>
           <p>{vat ? "Vat included" : "No Vat is included"}</p>
           <p>

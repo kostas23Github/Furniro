@@ -16,11 +16,11 @@ function FormField({ name, labelName, type="text", register, watch, errors, trig
     <div className="relative flex flex-col">
       <label
         htmlFor={name}
-        className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 ${
+        className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 dark:bg-slate-700 ${
           watch(name) || focusedField === name
-            ? "top-0 bg-transparent text-grey-700"
-            : "top-[9px] bg-slate-50 text-grey-300"
-        } ${errors[name] && "text-rose-300"} ${errors[name] && focusedField === name && "text-rose-600"}`}
+            ? "top-0 bg-transparent text-grey-700 dark:text-grey-100"
+            : "top-[9px] text-grey-300"
+        } ${errors[name] && "text-rose-300 dark:text-rose-300"} ${errors[name] && focusedField === name && "text-rose-600 dark:text-rose-600"}`}
       >
         {labelName}
       </label>
@@ -38,7 +38,7 @@ function FormField({ name, labelName, type="text", register, watch, errors, trig
         className={`bg-transparent mb-2 outline outline-2 ${
           errors[name]
             ? "outline-rose-300 focus:outline-rose-600 text-rose-300 focus:text-rose-500"
-            : "outline-grey-300 focus:outline-grey-700 text-grey-300 focus:text-grey-700"
+            : "outline-grey-300 focus:outline-grey-700 dark:outline-grey-100 text-grey-300 focus:text-grey-700 dark:text-grey-100"
         } px-3 py-2`}
         onFocus={() => setFocusedField(name)}
         onBlur={() => setFocusedField(null)}

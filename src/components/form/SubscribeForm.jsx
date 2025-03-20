@@ -49,7 +49,7 @@ function SubscribeForm() {
           onChange: () => trigger("email"),
         })}
         placeholder="Enter Your Email Address"
-        className="block bg-transparent placeholder:italic border-b-4 focus:border-grey-400 me-2 focus:outline-0"
+        className="block bg-transparent placeholder:italic border-b-4 focus:border-grey-400 me-2 focus:outline-0 min-w-64"
       />
       {errors.email && (
         <p className="text-red text-xs mt-1">{errors.email.message}</p>
