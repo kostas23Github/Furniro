@@ -33,10 +33,10 @@ function Home() {
         className="h-max md:h-[716px] md:px-12 flex items-center md:relative"
         style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover" }}
       >
-        <div className="md:max-w-[743px] md:w-[60%] lg:w-[40%] md:absolute md:left-[30%] lg:left-[50%] bg-gold-light-2/70 md:bg-gold-light-3 px-10 py-12">
+        <div className="md:max-w-[743px] md:w-[60%] lg:w-[40%] md:absolute md:left-[30%] lg:left-[50%] bg-gold-light-2/70 dark:bg-slate-700/50 md:bg-gold-light-3 md:dark:bg-slate-700 px-10 py-12">
           <div>
             <p className="font-semibold">New Arrival</p>
-            <p className="text-gold text-5xl md:text-7xl">
+            <p className="dark:text-slate-700 text-gold dark:md:text-gold text-5xl md:text-7xl">
               Discover Our New Collection
             </p>
             <p>
@@ -111,7 +111,7 @@ function Home() {
       </section>
       <section
         id="what-to-expect"
-        className="bg-gold-light px-12 py-8 md:flex gap-5 md:items-center "
+        className="bg-gold-light dark:bg-slate-700 px-12 py-8 md:flex gap-5 md:items-center "
       >
         <div className="what-to-expect-title text-center md:text-left mx-auto md:w-1/3 max-w-xs shrink-0">
           <p className="text-5xl mb-2">

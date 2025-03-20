@@ -13,7 +13,7 @@ function Footer() {
       <div className="p-5 sm:p-10 lg:p-20 md:flex md:justify-between md:gap-4 min-h-[300px] max-w-[1200px] mx-auto">
         <div className="mb-5 md:w-[33%]">
           <header className="text-3xl mb-3">Furniro.</header>
-          <p className="text-grey-300">
+          <p className="text-grey-200 dark:text-grey-100">
             400 University Drive Suite 200 Coral Gables, FL 33134 USA
           </p>
         </div>
@@ -24,25 +24,25 @@ function Footer() {
           <div className="flex gap-2">
             <Link
               to={"#"}
-              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-blue-500 hover:text-slate-50"
+              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-blue-500 hover:text-slate-50 dark:text-black"
             >
               <IoLogoFacebook className="text-xl" />
             </Link>
             <Link
               to={"#"}
-              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-rose-500 hover:text-slate-50"
+              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-rose-500 hover:text-slate-50 dark:text-black"
             >
               <IoLogoYoutube className="text-xl" />
             </Link>
             <Link
               to={"#"}
-              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-sky-500 hover:text-slate-50"
+              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-sky-500 hover:text-slate-50 dark:text-black"
             >
               <IoLogoTwitter className="text-xl" />
             </Link>
             <Link
               to={"#"}
-              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-instagram hover:text-slate-50"
+              className="p-1 rounded-sm w-max bg-grey-200 hover:bg-instagram hover:text-slate-50 dark:text-black"
             >
               <IoLogoInstagram className="text-xl" />
             </Link>

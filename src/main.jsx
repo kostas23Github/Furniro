@@ -8,20 +8,23 @@ import ProductsProvider from "./components/contexts/ProductsProvider.jsx";
 import CartProvider from "./components/contexts/CartProvider.jsx";
 import AuthProvider from "./components/contexts/AuthProvider.jsx";
 import FavoritesProvider from "./components/contexts/FavoritesProvider.jsx";
+import ThemeProvider from "./components/contexts/ThemeProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HashRouter>
-      <ProductsProvider>
-        <AuthProvider>
-          <CartProvider>
-            <FavoritesProvider>
-              <ScrollToTop />
-              <App />
-            </FavoritesProvider>
-          </CartProvider>
-        </AuthProvider>
-      </ProductsProvider>
+      <ThemeProvider>
+        <ProductsProvider>
+          <AuthProvider>
+            <CartProvider>
+              <FavoritesProvider>
+                <ScrollToTop />
+                <App />
+              </FavoritesProvider>
+            </CartProvider>
+          </AuthProvider>
+        </ProductsProvider>
+      </ThemeProvider>
     </HashRouter>
   </StrictMode>
 );

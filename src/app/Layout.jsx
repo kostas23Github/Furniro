@@ -11,9 +11,9 @@ function Layout() {
   return (
     <ScreenSizeProvider>
       <ProductsProvider>
-        <div className="bg-slate-50 subpixel-antialiased flex flex-col">
+        <div className="bg-slate-50 dark:bg-slate-700 subpixel-antialiased flex flex-col dark:text-slate-50">
           <NavBar />
-          <main className="">
+          <main>
             <Outlet />
           </main>
           <Footer />

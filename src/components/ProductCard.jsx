@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
               </div>
             )}
           </div>
-          <div className="card-info grow px-4 py-6 bg-gold-light-3 rounded-b-lg">
+          <div className="card-info grow px-4 py-6 bg-gold-light-3 dark:bg-gold-dark-2 rounded-b-lg dark:text-slate-950">
             <div className="card-title">
               <h5 className="mb-2">{product.title}</h5>
               <p>{product.brand}</p>
@@ -115,7 +115,7 @@ const ProductCard = ({ product }) => {
               </div>
               {/* Add 2 states to this button, toggle favorites */}
               <Button
-                variant={"link"}
+                variant={"icon"}
                 extraStyles="flex gap-1 justify-between items-center"
                 disabled={product.stock === 0}
                 onClick={(e) => handleFavorites(e)}
@@ -211,7 +211,7 @@ const ProductCard = ({ product }) => {
             </Button>
           </div>
           <div>
-            <p className="text-center grow px-4 py-6 bg-gold-light-3 rounded-b-lg">
+            <p className="text-center grow px-4 py-6 bg-gold-light-3 dark:bg-gold-dark-2 rounded-b-lg dark:text-slate-950">
               {product.description}
             </p>
           </div>
