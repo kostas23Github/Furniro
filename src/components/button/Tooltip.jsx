@@ -10,7 +10,7 @@ function Tooltip({ text = "hello", position = "bottom", distance = "80" }) {
         transform: "translateX(-50%)",
       },
       arrowStyles:
-        "absolute left-1/2 -bottom-4 transform -translate-x-1/2 border-8 border-transparent border-t-grey-800/80",
+        "absolute left-1/2 -bottom-4 transform -translate-x-1/2 border-8 border-transparent border-t-grey-800/80 dark:border-t-grey-100",
     },
     bottom: {
       tooltip: {
@@ -19,7 +19,7 @@ function Tooltip({ text = "hello", position = "bottom", distance = "80" }) {
         transform: "translateX(-50%)",
       },
       arrowStyles:
-        "absolute left-1/2 -top-4 transform -translate-x-1/2 border-8 border-transparent border-b-grey-800/90",
+        "absolute left-1/2 -top-4 transform -translate-x-1/2 border-8 border-transparent border-b-grey-800/90 dark:border-b-grey-100",
     },
     right: {
       tooltip: {
@@ -28,7 +28,7 @@ function Tooltip({ text = "hello", position = "bottom", distance = "80" }) {
         transform: "translateY(-50%)",
       },
       arrowStyles:
-        "absolute top-1/2 right-full transform -translate-y-1/2 border-8 border-transparent border-r-grey-800/90",
+        "absolute top-1/2 right-full transform -translate-y-1/2 border-8 border-transparent border-r-grey-800/90 dark:border-r-grey-100",
     },
     left: {
       tooltip: {
@@ -37,12 +37,12 @@ function Tooltip({ text = "hello", position = "bottom", distance = "80" }) {
         transform: "translateY(-50%)",
       },
       arrowStyles:
-        "absolute top-1/2 left-full transform -translate-y-1/2 border-8 border-transparent border-l-grey-800/90",
+        "absolute top-1/2 left-full transform -translate-y-1/2 border-8 border-transparent border-l-grey-800/90 dark:border-l-grey-100",
     },
   };
   return (
     <span
-      className="absolute bg-grey-800/90 text-white text-sm leading-none font-medium px-3 py-2 rounded shadow-lg shadow-grey-500 z-10 cursor-default pointer-events-none text-nowrap"
+      className="absolute bg-grey-800/90 dark:bg-grey-100 text-white dark:text-grey-800 text-sm leading-none font-medium px-3 py-2 rounded shadow-lg shadow-grey-500 z-10 cursor-default pointer-events-none text-nowrap"
       style={positionStyles[position].tooltip}
     >
       {text}
