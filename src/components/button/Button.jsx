@@ -39,19 +39,19 @@ function Button({
       hover: "bg-slate-50 outline outline-2 outline-grey-800",
     },
     "secondary-reversed": {
-      regular: "outline outline-2 outline-grey-800",
-      hover: "outline outline-2 outline-grey-800",
+      regular: "outline outline-2 outline-grey-800 dark:outline-grey-100",
+      hover: "outline outline-2 outline-grey-800 dark:outline-grey-400",
     },
     text: /* Plain text button */ {
-      regular: "text-grey-500 italic",
+      regular: "text-grey-500 italic dark:text-white",
       hover: "text-grey-300 italic",
     },
     icon: /* Icon button */ {
-      regular: "text-gray-800",
-      hover: "text-gray-500",
+      regular: "text-grey-800 dark:text-white",
+      hover: "text-grey-400 dark:text-grey-400",
     },
     link: /* Icon button */ {
-      regular: "text-white",
+      regular: "text-white dark:text-gray-800",
       hover: "text-gray-300",
     },
   };
