@@ -79,7 +79,7 @@ function Cart() {
                     <div className="col-span-1 flex justify-center">
                       <img
                         src={item.images[0]}
-                        className="bg-gold-light-2 w-24 h-24"
+                        className="bg-gold-light-2 dark:bg-gold-dark-2 w-24 h-24"
                       />
                     </div>
                   </Link>
@@ -87,7 +87,7 @@ function Cart() {
                   <div className="col-span-1 text-center">{item.price}€</div>
                   <div className="col-span-1 flex justify-center">
                     {/* Quantity Buttons */}
-                    <div className="flex items-center gap-2 outline outline-2 outline-grey-700 px-3 py-1">
+                    <div className="flex items-center gap-2 outline outline-2 outline-grey-700 dark:outline-gray-300 px-3 py-1">
                       <Button
                         variant="text"
                         handleClick={() => updateCart(item, "decrement", 1)}
@@ -137,12 +137,12 @@ function Cart() {
             )}
           </ul>
         </div>
-        <div className="xl:w-96 max-h-max bg-gold-light-2 hover:bg-gold-light-3 px-16 py-5 lg:py-10 sticky top-10">
+        <div className="xl:w-96 max-h-max bg-gold-light-2 dark:bg-gold-dark-3 hover:bg-gold-light-3 dark:hover:bg-gold-dark-2 px-16 py-5 lg:py-10 sticky top-10">
           <p className="text-4xl text-center mb-5">Cart Total</p>
           <div className="flex flex-col">
             <div className="flex space-x-16 justify-between pt-5 pb-2">
               <span className="font-bold">Subtotal</span>
-              <span className="text-grey-500">{subTotalPrice()} €</span>
+              <span className="text-grey-500 dark:text-slate-50">{subTotalPrice()} €</span>
             </div>
             <div className="flex justify-between gap-6 mb-0.5">
               <label htmlFor="vat">Apply VAT</label>
@@ -152,6 +152,7 @@ function Cart() {
                 id="vat"
                 checked={vat}
                 onChange={() => setVat(!vat)}
+                className="dark:accent-slate-800"
               />
             </div>
             <div className="flex justify-between gap-6">
@@ -162,11 +163,12 @@ function Cart() {
                 id="members-discount"
                 checked={discount}
                 onChange={() => setDiscount(!discount)}
+                className="dark:accent-slate-800"
               />
             </div>
             <div className="flex space-x-16 justify-between py-6">
               <span className="text-2xl">Total</span>
-              <span className="text-gold text-2xl">
+              <span className="text-gold dark:text-slate-800 text-2xl">
                 {totalPrice(vat, discount)} €
               </span>
             </div>
