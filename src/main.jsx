@@ -5,16 +5,22 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./index.css";
 import App from "./App.jsx";
 import ProductsProvider from "./components/contexts/ProductsProvider.jsx";
-import { CartProvider } from "./components/contexts/CartProvider.jsx";
+import CartProvider from "./components/contexts/CartProvider.jsx";
+import AuthProvider from "./components/contexts/AuthProvider.jsx";
+import FavoritesProvider from "./components/contexts/FavoritesProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HashRouter>
       <ProductsProvider>
-        <CartProvider>
-          <ScrollToTop />
-          <App />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <FavoritesProvider>
+              <ScrollToTop />
+              <App />
+            </FavoritesProvider>
+          </CartProvider>
+        </AuthProvider>
       </ProductsProvider>
     </HashRouter>
   </StrictMode>
