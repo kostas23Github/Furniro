@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductsContext } from "../../components/contexts/ProductsContext";
+import ProductsContext from "../../components/contexts/ProductsContext";
 import Loading from "../../components/loadingAnimation/Loading";
 import ErrorPage from "./ErrorPage";
 import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";

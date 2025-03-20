@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { ProductsContext } from "../../components/contexts/ProductsContext";
+import ProductsContext from "../../components/contexts/ProductsContext";
 import Loading from "../../components/loadingAnimation/Loading";
 import ErrorPage from "./ErrorPage";
 import StarRating from "../../components/StarRating";

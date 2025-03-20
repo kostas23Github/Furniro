@@ -5,7 +5,7 @@ import shopHeroBg from "../../assets/images/hero-bg/Shop-hero-bg.png";
 import { FaTrash } from "react-icons/fa";
 import Button from "../../components/button/button";
 import CharacteristicsList from "../../components/CharacteristicsList";
-import { ProductsContext } from "../../components/contexts/ProductsContext";
+import ProductsContext from "../../components/contexts/ProductsContext";
 import Loading from "../../components/loadingAnimation/Loading";
 import CartContext from "../../components/contexts/CartContext";
 

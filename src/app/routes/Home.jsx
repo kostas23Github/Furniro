@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router";
-import { ProductsContext } from "../../components/contexts/ProductsContext";
+import ProductsContext from "../../components/contexts/ProductsContext";
 import heroBg from "../../assets/images/hero-bg/home-hero-bg-scandinavian.png";
 import Button from "../../components/button/Button.jsx";
 import Carousel from "../../components/Carousel.jsx";

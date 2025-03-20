@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, useMemo } from "react";
 import { useLocation, Link } from "react-router";
-import { ProductsContext } from "../../components/contexts/ProductsContext";
+import ProductsContext from "../../components/contexts/ProductsContext";
 import ProductCard from "../../components/ProductCard";
 import PaginationControls from "../../components/paginationControls";
 import SearchBar from "../../components/SearchBar";
