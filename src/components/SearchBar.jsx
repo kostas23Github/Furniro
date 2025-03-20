@@ -34,7 +34,7 @@ function SearchBar({
   const OPTIONS = ["furniture", "home-decoration", "kitchen-accessories"];
 
   return (
-    <div className="bg-gold-light-2 hover:bg-gold-light-3 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12">
+    <div className="bg-gold-dark-3 hover:bg-gold-dark-2 min-h-24 w-full flex justify-evenly items-center flex-wrap gap-6 px-5 sm:px-10 lg:px-20 py-6 sm:py-8 lg:py-12">
       <div
         ref={menuRef}
         className="filter-container relative"
@@ -42,7 +42,7 @@ function SearchBar({
       >
         <Button
           variant="icon"
-          extraStyles="bg-transparent outline outline-1 rounded outline-grey-400 focus:outline-2 p-1"
+          extraStyles="bg-transparent outline outline-1 rounded outline-grey-400 dark:outline-grey-100 focus:outline-2 p-1"
           tooltipOptions={{
             text: "Filter",
             position: "bottom",
@@ -56,7 +56,7 @@ function SearchBar({
           <MdFilterList />
         </Button>
         {!isDropdownHidden && (
-          <div className="absolute top-[120%] -left-1/2 bg-white border rounded shadow-md px-2 w-max z-10">
+          <div className="absolute top-[120%] -left-1/2 bg-slate-50 dark:bg-slate-800 outline outline-2 outline-grey-400 dark:outline-gold-dark-3 rounded shadow-md px-2 w-max z-10">
             <div className="flex justify-between">
               <Button
                 variant="text"
@@ -75,7 +75,7 @@ function SearchBar({
               >
                 <span>{option}</span>
                 <input
-                  className="cursor-pointer"
+                  className="dark:accent-gold-dark-3 cursor-pointer"
                   type="checkbox"
                   value={option}
                   checked={categories.includes(option)}
@@ -95,7 +95,7 @@ function SearchBar({
         </span>
       )}
       <input
-        className="bg-transparent px-2 py-1 outline outline-1 rounded outline-grey-400 focus:outline-4 placeholder:text-grey-500"
+        className="bg-transparent px-2 py-1 outline outline-1 rounded outline-grey-400 dark:outline-grey-100 focus:outline-4 placeholder:text-grey-500 dark:placeholder:text-grey-100"
         type="search"
         name="search"
         id="searchProducts"
