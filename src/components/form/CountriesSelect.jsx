@@ -24,10 +24,10 @@ function CountrySelect({ name, labelName }) {
     <div className="relative flex flex-col">
       <label
         htmlFor={name}
-        className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 ${
+        className={`transition-all duration-200 px-1 w-max relative left-1 bg-slate-50 dark:bg-slate-700 ${
           watch(name) || focusedField === name
             ? "top-0 bg-transparent text-grey-700"
-            : "top-[10px] bg-slate-50 text-grey-300"
+            : "top-[10px] text-grey-300 dark:text-grey-100"
         } ${errors[name] && "text-rose-500"}`}
       >
         {labelName}
@@ -38,14 +38,14 @@ function CountrySelect({ name, labelName }) {
         className={`bg-transparent mb-2 outline outline-2 ${
           errors[name]
             ? "outline-rose-500 focus:rose-500 text-rose-500"
-            : "outline-grey-300"
+            : "outline-grey-300 dark:outline-grey-100"
         } px-3 py-2 focus:outline-grey-700`}
         onFocus={() => setFocusedField(name)}
         onBlur={() => setFocusedField(null)}
       >
         {countries.length > 0 ? (
           countries.map((country, index) => (
-            <option key={index} value={country}>
+            <option key={index} value={country} className="bg-slate-50 dark:bg-slate-700">
               {country}
             </option>
           ))
