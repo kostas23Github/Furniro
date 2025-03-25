@@ -139,6 +139,7 @@ function SingleProduct() {
               variant="secondary-reversed"
               extraStyles="w-[106px] md:w-[130px] lg:w-[150px] px-3 py-2 rounded-lg"
               handleClick={() => updateCart(cartItem, "increment", quantity)}
+              addedToCartState={true}
             >
               Add to Cart
             </Button>

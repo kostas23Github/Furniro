@@ -98,6 +98,7 @@ const ProductCard = ({ product }) => {
                     e.preventDefault();
                     updateCart(product, "increment", +1);
                   }}
+                  addedToCartState={true}
                 >
                   <FaCartArrowDown />
                 </Button>
