@@ -4,7 +4,7 @@ import { FaStar, FaCartArrowDown } from "react-icons/fa";
 import { TbHeart, TbHeartFilled } from "react-icons/tb";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
 import { IoCloseSharp } from "react-icons/io5";
-import Button from "./button/button";
+import Button from "./button/Button";
 import useHover from "./hooks/useHover";
 import CartContext from "./contexts/CartContext";
 import FavoritesContext from "./contexts/FavoritesContext";
