@@ -32,7 +32,7 @@ React(^18.3.1) + Vite(^6.0.5)
 
 ## Cmds
 
-To start the app localy ` http://localhost:5173/Furniro-e-commerce-project/` in terminal run `npm run dev`.
+To start the app localy in terminal run `npm run dev`.
 To update app on github pages commit & push changes to main repository branch, then in terminal run `npm run deploy`.
 
 # REST API
@@ -41,7 +41,3 @@ Free Fake REST API for Placeholder JSON Data
 [DummyJSON](https://dummyjson.com/). Currently using the following product categories _furniture_, _home-decoration_, _kitchen-accessories_.
 
 To start app run `npm run dev`.
-
-## TODO
-
-1. 
