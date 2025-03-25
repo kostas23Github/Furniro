@@ -2,6 +2,7 @@
 // Refer to this prompt from yesterday ->
 // "Which styles do they usually conditionally apply to the button element bc in an e-commerce one can have multiple different buttons"
 
+import { useState } from "react";
 import PropTypes from "prop-types";
 import Tooltip from "./tooltip";
 import useHover from "../hooks/useHover";
@@ -15,14 +16,27 @@ function Button({
   disabled,
   tooltipOptions,
   children,
+  addedToCartState = false,
   ...rest
 }) {
-  // { ...rest } currently supports external event handlers.
+  // { ...rest } currently supports external event handlers but handleClick handlers.
+
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const [hoverRef, isHovered] = useHover();
 
   // Detect so to disable tooltip pop ups.
   const isTouchDevice = useIsTouchDevice();
+
+  function handleClickWithAddedState(e) {
+    // The e param, is needed for when the handleClick has it as a param. One case is e.preventDefault();
+    if (addedToCartState) {
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 1000);
+    }
+
+    if (handleClick) handleClick(e);
+  }
 
   // Main button categories for regular & hover states.
   const variantClass = {
@@ -73,11 +87,11 @@ function Button({
       className={`${variantState} ${extraStyles} inline-block ${
         disabled ? "opacity-50 cursor-not-allowed" : ""
       }`}
-      onClick={handleClick}
+      onClick={handleClickWithAddedState}
       disabled={disabled}
       {...rest}
     >
-      {children}
+      {addedToCart && addedToCartState ? <>Added ✅</> : children}
       {!isTouchDevice && !disabled && isHovered && tooltipOptions && (
         <Tooltip {...tooltipOptions} />
       )}
@@ -100,6 +114,7 @@ Button.propTypes = {
   handleClick: PropTypes.func,
   disabled: PropTypes.bool,
   tooltipOptions: PropTypes.object,
+  addedToCartState: PropTypes.bool,
   children: PropTypes.node.isRequired, // React node
 };
 
