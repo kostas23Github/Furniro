@@ -93,7 +93,7 @@ function SingleProduct() {
           />
         </div>
         <div className="product-info-container md:py-6">
-          <p className="text-3xl w-max mb-3 md:mb-5">{product.title}</p>
+          <p className="text-3xl mb-3 md:mb-5">{product.title}</p>
           <p className="w-max">{product.price}€</p>
           <div className="flex items-center my-3">
             <StarRating rating={product.rating} />
